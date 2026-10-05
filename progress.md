@@ -5,3 +5,5 @@
 - S01 reworked after feedback: bigger axes (ticks font 32), x / f(x) labels, readout panel anchored at a fixed top-left point (no jitter).
 - Tangent dot now fades out before the h section; nudge section has base dot "x=1", red "x+h" dot with an h segment, faint true tangent, secant converging to it.
 - Checked frames 4, 11, 15 at 480p: no overlap. Still imperfect: right panel is empty below the readouts; at h=0.001 the two dots coincide (expected).
+- S01 second rework (feedback.md): true tangent in thick GREEN (full opacity), removed stray h segment, "x=1" label larger and offset, tag moved next to readouts, tangent no longer reaches the plot edge, added waits so the axes/dot are fully drawn before holding.
+- Re-rendered; checked frames 3, 5, 12, 15. x+h label fades only by closeness at h=0.001 (dots coincide, expected). Yellow text still looks slightly muted on black (palette colour).

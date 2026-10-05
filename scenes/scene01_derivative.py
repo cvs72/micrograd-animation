@@ -44,6 +44,7 @@ class Scene01Derivative(Scene):
         curve = axes.plot(lambda t: f(Value(t)).data, x_range=[-1, 3.2], color=BLUE)
         self.play(Create(axes), FadeIn(labels), run_time=1.5)
         self.play(Create(curve), run_time=2)
+        self.wait(0.5)
 
         # --- tangent line sliding along the curve ---
         xt = ValueTracker(-0.8)
@@ -56,7 +57,7 @@ class Scene01Derivative(Scene):
             m = slope_at(x0)
             return axes.plot(
                 lambda t: f(x0) + m * (t - x0),
-                x_range=[max(-1, x0 - 1), min(3.2, x0 + 1)],
+                x_range=[max(-0.8, x0 - 1), min(3.0, x0 + 1)],
                 color=YELLOW,
             )
 
@@ -71,12 +72,13 @@ class Scene01Derivative(Scene):
 
         info = always_redraw(readout)
         tag = Text("tangent at the yellow dot", font_size=26, color=YELLOW)
-        tag.move_to(PANEL + DOWN * 2.0, aligned_edge=UL)
+        tag.move_to(PANEL + DOWN * 1.5, aligned_edge=UL)
         self.play(FadeIn(dot), Create(tan_line), FadeIn(info), FadeIn(tag))
+        self.wait(0.5)
         self.play(xt.animate.set_value(3.0), run_time=6, rate_func=linear)
         self.play(xt.animate.set_value(2 / 3), run_time=2)
         flat = Text("slope 0 at the minimum", font_size=28, color=TEAL)
-        flat.move_to(PANEL + DOWN * 2.8, aligned_edge=UL)
+        flat.move_to(PANEL + DOWN * 2.2, aligned_edge=UL)
         self.play(FadeIn(flat))
         self.wait(1)
         self.play(FadeOut(flat), FadeOut(tag), FadeOut(tan_line), FadeOut(info), FadeOut(dot))
@@ -87,10 +89,11 @@ class Scene01Derivative(Scene):
         base = Dot(axes.c2p(x0, f(x0)), color=YELLOW, radius=0.11)
         true_line = axes.plot(
             lambda t: f(x0) + slope_at(x0) * (t - x0), x_range=[x0 - 1, x0 + 1.5],
-            color=YELLOW, stroke_opacity=0.5,
+            color=GREEN, stroke_width=6,
         )
-        base_lbl = MathTex(r"x=1", font_size=32, color=YELLOW).next_to(base, UL, buff=0.15)
+        base_lbl = MathTex(r"x=1", font_size=36, color=YELLOW).next_to(base, UP, buff=0.3).shift(LEFT * 0.6)
         self.play(FadeIn(base), FadeIn(base_lbl), Create(true_line))
+        self.wait(0.5)
 
         def secant():
             m = secant_slope(x0, ht.get_value())
@@ -111,7 +114,7 @@ class Scene01Derivative(Scene):
         )
         far_lbl = always_redraw(
             lambda: MathTex(r"x+h", font_size=32, color=RED).next_to(
-                axes.c2p(x0 + ht.get_value(), f(x0 + ht.get_value())), DR, buff=0.15
+                axes.c2p(x0 + ht.get_value(), f(x0 + ht.get_value())), DR, buff=0.25
             )
         )
 
@@ -121,11 +124,11 @@ class Scene01Derivative(Scene):
                 MathTex(rf"h = {h:.3f}", font_size=40, color=RED),
                 MathTex(r"\frac{f(x+h)-f(x)}{h}", font_size=40),
                 MathTex(rf"= {secant_slope(x0, h):.3f}", font_size=40, color=RED),
-                MathTex(rf"\text{{true slope}} = {slope_at(x0):.3f}", font_size=40, color=YELLOW),
+                MathTex(rf"\text{{true slope}} = {slope_at(x0):.3f}", font_size=40, color=GREEN),
             )
 
         h_info = always_redraw(h_readout)
-        self.play(FadeIn(sec_line), FadeIn(far_dot), FadeIn(h_seg), FadeIn(far_lbl), FadeIn(h_info))
+        self.play(FadeIn(sec_line), FadeIn(far_dot), FadeIn(far_lbl), FadeIn(h_info))
         self.play(ht.animate.set_value(0.5), run_time=3)
         self.play(ht.animate.set_value(0.05), run_time=3)
         self.play(ht.animate.set_value(0.001), run_time=3)
