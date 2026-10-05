@@ -51,6 +51,6 @@ Then one neuron, and automating the backward pass.
 Last, adding up gradients, and training a network.
 
 14
-00:01:00,467 --> 00:01:03,200
+00:01:00,400 --> 00:01:03,200
 It all starts with a question about slopes.
 
