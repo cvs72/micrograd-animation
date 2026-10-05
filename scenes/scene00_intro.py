@@ -12,7 +12,7 @@ config.background_color = BLACK
 
 XS = [1.0, -0.5, 0.8]
 TARGET = 1.0
-LAYER_X = [-5.8, -3.3, -0.8]
+LAYER_X = [-5.6, -2.9, -0.2]
 CHAPTERS = ["Slope", "Nudges", "Graph", "Backward pass",
             "Neuron", "Automation", "Accumulation", "Training"]
 
@@ -92,8 +92,11 @@ class Scene00Intro(Scene):
         net = VGroup(*[n for l in layers for n in l], *lines.values())
         assert len(lines) == 16
         self.play(Create(VGroup(*lines.values())), run_time=1.5)
+        layer_names = VGroup(*[
+            Text(t, font_size=24, color=SECOND).move_to([x, -2.35, 0])
+            for t, x in zip(["inputs", "hidden", "output"], LAYER_X)])
         self.play(FadeIn(VGroup(*[n for l in layers for n in l])), FadeIn(heading),
-                  run_time=1)
+                  FadeIn(layer_names), run_time=1)
         nar.say("This tiny network has sixteen knobs, called weights.")
         self.wait(1)
         # slider handles on a few lines

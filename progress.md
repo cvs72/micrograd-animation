@@ -17,4 +17,6 @@
 - Weakest points: network still fills only the left half; roadmap boxes are plain text (no icons); the Training baseline fix is a hand-tuned offset.
 - S00 third pass (68.6 s): added grey slider tracks behind the five handles (feedback: sliders were plain dots); re-rendered and checked frames 3, 6, 9, 12, 14 (loss/? visible, roadmap lights one chapter at a time, final question shown).
 - Weakest points: network still fills only the left half in the first beats; slider tracks are slightly offset from the handle line at steep angles; roadmap boxes are plain text (no icons).
+- S00 fourth pass (feedback.md): network widened (layers at x=-5.6/-2.9/-0.2) so it fills more of the frame, added inputs/hidden/output labels; re-rendered, checked frames 4, 8, 14 (captions readable, loss bar and final question visible); row ticked.
+- Weakest points: network still left-weighted until the loss panel appears; roadmap boxes are plain text (no icons); caption font is the default serif (anim.py is append-only, left unchanged).
 - Note: S01 and S02 predate G1-G9 (no captions, no title card, S02 is text only); they will likely need reworking with Narrator.
