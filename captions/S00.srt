@@ -31,62 +31,62 @@ A bigger h gives 139.0388; as h shrinks it closes in on 138.8338.
 Backprop works on any expression. Neural nets are a calmer one.
 
 9
-00:00:48,333 --> 00:00:52,867
+00:00:48,333 --> 00:00:52,833
 micrograd uses single numbers on purpose; tensors only add speed.
 
 10
-00:00:53,533 --> 00:00:57,067
+00:00:53,433 --> 00:00:56,967
 This tiny network has sixteen knobs; real ones have millions.
 
 11
-00:00:57,733 --> 00:01:00,733
+00:00:57,633 --> 00:01:00,633
 In code, every knob is just a number.
 
 12
-00:01:01,400 --> 00:01:04,867
+00:01:01,300 --> 00:01:04,767
 The loss measures how wrong we are. Lower is better.
 
 13
-00:01:05,533 --> 00:01:12,067
+00:01:05,433 --> 00:01:11,967
 Turn one knob blindly and the mistake grows: wrong way!
 
 14
-00:01:12,733 --> 00:01:15,733
+00:01:12,633 --> 00:01:15,633
 Another knob, other direction: lucky, the loss falls.
 
 15
-00:01:16,400 --> 00:01:20,200
+00:01:16,300 --> 00:01:20,100
 With thousands of knobs, guessing is hopeless. We need a direction.
 
 16
-00:01:21,833 --> 00:01:25,333
+00:01:21,733 --> 00:01:25,233
 Here is our plan: twelve short chapters, one idea each.
 
 17
-00:01:25,933 --> 00:01:28,733
+00:01:25,833 --> 00:01:28,600
 First slopes, several inputs, and the computation graph.
 
 18
-00:01:29,400 --> 00:01:32,533
+00:01:29,200 --> 00:01:32,300
 Then the backward pass, one neuron, and automating it.
 
 19
-00:01:33,200 --> 00:01:36,000
+00:01:32,900 --> 00:01:35,667
 Next, adding up gradients, more operations, and PyTorch.
 
 20
-00:01:36,667 --> 00:01:40,133
+00:01:36,267 --> 00:01:39,700
 Finally a whole network, training it, and a loss surface.
 
 21
-00:01:40,800 --> 00:01:45,000
+00:01:40,300 --> 00:01:44,467
 Every chapter has three acts, so you see each idea three times.
 
 22
-00:01:45,667 --> 00:01:49,867
+00:01:45,067 --> 00:01:49,200
 A uses the lecture's numbers; B changes them and watches what moves.
 
 23
-00:01:50,533 --> 00:01:54,333
+00:01:49,800 --> 00:01:53,600
 The expert corner adds what a specialist would warn you about.
 
