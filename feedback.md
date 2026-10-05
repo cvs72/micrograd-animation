@@ -1,10 +1,11 @@
 ## Reviewer feedback for S00 (row un-ticked; fix and re-render)
-- Frame 8 is a fade-out of the roadmap. The scene is meant to end with the question 'what is a derivative, really?', and that question never appears in any frame.
-- Frame 4: the question mark next to 'loss = 1.3267' is dark grey on black and mostly clipped or unreadable, so the 'question mark when turned blindly' cue does not show.
-- Frame 5: the loss falls to 0.834 with no visible link to the earlier knob turn, and the knob moves a different way than in frame 4. It reads as a jump rather than a continuous ValueTracker-driven change.
-- Frame 1: the network is only partly drawn, with edges but no nodes. The frame is mostly empty black and the right side is unused. This is acceptable as a transitional frame.
-- Frames 2-5: the network is crammed into the left third of the frame. The knob dots on the lines are tiny, and the highlighted yellow lines have no clear slider look.
-- Frame 6: the 'Nudges' highlight is lit while the caption says 'Slope, nudges, graph, backward pass, then a neuron'. Only one chapter at a time is lit, so the highlight does not keep pace with the caption.
-- Frame 6: the 'Training' label sits slightly higher than the other labels in its row (baseline misaligned).
-- Frame 4: the loss bar is orange but the loss is only slightly higher, so the bar barely changes.
+- Frame 1: network is only partly drawn (stray lone diagonal line at upper centre pointing at nothing, no nodes yet); looks broken.
+- Frames 2-5: only 2 of the described slider handles appear on the lines in a meaningful way; the sliders are plain yellow dots with no slider track; the network is squeezed into the left half leaving the right half empty in frame 2.
+- Frame 3: loss is 1.2759 and bar is orange; frame 4: loss 1.2513 drops (better) while description requires a blind turn that makes loss worse with a question mark. No question mark is visible in any frame, and no frame shows loss getting worse.
+- Frame 4: caption area is blank/dim with faint fading text ghosting at the bottom (around y=470), partial caption leftover.
+- Frame 5: loss jumps to 0.834 with a different knob position; bar and number inconsistent with 'guessing is hopeless' caption (loss improved a lot).
+- Frames 3-5: 'mistake' label sits left of the bar and is small; bar top outline and mark line are low contrast. Loss text colour changes between frames (orange, blue, teal) with no explanation.
+- Frames 6-7: roadmap highlights are weak — frame 6 'Nudges' fill is dark olive with low contrast and Slope teal outline only; frame 7 lights almost all chapters at once, contradicting 'one chapter at a time'. Arrow tips between boxes are tiny.
+- Frame 8: faded-out roadmap only; the required ending question 'what is a derivative, really?' is not visible in any frame.
+- No frame shows the title card, code panel, or recap line helpers in use.
 

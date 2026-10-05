@@ -35,22 +35,22 @@ With thousands of knobs, guessing is hopeless. We need a direction.
 Here is our plan for the next chapters.
 
 10
-00:00:43,767 --> 00:00:47,233
+00:00:43,700 --> 00:00:47,100
 First we learn about slopes, then about nudges.
 
 11
-00:00:47,900 --> 00:00:51,367
+00:00:47,700 --> 00:00:51,100
 Next, the graph and the backward pass.
 
 12
-00:00:52,033 --> 00:00:55,500
+00:00:51,700 --> 00:00:55,100
 Then one neuron, and automating the backward pass.
 
 13
-00:00:56,167 --> 00:00:59,633
+00:00:55,700 --> 00:00:59,100
 Last, adding up gradients, and training a network.
 
 14
-00:01:00,300 --> 00:01:03,033
+00:00:59,700 --> 00:01:02,467
 It all starts with a question about slopes.
 
