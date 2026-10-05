@@ -7,3 +7,6 @@
 - Checked frames 4, 11, 15 at 480p: no overlap. Still imperfect: right panel is empty below the readouts; at h=0.001 the two dots coincide (expected).
 - S01 second rework (feedback.md): true tangent in thick GREEN (full opacity), removed stray h segment, "x=1" label larger and offset, tag moved next to readouts, tangent no longer reaches the plot edge, added waits so the axes/dot are fully drawn before holding.
 - Re-rendered; checked frames 3, 5, 12, 15. x+h label fades only by closeness at h=0.001 (dots coincide, expected). Yellow text still looks slightly muted on black (palette colour).
+- S02 done: scenes/scene02_multi_input.py (Scene02MultiInput) renders (~26s). Nudged d, finite-difference slopes and ∂d/∂x all computed with the Value class (forward + backward).
+- Nudges a, b, c in turn (red nudged input, Δd, Δd/h ≈ -3 / 2 / 1), then a summary of the three partials. Checked frames 4, 8, 13 at 480p: no overlap.
+- Imperfect: purely textual (no graph yet, that is S03); the "h = 0.01" tag sits close to the right end of the d row; with h=0.01 the finite differences read ≈ rather than exact.
