@@ -2,3 +2,6 @@
 - S01 done: scenes/scene01_derivative.py renders (~30s). Slopes come from Value.backward; secant slopes from Value-evaluated f.
 - Checked frames 4, 9, 15: tangent slides, slope readout updates, h shrinks to 0.001 with secant slope 2.003 vs true 2.000.
 - Imperfect: plot sits low-left with empty space at right; the x-axis sits at y=0 below the curve minimum, fine but could be centered better.
+- S01 reworked after feedback: bigger axes (ticks font 32), x / f(x) labels, readout panel anchored at a fixed top-left point (no jitter).
+- Tangent dot now fades out before the h section; nudge section has base dot "x=1", red "x+h" dot with an h segment, faint true tangent, secant converging to it.
+- Checked frames 4, 11, 15 at 480p: no overlap. Still imperfect: right panel is empty below the readouts; at h=0.001 the two dots coincide (expected).
