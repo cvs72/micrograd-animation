@@ -16,6 +16,9 @@ while IFS='|' read -r head file cls dur desc; do
   min=${dur%-*}; max=${dur#*-}
   echo "-- $id $file $cls"
   [ -f "$file" ] || { echo "SCENE $id FAILED: $file does not exist"; fail=1; continue; }
+  if grep -q "^$id $(./hash.sh "$file")\$" reviews/passed.txt 2>/dev/null && [ -f "media/videos/$(basename "$file" .py)/480p15/$cls.mp4" ]; then
+    echo "SCENE $id cached (unchanged since its review pass)"; continue
+  fi
   if ! uv run manim -ql -v WARNING "$file" "$cls" > "logs/render-$id.txt" 2>&1; then
     echo "SCENE $id FAILED: render error: $(grep -E '^[A-Za-z_.]*(Error|Exception)' "logs/render-$id.txt" | tail -2 | tr '\n' ' ')"; tail -n 25 "logs/render-$id.txt"; fail=1; continue
   fi
@@ -25,8 +28,31 @@ while IFS='|' read -r head file cls dur desc; do
   if ! awk -v d="$d" -v lo="$min" -v hi="$max" 'BEGIN{exit !(d>=lo && d<=hi)}'; then
     echo "SCENE $id FAILED: duration ${d}s outside ${min}-${max}s"; fail=1; continue
   fi
+  min_caps=$(sed -n 's/^CAPTIONS_REQUIRED: *\([0-9][0-9]*\).*/\1/p' PLAN.md | head -1); min_caps=${min_caps:-0}
+  if [ "$min_caps" -gt 0 ]; then
+    n_cues=$(grep -c -- '-->' "captions/$id.srt" 2>/dev/null); n_cues=${n_cues:-0}
+    if [ "$n_cues" -lt "$min_caps" ]; then
+      echo "SCENE $id FAILED: captions/$id.srt has $n_cues cues, PLAN.md requires at least $min_caps (use the Narrator helper)"; fail=1; continue
+    fi
+  fi
+  min_desc=$(sed -n 's/^DESCRIPTIONS_REQUIRED: *\([0-9][0-9]*\).*/\1/p' PLAN.md | head -1); min_desc=${min_desc:-0}
+  if [ "$min_desc" -gt 0 ]; then
+    n_lines=$(grep -c . "descriptions/$id.md" 2>/dev/null); n_lines=${n_lines:-0}
+    if [ "$n_lines" -lt "$min_desc" ]; then
+      echo "SCENE $id FAILED: descriptions/$id.md has $n_lines non-empty lines, PLAN.md requires at least $min_desc"; fail=1; continue
+    fi
+  fi
+  act_ids=$(sed -n 's/^ACT_SCENES: *//p' PLAN.md | head -1)
+  case " $act_ids " in
+    *" $id "*)
+      for phrase in "Example A" "Example B" "Expert corner"; do
+        if ! grep -qi -- "$phrase" "captions/$id.srt" 2>/dev/null; then
+          echo "SCENE $id FAILED: captions/$id.srt never says \"$phrase\" (each act needs a caption that begins with it)"; fail=1; continue 2
+        fi
+      done;;
+  esac
   rm -f frames/"$id"_*.png
-  fps=$(awk -v d="$d" 'BEGIN{printf "%.4f", 8/d}')
+  fps=$(awk -v d="$d" 'BEGIN{printf "%.4f", 12/d}')
   ffmpeg -loglevel error -y -i "$mp4" -vf "fps=$fps,scale=960:-1" "frames/${id}_%02d.png" || { echo "SCENE $id FAILED: frame extraction"; fail=1; continue; }
   if grep -q "^$id $(./hash.sh "$file")\$" reviews/passed.txt 2>/dev/null; then
     echo "scene $id already review-passed (unchanged), not re-queued for review"

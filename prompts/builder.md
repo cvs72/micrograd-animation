@@ -25,3 +25,11 @@ If you are blocked, explain why in progress.md and stop.
 Richness rule: a scene must not be text only. Unless its PLAN.md row says otherwise, include at least one real visual
 (Axes plot, node graph with arrows, or 3D surface) and animate it with Transform, Create, Indicate or ValueTracker.
 Update progress.md with the Edit tool, not shell redirects (shell redirects are denied).
+
+## Three-act protocol (PLAN.md: "Source material", "The three-act pattern" and G1 to G14 override anything above)
+1. Before writing code for a scene: read its section in reference/lecture_notes.md, grep reference/lecture_transcript.md with the keywords given there to see how the lecture explains the idea, then read the notebook sections for the exact code, values and order of steps (the notebooks win for code and numbers). Write the files and section or chunk numbers you used into progress.md.
+2. Build ACT A from that section (same variable names, values and order of steps), ACT B as an animated "what if" morph of the values, ACT C as the expert corner listed in the row. Each act starts with an act banner and a first caption that begins exactly "Example A:", "Example B:" or "Expert corner:".
+3. In the same iteration write captions/<ID>.srt through the Narrator helper and descriptions/<ID>.md (at least DESCRIPTIONS_REQUIRED non-empty lines). verify.sh fails the scene without them.
+4. Typeset every formula with MathTex, derive it step by step, and substitute the real numbers before every result.
+5. If you cannot finish a whole scene in one iteration: finish the acts in order (A, then B, then C), keep the scene file runnable after every save, write in progress.md which act you stopped at, and do NOT tick the row. The next iteration continues from there.
+6. When verify.sh or the reviewer sends feedback in feedback.md, fix exactly those points first.

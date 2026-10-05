@@ -13,3 +13,15 @@ Return JSON matching the schema: for every scene id, "pass" and a list of specif
 
 Also FAIL a scene whose frames are only rows of text and numbers with no diagram, plot or graph, unless its description
 says it is text only. State it as an issue: "scene is text only; add a visual".
+
+## Three-act and depth check (this overrides the frame counts in the earlier checks: you now get up to 12 frames per scene)
+For every scene named in ACT_SCENES in PLAN.md, FAIL it unless ALL of these are visible across its frames:
+- the three act banners: Example A, Example B and Expert corner;
+- typeset formulas (not plain text) with real numbers substituted before results;
+- at least two real visuals in each act (plot, graph, 3D surface, code panel, bar chart, table, network diagram);
+- captions present in at least 10 of 12 frames outside title and recap cards, specific and not generic;
+- in Example B the changed values shown next to the original ones;
+- at least one on-screen question that is revealed afterwards (predict-then-reveal, G15);
+- for S02 (Expert corner) and S12 (all acts) a real 3D view.
+Also read descriptions/<ID>.md and FAIL if it is generic or does not match what the frames show.
+For S13, also read publish/video_description.md and publish/chapters.txt and FAIL if either is missing, generic, or has timestamps that do not increase.
