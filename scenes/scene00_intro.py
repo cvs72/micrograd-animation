@@ -152,30 +152,38 @@ class Scene00Intro(MovingCameraScene):
         self.play(TransformMatchingTex(g_q, g_tex), Indicate(g_tex, color=FWD))
         self.wait(1)
         # predict then reveal the slope of a
-        qa = MathTex(r"\frac{\partial g}{\partial a} = ?", font_size=44, color=GRAD).move_to([3.7, 1.3, 0])
-        qb = MathTex(r"\frac{\partial g}{\partial b} = ?", font_size=44, color=GRAD).move_to([3.7, 0.0, 0])
+        qa = MathTex(r"\frac{\partial g}{\partial a} = ?", font_size=44, color=GRAD).move_to([3.9, 1.3, 0])
+        qb = MathTex(r"\frac{\partial g}{\partial b} = ?", font_size=44, color=GRAD).move_to([3.9, 0.0, 0])
         nar.say("Backward asks: how fast does g change if we nudge a or b?")
         self.play(FadeIn(qa), FadeIn(qb))
-        self.play(Indicate(qa, color=ACTIVE, scale_factor=1.15), run_time=1.2)
-        self.play(Indicate(qb, color=ACTIVE, scale_factor=1.15), run_time=1.2)
+        for _ in range(3):  # pulse the question marks for about 3 seconds
+            self.play(Indicate(qa, color=ACTIVE, scale_factor=1.12),
+                      Indicate(qb, color=ACTIVE, scale_factor=1.12), run_time=1.0)
         ra = MathTex(rf"\frac{{\partial g}}{{\partial a}} = {fmt(RA.grad)}", font_size=44,
                      color=GRAD).move_to(qa)
         rb = MathTex(rf"\frac{{\partial g}}{{\partial b}} = {fmt(RB.grad)}", font_size=44,
                      color=GRAD).move_to(qb)
-        bwd = Arrow([qa.get_left()[0] - 0.15, 0.65, 0], [code.get_right()[0] + 0.15, 0.65, 0],
-                    color=BWD, buff=0, stroke_width=5)
+        bwd_a = Arrow(ra.get_left() + LEFT * 0.1, [code.get_right()[0] + 0.1, 1.3, 0],
+                      color=BWD, buff=0, stroke_width=5)
+        bwd_b = Arrow(rb.get_left() + LEFT * 0.1, [code.get_right()[0] + 0.1, 0.0, 0],
+                      color=BWD, buff=0, stroke_width=5)
         nar.say(f"Nudge a up a little and g grows about {RA.grad:.1f} times as fast.")
-        self.play(TransformMatchingTex(qa, ra), TransformMatchingTex(qb, rb), Create(bwd))
-        self.wait(1.5)
+        self.play(ReplacementTransform(qa, ra), ReplacementTransform(qb, rb))
+        self.play(Create(bwd_a), Create(bwd_b))
+        self.wait(1.0)
         # check the slope with a real nudge, zoomed in
-        pos = np.array([3.7, -1.5, 0.0])
-        nar.say("Check it: nudge a by 0.001 and see how far g really moves.")
+        pos = np.array([3.9, -1.9, 0.0])
+        nar.say("Check it: nudge a by h = 0.001 and see how far g really moves.")
+        step = MathTex(rf"a: {fmt(-4.0)} \to {fmt(-4.0 + NUDGE_H)},\quad h = {NUDGE_H}",
+                       font_size=36, color=DATA).move_to([3.9, -0.95, 0])
+        self.play(FadeIn(step))
         w = working_line(
             self, r"\frac{g(a+h)-g(a)}{h}",
             rf"\frac{{{fmt(G_NUDGED)}-{fmt(RG.data)}}}{{{NUDGE_H}}}",
-            rf"\approx {NUDGE_SLOPE:.1f}", pos=pos, width=6.0, hold=0.8)
-        self.zoom_on(nar, w, 0.6, 1.0)
-        self.play(FadeOut(w), FadeOut(fwd), FadeOut(bwd))
+            rf"= {fmt(NUDGE_SLOPE)}", pos=pos, width=6.0, hold=1.0)
+        self.zoom_on(nar, w, 0.6, 0.3)
+        nar.say(f"A bigger h gives {fmt(NUDGE_SLOPE)}; as h shrinks it closes in on {fmt(RA.grad)}.")
+        self.play(FadeOut(w), FadeOut(step), FadeOut(fwd), FadeOut(bwd_a), FadeOut(bwd_b))
         # gradient callout
         co = callout("Gradient", "how fast the output moves\nwhen an input is nudged",
                      color=GRAD, width=5.4).move_to([3.7, -1.6, 0])
@@ -281,7 +289,7 @@ class Scene00Intro(MovingCameraScene):
         b = always_redraw(bar)
         self.play(FadeIn(r), Create(frame_bar), FadeIn(bar_label), FadeIn(b),
                   Create(base_tick))
-        self.wait(1.5)
+        self.wait(0.5)
 
         # ---- blind turn makes it worse
         nar.say("Turn one knob blindly and the mistake grows: wrong way!")
@@ -327,10 +335,9 @@ class Scene00Intro(MovingCameraScene):
             if i in notes:
                 nar.say(notes[i])
             self.play(bx[0].animate.set_fill(ACTIVE, opacity=0.35).set_stroke(ACTIVE),
-                      bx[1].animate.set_color(ACTIVE), run_time=0.3)
-            self.wait(0.25)
-            self.play(bx[0].animate.set_fill(ACTIVE, opacity=0).set_stroke(FWD),
-                      bx[1].animate.set_color(WHITE), run_time=0.2)
+                      bx[1].animate.set_color(ACTIVE), run_time=0.4)
+            self.play(bx[0].animate.set_fill(ACTIVE, opacity=0).set_stroke(GREY_B),
+                      bx[1].animate.set_color(WHITE), run_time=0.3)
         self.play(FadeOut(grid), FadeOut(title))
 
         # ---- the three-act pattern
@@ -346,7 +353,7 @@ class Scene00Intro(MovingCameraScene):
                 for y in (2.0, 0.2)]
         curve_a = axes[0].plot(lambda x: x * x, color=DATA)
         curve_b = axes[1].plot(lambda x: x * x, color=DATA)
-        curve_b2 = axes[1].plot(lambda x: 0.5 * (x - 0.5) ** 2 + 0.3, color=ACTIVE)
+        curve_b2 = axes[1].plot(lambda x: 0.5 * x ** 3 - x + 2, color=ACTIVE)
         lens = VGroup(Circle(radius=0.35, color=GRAD),
                       Line(DL * 0.25, DL * 0.6, color=GRAD, stroke_width=6)
                       ).move_to([-4.6, -1.6, 0])
@@ -357,7 +364,7 @@ class Scene00Intro(MovingCameraScene):
         self.play(Indicate(banners[1]), run_time=1)
         nar.say("The expert corner adds what a specialist would warn you about.")
         self.play(Indicate(banners[2]), Indicate(lens), run_time=1.5)
-        self.wait(1.5)
+        self.wait(0.5)
         nar.finish()
         self.play(FadeOut(Group(*self.mobjects)))
         recap_line(self, "What is a derivative, really?", color=ACTIVE)
