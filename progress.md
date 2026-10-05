@@ -10,3 +10,7 @@
 - S02 done: scenes/scene02_multi_input.py (Scene02MultiInput) renders (~26s). Nudged d, finite-difference slopes and ∂d/∂x all computed with the Value class (forward + backward).
 - Nudges a, b, c in turn (red nudged input, Δd, Δd/h ≈ -3 / 2 / 1), then a summary of the three partials. Checked frames 4, 8, 13 at 480p: no overlap.
 - Imperfect: purely textual (no graph yet, that is S03); the "h = 0.01" tag sits close to the right end of the d row; with h=0.01 the finite differences read ≈ rather than exact.
+- S00 done: scenes/scene00_intro.py (Scene00Intro, 67 s) plus new src/micrograd_animation/anim.py (palette, fmt, Narrator + captions/S00.srt with 12 cues, make_value_node, arrow_between, title_card, recap_line, code_panel).
+- Loss, knob directions and bar come from the Value class (3-4-1 tanh net, seeded); asserts check blind turn worsens loss and the other turn improves it. Checked frames at 0.2 fps plus code and roadmap frames: captions readable, nothing clipped.
+- Weakest points: duration 67 s is near the 70 s limit; network only fills the left half of the screen; roadmap boxes are plain text boxes (no icons); code panel and knob node are shown only briefly.
+- Note: S01 and S02 predate G1-G9 (no captions, no title card, S02 is text only); they will likely need reworking with Narrator.

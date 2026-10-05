@@ -1,0 +1,48 @@
+1
+00:00:05,800 --> 00:00:08,600
+This tiny network has sixteen knobs, called weights.
+
+2
+00:00:09,267 --> 00:00:12,400
+A real network has thousands, or millions of them.
+
+3
+00:00:13,067 --> 00:00:16,067
+In code, every knob is just a number.
+
+4
+00:00:16,733 --> 00:00:20,267
+The loss measures how wrong we are. Lower is better.
+
+5
+00:00:20,933 --> 00:00:24,400
+Let us turn one knob blindly and watch the loss.
+
+6
+00:00:25,067 --> 00:00:29,600
+Oops. The mistake got bigger. We turned the wrong way.
+
+7
+00:00:30,267 --> 00:00:34,267
+Another knob, other direction: lucky, the loss falls.
+
+8
+00:00:34,933 --> 00:00:38,733
+With thousands of knobs, guessing is hopeless. We need a direction.
+
+9
+00:00:40,367 --> 00:00:43,100
+Here is our plan for the next chapters.
+
+10
+00:00:43,700 --> 00:00:52,200
+Slope, nudges, graph, backward pass, then a neuron.
+
+11
+00:00:52,800 --> 00:00:57,900
+Then automation, accumulation, and finally training a network.
+
+12
+00:00:58,500 --> 00:01:01,267
+It all starts with a question about slopes.
+
