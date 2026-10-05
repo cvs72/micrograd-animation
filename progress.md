@@ -1,0 +1,4 @@
+- Wrote src/micrograd_animation/engine.py (Value class with +, *, **, relu, tanh, exp, topo, backward); tests/test_oracle.py passes (3 tests).
+- S01 done: scenes/scene01_derivative.py renders (~30s). Slopes come from Value.backward; secant slopes from Value-evaluated f.
+- Checked frames 4, 9, 15: tangent slides, slope readout updates, h shrinks to 0.001 with secant slope 2.003 vs true 2.000.
+- Imperfect: plot sits low-left with empty space at right; the x-axis sits at y=0 below the curve minimum, fine but could be centered better.
