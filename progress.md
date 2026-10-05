@@ -15,4 +15,6 @@
 - Weakest points: duration 67 s is near the 70 s limit; network only fills the left half of the screen; roadmap boxes are plain text boxes (no icons); code panel and knob node are shown only briefly.
 - S00 reworked after feedback (68.6 s): bigger network with larger slider handles and thick yellow lines; red bold "?" beside the loss readout; a white tick marks the starting loss on the bar so the rise/fall is clear; roadmap captions now cover two chapters each, in step with the highlight; "Training" label baseline fixed (manual 0.04 offset); closing question "What is a derivative, really?" confirmed in the last frame.
 - Weakest points: network still fills only the left half; roadmap boxes are plain text (no icons); the Training baseline fix is a hand-tuned offset.
+- S00 third pass (68.6 s): added grey slider tracks behind the five handles (feedback: sliders were plain dots); re-rendered and checked frames 3, 6, 9, 12, 14 (loss/? visible, roadmap lights one chapter at a time, final question shown).
+- Weakest points: network still fills only the left half in the first beats; slider tracks are slightly offset from the handle line at steep angles; roadmap boxes are plain text (no icons).
 - Note: S01 and S02 predate G1-G9 (no captions, no title card, S02 is text only); they will likely need reworking with Narrator.

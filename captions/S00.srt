@@ -1,56 +1,56 @@
 1
-00:00:05,800 --> 00:00:08,600
+00:00:05,933 --> 00:00:08,733
 This tiny network has sixteen knobs, called weights.
 
 2
-00:00:09,267 --> 00:00:12,400
+00:00:09,400 --> 00:00:12,533
 A real network has thousands, or millions of them.
 
 3
-00:00:13,067 --> 00:00:16,067
+00:00:13,200 --> 00:00:16,200
 In code, every knob is just a number.
 
 4
-00:00:16,733 --> 00:00:20,267
+00:00:16,867 --> 00:00:20,400
 The loss measures how wrong we are. Lower is better.
 
 5
-00:00:20,933 --> 00:00:24,400
+00:00:21,067 --> 00:00:24,533
 Let us turn one knob blindly and watch the loss.
 
 6
-00:00:25,067 --> 00:00:29,600
+00:00:25,200 --> 00:00:29,733
 Oops. The mistake got bigger. We turned the wrong way.
 
 7
-00:00:30,267 --> 00:00:34,267
+00:00:30,400 --> 00:00:34,400
 Another knob, other direction: lucky, the loss falls.
 
 8
-00:00:34,933 --> 00:00:38,733
+00:00:35,067 --> 00:00:38,867
 With thousands of knobs, guessing is hopeless. We need a direction.
 
 9
-00:00:40,367 --> 00:00:43,100
+00:00:40,533 --> 00:00:43,267
 Here is our plan for the next chapters.
 
 10
-00:00:43,700 --> 00:00:47,100
+00:00:43,933 --> 00:00:47,400
 First we learn about slopes, then about nudges.
 
 11
-00:00:47,700 --> 00:00:51,100
+00:00:48,067 --> 00:00:51,533
 Next, the graph and the backward pass.
 
 12
-00:00:51,700 --> 00:00:55,100
+00:00:52,200 --> 00:00:55,667
 Then one neuron, and automating the backward pass.
 
 13
-00:00:55,700 --> 00:00:59,100
+00:00:56,333 --> 00:00:59,800
 Last, adding up gradients, and training a network.
 
 14
-00:00:59,700 --> 00:01:02,467
+00:01:00,467 --> 00:01:03,200
 It all starts with a question about slopes.
 

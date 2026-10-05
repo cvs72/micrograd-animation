@@ -110,6 +110,12 @@ class Scene00Intro(Scene):
         h_a, h_b = handle(ka, ta, SA), handle(kb, tb, SB)
         h_o = [Dot(l.point_from_proportion(0.5), radius=0.2, color=ACTIVE).set_stroke(WHITE, 3)
                for l in others]
+        tracks = VGroup(*[
+            Line(l.point_from_proportion(0.28), l.point_from_proportion(0.72),
+                 color=GREY_A, stroke_width=10, stroke_opacity=0.6)
+            for l in [ka, kb] + others])
+        self.add(tracks)
+        self.bring_to_front(*[m for m in self.mobjects if isinstance(m, Circle)])
         self.play(FadeIn(h_a), FadeIn(h_b), *[FadeIn(h) for h in h_o],
                   ka.animate.set_color(ACTIVE).set_stroke(width=7),
                   kb.animate.set_color(ACTIVE).set_stroke(width=7))
