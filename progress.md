@@ -13,4 +13,6 @@
 - S00 done: scenes/scene00_intro.py (Scene00Intro, 67 s) plus new src/micrograd_animation/anim.py (palette, fmt, Narrator + captions/S00.srt with 12 cues, make_value_node, arrow_between, title_card, recap_line, code_panel).
 - Loss, knob directions and bar come from the Value class (3-4-1 tanh net, seeded); asserts check blind turn worsens loss and the other turn improves it. Checked frames at 0.2 fps plus code and roadmap frames: captions readable, nothing clipped.
 - Weakest points: duration 67 s is near the 70 s limit; network only fills the left half of the screen; roadmap boxes are plain text boxes (no icons); code panel and knob node are shown only briefly.
+- S00 reworked after feedback (68.6 s): bigger network with larger slider handles and thick yellow lines; red bold "?" beside the loss readout; a white tick marks the starting loss on the bar so the rise/fall is clear; roadmap captions now cover two chapters each, in step with the highlight; "Training" label baseline fixed (manual 0.04 offset); closing question "What is a derivative, really?" confirmed in the last frame.
+- Weakest points: network still fills only the left half; roadmap boxes are plain text (no icons); the Training baseline fix is a hand-tuned offset.
 - Note: S01 and S02 predate G1-G9 (no captions, no title card, S02 is text only); they will likely need reworking with Narrator.

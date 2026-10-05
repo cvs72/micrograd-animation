@@ -31,18 +31,26 @@ Another knob, other direction: lucky, the loss falls.
 With thousands of knobs, guessing is hopeless. We need a direction.
 
 9
-00:00:40,367 --> 00:00:43,167
+00:00:40,367 --> 00:00:43,100
 Here is our plan for the next chapters.
 
 10
-00:00:43,767 --> 00:00:52,267
-Slope, nudges, graph, backward pass, then a neuron.
+00:00:43,767 --> 00:00:47,233
+First we learn about slopes, then about nudges.
 
 11
-00:00:52,867 --> 00:00:57,967
-Then automation, accumulation, and finally training a network.
+00:00:47,900 --> 00:00:51,367
+Next, the graph and the backward pass.
 
 12
-00:00:58,567 --> 00:01:01,367
+00:00:52,033 --> 00:00:55,500
+Then one neuron, and automating the backward pass.
+
+13
+00:00:56,167 --> 00:00:59,633
+Last, adding up gradients, and training a network.
+
+14
+00:01:00,300 --> 00:01:03,033
 It all starts with a question about slopes.
 

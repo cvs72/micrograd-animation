@@ -12,7 +12,7 @@ config.background_color = BLACK
 
 XS = [1.0, -0.5, 0.8]
 TARGET = 1.0
-LAYER_X = [-5.5, -3.0, -0.5]
+LAYER_X = [-5.8, -3.3, -0.8]
 CHAPTERS = ["Slope", "Nudges", "Graph", "Backward pass",
             "Neuron", "Automation", "Accumulation", "Training"]
 
@@ -74,12 +74,12 @@ class Scene00Intro(Scene):
                    "Which way should we turn each knob?")
 
         # ---- network drawn as circles and lines
-        ys = [[0.9 + 1.3 * (1 - i) for i in range(3)],
-              [0.9 + 1.1 * (1.5 - j) for j in range(4)],
-              [0.9]]
+        ys = [[0.3 + 1.6 * (1 - i) for i in range(3)],
+              [0.3 + 1.3 * (1.5 - j) for j in range(4)],
+              [0.3]]
         layers = []
         for x, col_y in zip(LAYER_X, ys):
-            layers.append([Circle(radius=0.25, color=WHITE, stroke_width=3)
+            layers.append([Circle(radius=0.28, color=WHITE, stroke_width=3)
                            .move_to([x, y, 0]) for y in col_y])
         lines = {}
         for li in range(2):
@@ -105,13 +105,14 @@ class Scene00Intro(Scene):
         def handle(line, tracker, sign):
             return always_redraw(lambda: Dot(
                 line.point_from_proportion(0.5 + 0.18 * sign * tracker.get_value()),
-                radius=0.13, color=ACTIVE))
+                radius=0.2, color=ACTIVE).set_stroke(WHITE, 3))
 
         h_a, h_b = handle(ka, ta, SA), handle(kb, tb, SB)
-        h_o = [Dot(l.point_from_proportion(0.5), radius=0.13, color=ACTIVE) for l in others]
+        h_o = [Dot(l.point_from_proportion(0.5), radius=0.2, color=ACTIVE).set_stroke(WHITE, 3)
+               for l in others]
         self.play(FadeIn(h_a), FadeIn(h_b), *[FadeIn(h) for h in h_o],
-                  ka.animate.set_color(ACTIVE).set_stroke(width=5),
-                  kb.animate.set_color(ACTIVE).set_stroke(width=5))
+                  ka.animate.set_color(ACTIVE).set_stroke(width=7),
+                  kb.animate.set_color(ACTIVE).set_stroke(width=7))
         nar.say("A real network has thousands, or millions of them.")
         self.wait(1.5)
 
@@ -133,7 +134,7 @@ class Scene00Intro(Scene):
         def readout():
             L = current_loss()
             col = GRAD if L > BASE_LOSS + 1e-3 else (FWD if L < BASE_LOSS - 1e-3 else DATA)
-            return Text(f"loss = {fmt(L)}", font_size=34, color=col).move_to([4.0, 1.6, 0])
+            return Text(f"loss = {fmt(L)}", font_size=34, color=col).move_to([3.5, 1.6, 0])
 
         def bar():
             L = current_loss()
@@ -144,18 +145,21 @@ class Scene00Intro(Scene):
 
         frame_bar = Rectangle(width=0.9, height=3.0, color=GREY_B, stroke_width=2)
         frame_bar.move_to([5.6, -0.9, 0])
+        ty = -2.4 + BASE_LOSS / LMAX * 3.0
+        base_tick = Line([5.0, ty, 0], [6.2, ty, 0], color=WHITE, stroke_width=2)
         bar_label = Text("mistake", font_size=24, color=SECOND).next_to(frame_bar, LEFT, buff=0.3)
         nar.say("The loss measures how wrong we are. Lower is better.")
         self.play(FadeOut(code), FadeOut(knob_node))
         r = always_redraw(readout)
         b = always_redraw(bar)
-        self.play(FadeIn(r), Create(frame_bar), FadeIn(bar_label), FadeIn(b))
+        self.play(FadeIn(r), Create(frame_bar), FadeIn(bar_label), FadeIn(b),
+                  Create(base_tick))
         self.wait(1.5)
 
         # ---- blind turn makes it worse
         nar.say("Let us turn one knob blindly and watch the loss.")
         self.play(ta.animate.set_value(1.0), run_time=3, rate_func=smooth)
-        q = Text("?", font_size=72, color=RED).move_to([6.2, 1.6, 0])
+        q = Text("?", font_size=80, color="#FF5555", weight=BOLD).move_to([6.1, 1.6, 0])
         nar.say("Oops. The mistake got bigger. We turned the wrong way.")
         self.play(FadeIn(q, scale=1.5))
         self.play(Indicate(q, color=RED))
@@ -181,8 +185,13 @@ class Scene00Intro(Scene):
                                     stroke_color=GREY_B, stroke_width=3),
                    Text(c, font_size=24, color=WHITE))
             for c in CHAPTERS])
-        for bx in boxes:
+        dd = Text("a", font_size=24).get_bottom()[1] - Text("g", font_size=24).get_bottom()[1]
+        for bx, c in zip(boxes, CHAPTERS):
             bx[1].move_to(bx[0])
+            base = bx[1].get_bottom()[1] + (dd if any(ch in "gjpqy" for ch in c) else 0)
+            bx[1].shift(UP * (bx[0].get_center()[1] - 0.09 - base))
+            if c == "Training":  # glyph bbox quirk: measured 3 px high
+                bx[1].shift(DOWN * 0.04)
         row1 = VGroup(*boxes[:4]).arrange(RIGHT, buff=0.4).move_to([0, 1.1, 0])
         row2 = VGroup(*boxes[4:]).arrange(RIGHT, buff=0.4).move_to([0, -0.9, 0])
         arrows = [arrow_between(boxes[i][0], boxes[i + 1][0], color=SECOND, buff=0.02)
@@ -199,9 +208,13 @@ class Scene00Intro(Scene):
         self.wait(1)
         for i, bx in enumerate(boxes):
             if i == 0:
-                nar.say("Slope, nudges, graph, backward pass, then a neuron.")
-            if i == 5:
-                nar.say("Then automation, accumulation, and finally training a network.")
+                nar.say("First we learn about slopes, then about nudges.")
+            if i == 2:
+                nar.say("Next, the graph and the backward pass.")
+            if i == 4:
+                nar.say("Then one neuron, and automating the backward pass.")
+            if i == 6:
+                nar.say("Last, adding up gradients, and training a network.")
             self.play(bx[0].animate.set_fill(ACTIVE, opacity=0.35).set_stroke(ACTIVE),
                       bx[1].animate.set_color(ACTIVE), run_time=0.5)
             self.wait(0.8)
