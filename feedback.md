@@ -1,10 +1,8 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frames 1-8: axis tick numbers (−1,1,2,3 and 10,20,30) are tiny and would be hard to read at 480p.
-- Frames 2-8: the axes have no x or y labels (no 'x' or 'f(x)'), so the plot axes are unlabeled.
-- All frames: the layout is lopsided. The plot sits in the left ~60% and the right side is mostly empty, with the readouts crammed in the top-right corner. The axes could be larger or centered.
-- Frames 2-4: the 'x = …' and 'slope = …' readout shifts horizontally between frames (x≈780 in frame 2, x≈800 in frames 3-4) as digit widths change. It jitters instead of staying anchored.
-- Frame 1: the y-axis is drawn with no tick labels and only one stray tick, and the x-axis has no label for 0. This looks unfinished, though it may be mid-creation.
-- Frame 5: the yellow dot sits at x≈0.9 with no tangent line, readout or label, so it is unclear what it represents. The tangent has disappeared and the h-nudge section has not started.
-- Frames 6-8: the red secant/tangent line extends well past the nudge point to x≈2.6. It is not clearly tied to the nudge point and does not visibly converge to the true tangent. No point is labeled 'x+h' and no h segment is drawn on the plot.
-- Frame 7: the yellow base dot and red nudge dot overlap into a blob, so the nudge is not visible.
+- Frame 5: the 'x = 1' label and the tangent line are a dim, dark olive on black. Contrast is poor and the label is hard to read at 480p. The same dim tangent and label stay in frames 6-8.
+- Frame 5: the yellow dot looks semi-transparent and washed out, as if mid-fade. This is a transitional look that is not publishable.
+- Frame 1: the y-axis shows one unlabeled tick and no numbers, while the x labels are present. The axes look half-built. This is probably mid-animation, but it is an odd state to hold.
+- Frames 6-7: the red 'x + h' label sits very close to the dot and the secant. In frame 7 the red and yellow dots and the red and olive lines nearly coincide, so the h-to-0 nudge is hard to see.
+- Frame 6: the short horizontal red segment from the dot to the 'x + h' label looks like a stray line. It is not clearly tied to the secant or the h step.
+- Frames 2-4: the right-hand text 'tangent at the yellow dot' is detached from the plot and floats with a large gap. In frame 2 the tangent line also runs to the plot's left edge, overlapping the curve end.
 
