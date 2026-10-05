@@ -16,3 +16,4 @@
 - Keep each command simple: one command per tool call, no pipes, no `&&`, no `cd`.
 - You work only inside this directory. No network. Never touch the control files listed in prompts/builder.md.
 - If reference/ exists, read it for the math and the order of ideas; never copy its text.
+- reference/lecture_notes.md (read first), reference/lecture_transcript.md (spoken lecture in [Txxx] chunks, grep it) and the two notebooks as .md: the notebooks win for code and numbers; never copy their text into captions or on-screen text.
