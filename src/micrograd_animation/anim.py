@@ -158,3 +158,70 @@ def code_panel(code, language="python", highlight=None, font_size=24):
             for i in highlight
         ])
     return c
+
+
+# ---- helpers added in the three-act rework (append-only from here on)
+
+def act_banner(scene, text, color=ACTIVE, hold=2.6, keep=False, pos=None):
+    """Act banner, font 36, held at least 2.5 s. keep=True leaves it on screen and returns it.
+    pos: centre point; default is the top edge."""
+    t = Text(text, font_size=36, color=color, weight=BOLD)
+    if t.width > 12.5:
+        t.scale_to_fit_width(12.5)
+    box = RoundedRectangle(corner_radius=0.15, width=t.width + 0.6, height=t.height + 0.4,
+                           stroke_color=color, stroke_width=3, fill_color=BLACK, fill_opacity=0.8)
+    banner = VGroup(box, t)
+    t.move_to(box)
+    if pos is None:
+        banner.to_edge(UP, buff=0.5)
+    else:
+        banner.move_to(pos)
+    scene.play(FadeIn(banner, shift=DOWN * 0.3), run_time=0.5)
+    if keep:
+        return banner
+    scene.wait(max(hold, 2.5))
+    scene.play(FadeOut(banner), run_time=0.5)
+    return banner
+
+
+def working_line(scene, symbolic, substituted, result, pos=ORIGIN, width=6.2, hold=2.0,
+                 colors=(WHITE, DATA, GRAD)):
+    """Animated arithmetic: formula -> real numbers substituted -> result (all MathTex)."""
+    stages = [MathTex(s, font_size=40, color=c) for s, c in zip((symbolic, substituted, result), colors)]
+    for s in stages:
+        if s.width > width:
+            s.scale_to_fit_width(width)
+        s.move_to(pos)
+    scene.play(FadeIn(stages[0]), run_time=0.6)
+    scene.wait(0.8)
+    scene.play(TransformMatchingTex(stages[0], stages[1]), run_time=1.0)
+    scene.wait(hold)
+    scene.play(TransformMatchingTex(stages[1], stages[2]), run_time=1.0)
+    scene.wait(hold)
+    return stages[2]
+
+
+def particle_flow(path, magnitude, color=GRAD, n=3, reverse=False, run_time=2.0):
+    """Dots travelling along `path`; dot size grows with |magnitude|. Returns an animation."""
+    r = 0.05 + 0.03 * min(abs(magnitude), 4.0)
+    p = path.copy().reverse_points() if reverse else path
+    dots = [Dot(p.get_start(), radius=r, color=color) for _ in range(n)]
+    anim = AnimationGroup(
+        *[MoveAlongPath(d, p, run_time=run_time, rate_func=linear) for d in dots],
+        lag_ratio=0.3,
+    )
+    anim.dots = VGroup(*dots)  # remove these after playing
+    return anim
+
+
+def callout(title, body, color=ACTIVE, width=6.0):
+    """Boxed definition: a coloured title and one line of body text (hold it >= 3 s)."""
+    t = Text(title, font_size=28, color=color, weight=BOLD)
+    b = Text(body, font_size=28, color=WHITE)
+    g = VGroup(t, b).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
+    if g.width > width:
+        g.scale_to_fit_width(width)
+    box = RoundedRectangle(corner_radius=0.15, width=g.width + 0.5, height=g.height + 0.4,
+                           stroke_color=color, stroke_width=3, fill_color=BLACK, fill_opacity=0.9)
+    g.move_to(box)
+    return VGroup(box, g)

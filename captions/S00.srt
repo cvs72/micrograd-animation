@@ -1,56 +1,88 @@
 1
-00:00:05,800 --> 00:00:08,533
-This tiny network has sixteen knobs, called weights.
+00:00:03,400 --> 00:00:07,933
+This is the demo from the micrograd README: a and b go in.
 
 2
-00:00:09,133 --> 00:00:12,233
-A real network has thousands, or millions of them.
+00:00:08,600 --> 00:00:13,000
+The expression is meaningless. It only shows what the engine can do.
 
 3
-00:00:12,833 --> 00:00:15,833
-In code, every knob is just a number.
+00:00:13,667 --> 00:00:17,667
+Run it forward and out comes one number, g.
 
 4
-00:00:16,433 --> 00:00:19,967
-The loss measures how wrong we are. Lower is better.
+00:00:18,333 --> 00:00:22,867
+Backward asks: how fast does g change if we nudge a or b?
 
 5
-00:00:20,633 --> 00:00:24,100
-Let us turn one knob blindly and watch the loss.
+00:00:23,533 --> 00:00:28,067
+Nudge a up a little and g grows about 138.8 times as fast.
 
 6
-00:00:24,767 --> 00:00:29,300
-Oops. The mistake got bigger. We turned the wrong way.
+00:00:28,733 --> 00:00:38,133
+Check it: nudge a by 0.001 and see how far g really moves.
 
 7
-00:00:29,967 --> 00:00:33,967
-Another knob, other direction: lucky, the loss falls.
+00:00:38,800 --> 00:00:42,800
+Backprop works on any expression. Neural nets are a calmer one.
 
 8
-00:00:34,633 --> 00:00:38,433
-With thousands of knobs, guessing is hopeless. We need a direction.
+00:00:43,467 --> 00:00:48,000
+micrograd uses single numbers on purpose; tensors only add speed.
 
 9
-00:00:40,067 --> 00:00:42,867
-Here is our plan for the next chapters.
+00:00:48,667 --> 00:00:52,200
+This tiny network has sixteen knobs; real ones have millions.
 
 10
-00:00:43,467 --> 00:00:46,867
-First we learn about slopes, then about nudges.
+00:00:52,867 --> 00:00:55,867
+In code, every knob is just a number.
 
 11
-00:00:47,467 --> 00:00:50,867
-Next, the graph and the backward pass.
+00:00:56,533 --> 00:01:00,067
+The loss measures how wrong we are. Lower is better.
 
 12
-00:00:51,467 --> 00:00:54,867
-Then one neuron, and automating the backward pass.
+00:01:00,733 --> 00:01:07,267
+Turn one knob blindly and the mistake grows: wrong way!
 
 13
-00:00:55,467 --> 00:00:58,867
-Last, adding up gradients, and training a network.
+00:01:07,933 --> 00:01:10,933
+Another knob, other direction: lucky, the loss falls.
 
 14
-00:00:59,467 --> 00:01:02,267
-It all starts with a question about slopes.
+00:01:11,600 --> 00:01:15,400
+With thousands of knobs, guessing is hopeless. We need a direction.
+
+15
+00:01:17,033 --> 00:01:20,533
+Here is our plan: twelve short chapters, one idea each.
+
+16
+00:01:21,133 --> 00:01:23,933
+First slopes, several inputs, and the computation graph.
+
+17
+00:01:24,533 --> 00:01:27,683
+Then the backward pass, one neuron, and automating it.
+
+18
+00:01:28,283 --> 00:01:31,083
+Next, adding up gradients, more operations, and PyTorch.
+
+19
+00:01:31,683 --> 00:01:35,183
+Finally a whole network, training it, and a loss surface.
+
+20
+00:01:35,783 --> 00:01:39,983
+Every chapter has three acts, so you see each idea three times.
+
+21
+00:01:40,583 --> 00:01:44,783
+A uses the lecture's numbers; B changes them and watches what moves.
+
+22
+00:01:45,383 --> 00:01:49,233
+The expert corner adds what a specialist would warn you about.
 
