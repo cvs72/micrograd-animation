@@ -27,4 +27,6 @@
 - Weakest points: duration 119.8 s is right at the 120 s limit (waits were trimmed to fit); the network section still fills the left half; caption font is the default serif.
 - S00 duration fix (feedback.md: 120.07 s > 120 s): trimmed five idle waits (0.4 to 0.7 s each) in scenes/scene00_intro.py; re-rendered, now 119.2 s. Only waits changed, no visuals touched, so frames were not re-inspected.
 - Weakest points: still only ~0.8 s under the limit; the xargs "unterminated quote" in the feedback comes from verify.sh (not editable by me); caption font still default serif.
+- S00 re-check of feedback.md (119.2 s): re-rendered unchanged code and inspected frames 2, 5, 8, 12, 16, 20, 28, 30. The listed points are already fixed: no stray dash, working fraction with numbers shown, "meaningless" caption present, question marks and blind-turn beat present, distinct A/B/Expert icons, final question visible. Row ticked again.
+- Weakest points: the nudge working fades in dim at the sampled moment; network still left-weighted; caption font is default serif.
 - Note: S01 and S02 predate G1-G9 (no captions, no title card, S02 is text only); they will likely need reworking with Narrator.
