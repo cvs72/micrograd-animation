@@ -1,0 +1,49 @@
+{
+  "network": {
+    "allowedDomains": [
+      "api.anthropic.com",
+      "claude.ai",
+      "platform.claude.com"
+    ],
+    "deniedDomains": []
+  },
+  "filesystem": {
+    "denyRead": [
+      "/Users"
+    ],
+    "allowRead": [
+      ".",
+      "/Users/bruno/.local/bin",
+      "/Users/bruno/.local/share/claude/versions",
+      "/Users/bruno/.nvm/versions/node/v22.20.0/bin",
+      "/Users/bruno/.local/share/uv/python"
+    ],
+    "allowWrite": [
+      ".",
+      "/tmp",
+      "/private/tmp"
+    ],
+    "denyWrite": [
+      "./loop.sh",
+      "./verify.sh",
+      "./review.sh",
+      "./agent.sh",
+      "./sandboxed.sh",
+      "./hash.sh",
+      "./setup.sh",
+      "./smoke.sh",
+      "./prompts",
+      "./srt-settings.json",
+      "./.claude",
+      "./CLAUDE.md",
+      "./tests",
+      "./pyproject.toml",
+      "./uv.lock",
+      "./conftest.py",
+      "./reviews",
+      "./feedback.md",
+      "./.git/hooks",
+      "./.git/config"
+    ]
+  }
+}

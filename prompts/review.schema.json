@@ -1,0 +1,1 @@
+{"type":"object","properties":{"scenes":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"pass":{"type":"boolean"},"issues":{"type":"array","items":{"type":"string"}}},"required":["id","pass","issues"]}}},"required":["scenes"]}

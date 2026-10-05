@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "deny": [
+      "Edit(./loop.sh)", "Edit(./verify.sh)", "Edit(./review.sh)", "Edit(./agent.sh)", "Edit(./sandboxed.sh)", "Edit(./hash.sh)",
+      "Edit(./setup.sh)", "Edit(./smoke.sh)", "Edit(./prompts/**)", "Edit(./srt-settings.json)", "Edit(./CLAUDE.md)",
+      "Edit(./tests/**)", "Edit(./pyproject.toml)", "Edit(./uv.lock)", "Edit(./conftest.py)", "Edit(./reviews/**)", "Edit(./feedback.md)",
+      "Bash(curl *)", "Bash(wget *)", "Bash(git push *)", "Bash(git commit *)", "Bash(sudo *)"
+    ]
+  }
+}

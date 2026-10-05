@@ -1,0 +1,27 @@
+[project]
+name = "micrograd-animation"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "cvs_72", email = "119531096+hackerbrunito@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "manim>=0.21.0",
+]
+
+[project.scripts]
+micrograd-animation = "micrograd_animation:main"
+
+[build-system]
+requires = ["uv_build>=0.12.16,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

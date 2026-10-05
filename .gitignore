@@ -1,0 +1,20 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+media/
+frames/
+logs/
+.claude-home/
+.uv-cache/
+.cache/
+.tmp/
+.texmf-var/
+.smoke/
+STOP
