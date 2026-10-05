@@ -249,7 +249,7 @@ class Scene00Intro(MovingCameraScene):
         self.play(FadeIn(h_a), FadeIn(h_b), *[FadeIn(h) for h in h_o],
                   ka.animate.set_color(ACTIVE).set_stroke(width=7),
                   kb.animate.set_color(ACTIVE).set_stroke(width=7))
-        self.wait(1.5)
+        self.wait(0.8)
 
         # ---- code panel + value node: a knob is a number
         code = code_panel(f"w = Value({fmt(W2[1])})\nloss = (out - 1) ** 2", font_size=24)
@@ -297,13 +297,13 @@ class Scene00Intro(MovingCameraScene):
         q = Text("?", font_size=80, color="#FF5555", weight=BOLD).move_to([6.1, 1.6, 0])
         self.play(FadeIn(q, scale=1.5))
         self.play(Indicate(q, color=RED))
-        self.wait(1)
+        self.wait(0.4)
         self.play(ta.animate.set_value(0.0), FadeOut(q), run_time=1.5)
 
         # ---- another knob, lucky
         nar.say("Another knob, other direction: lucky, the loss falls.")
         self.play(tb.animate.set_value(1.0), run_time=2, rate_func=smooth)
-        self.wait(1)
+        self.wait(0.4)
         nar.say("With thousands of knobs, guessing is hopeless. We need a direction.")
         flow = particle_flow(ka, knob_grad(KNOB_A), reverse=True, run_time=2.0)
         self.play(Circumscribe(r, color=ACTIVE), flow)
@@ -326,7 +326,7 @@ class Scene00Intro(MovingCameraScene):
         title = Text("Roadmap: twelve chapters", font_size=34, color=ACTIVE).to_edge(UP, buff=0.5)
         nar.say("Here is our plan: twelve short chapters, one idea each.")
         self.play(FadeIn(title), Create(grid))
-        self.wait(1)
+        self.wait(0.4)
         notes = {0: "First slopes, several inputs, and the computation graph.",
                  3: "Then the backward pass, one neuron, and automating it.",
                  6: "Next, adding up gradients, more operations, and PyTorch.",

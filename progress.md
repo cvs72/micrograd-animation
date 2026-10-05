@@ -25,4 +25,6 @@
 - S00 feedback pass (119.8 s, row ticked): g/dg-da/dg-db questions now pulse 3 s and are replaced cleanly (ReplacementTransform, no ghost overlap); two separate orange arrows point from each gradient to the code; the nudge shows "a: -4 -> -3.999, h = 0.001" then the working to 139.0388, caption says it closes in on 138.8338; roadmap lights one chapter at a time and returns to grey; Example B preview now morphs a parabola into a cubic.
 - Checked frames at 0.25 fps (title card, README reveal, nudge working, network with ?, roadmap, act preview, final question): captions present and readable, nothing clipped.
 - Weakest points: duration 119.8 s is right at the 120 s limit (waits were trimmed to fit); the network section still fills the left half; caption font is the default serif.
+- S00 duration fix (feedback.md: 120.07 s > 120 s): trimmed five idle waits (0.4 to 0.7 s each) in scenes/scene00_intro.py; re-rendered, now 119.2 s. Only waits changed, no visuals touched, so frames were not re-inspected.
+- Weakest points: still only ~0.8 s under the limit; the xargs "unterminated quote" in the feedback comes from verify.sh (not editable by me); caption font still default serif.
 - Note: S01 and S02 predate G1-G9 (no captions, no title card, S02 is text only); they will likely need reworking with Narrator.
