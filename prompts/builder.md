@@ -21,3 +21,7 @@ Read first: CLAUDE.md, PLAN.md, progress.md, feedback.md.
 Never modify: loop.sh, verify.sh, review.sh, agent.sh, sandboxed.sh, hash.sh, setup.sh, smoke.sh, prompts/,
 tests/test_oracle.py, srt-settings.json, .claude/, CLAUDE.md, reviews/, feedback.md.
 If you are blocked, explain why in progress.md and stop.
+
+Richness rule: a scene must not be text only. Unless its PLAN.md row says otherwise, include at least one real visual
+(Axes plot, node graph with arrows, or 3D surface) and animate it with Transform, Create, Indicate or ValueTracker.
+Update progress.md with the Edit tool, not shell redirects (shell redirects are denied).

@@ -10,3 +10,6 @@ For each scene, open every listed frame with the Read tool and judge only what i
 Pass a scene only if you would be comfortable publishing it. Be strict but concrete.
 Return JSON matching the schema: for every scene id, "pass" and a list of specific issues
 (what is wrong, where, on which frame number). Use an empty list when it passes.
+
+Also FAIL a scene whose frames are only rows of text and numbers with no diagram, plot or graph, unless its description
+says it is text only. State it as an issue: "scene is text only; add a visual".
