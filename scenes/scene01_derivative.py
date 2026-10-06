@@ -368,8 +368,11 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(dot), FadeIn(sec), FadeIn(lab), FadeIn(num), run_time=0.8)
         nar.say("Predict: where on this curve is the tangent perfectly flat?")
         q = self.ask(r"\text{Where is the slope } 0\,?")
+        self.play(FadeOut(q), xt.animate.set_value(-1.0), run_time=1.5)
         nar.say("The slope reads about 0 at x = -1 (hump top) and x = 1 (valley).")
-        self.play(FadeOut(q), xt.animate.set_value(-1.0), run_time=2.5)
+        flat1 = Line(ax2.c2p(-1.9, G(-1.0)), ax2.c2p(-0.1, G(-1.0)), color=GREEN, stroke_width=8)
+        flat2 = Line(ax2.c2p(0.1, G(1.0)), ax2.c2p(1.9, G(1.0)), color=GREEN, stroke_width=8)
+        self.play(Create(flat1), run_time=0.6)
         e1 = MathTex(rf"g'(-1)=3\cdot(-1)^{{2}}-3={fmt(exact(g3, -1.0))}", font_size=36,
                      color=WHITE).move_to([3.8, 1.1, 0])
         assert exact(g3, -1.0) == 0.0 and exact(g3, 1.0) == 0.0
@@ -380,7 +383,8 @@ class Scene01Derivative(MovingCameraScene):
         self.wait(1.0)
         e2 = MathTex(rf"g'(1)=3\cdot 1^{{2}}-3={fmt(exact(g3, 1.0))}", font_size=36,
                      color=WHITE).move_to([3.8, 1.1, 0])
-        self.play(xt.animate.set_value(1.0), ReplacementTransform(e1, e2), FadeIn(m2), run_time=3.0)
+        self.play(xt.animate.set_value(1.0), ReplacementTransform(e1, e2), FadeIn(m2), run_time=2.0)
+        self.play(Create(flat2), run_time=0.6)
         self.play(Indicate(m2, scale_factor=2.0, color=TEAL), run_time=1.0)
         nar.say("The table shows slope 0 only at x = -1 and 1; elsewhere it is 9 or -3.")
         xs_t = [-2.0, -1.0, 0.0, 1.0]
@@ -394,7 +398,7 @@ class Scene01Derivative(MovingCameraScene):
             self.play(FadeIn(r), run_time=0.6)
         self.wait(3.5)
         self.play(FadeOut(e2), FadeOut(dot), FadeOut(sec), FadeOut(lab), FadeOut(num), FadeOut(tri),
-                  FadeOut(tbl), FadeOut(m1), FadeOut(m2), run_time=0.6)
+                  FadeOut(tbl), FadeOut(m1), FadeOut(m2), FadeOut(flat1), FadeOut(flat2), run_time=0.6)
         self.remove(dot, sec, lab, num, tri)
         self.play(FadeOut(was), run_time=0.3)
 
@@ -481,7 +485,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(trs[0]), run_time=0.4)
         for r in trs[1:]:
             self.play(FadeIn(r), run_time=0.7)
-        self.wait(9.5)
+        self.wait(5.0)
         self.wipe(w, dot, sec, tri, lab, num, tangent, tbl, was)
         self.bkeep = VGroup(ax, labs, graph)
 
@@ -532,13 +536,25 @@ class Scene01Derivative(MovingCameraScene):
         if w.width > 5.4:
             w.scale_to_fit_width(5.4)
         mk = MathTex(r"k=4", font_size=30, color=ACTIVE).next_to(ax.c2p(4, 2), RIGHT, buff=0.1)
-        self.play(Create(mark), FadeIn(w), FadeIn(mk), run_time=1.0)
+        self.add(w, mk)
+        self.play(Create(mark), run_time=1.0)
         win = MathTex(rf"\text{{Answer: central, }}\text{{about }}10^{{{round(float(np.log10(FORWARD[4] / CENTRAL[4])))}}}\times\ \text{{closer}}",
                       font_size=34, color=ACTIVE).move_to([3.8, -1.2, 0])
         win.scale_to_fit_width(5.2)
         self.play(FadeIn(win), Indicate(w), run_time=1.0)
         self.wait(1.0)
-        self.play(FadeOut(win), run_time=0.3)
+        self.play(FadeOut(win), FadeOut(w), run_time=0.3)
+        nar.say("Errors shrink until k = 8, then rounding wins; at k = 16 both are 14.")
+        cx = [2.2, 3.7, 5.4]
+        etab = VGroup(*[MathTex(t, font_size=28, color=GREY_B).move_to([x, 1.0, 0]) for t, x in
+                        zip([r"k", r"\text{forward}", r"\text{central}"], cx)])
+        for i, k in enumerate([4, 8, 12, 16]):
+            vals = [str(k), sci(FORWARD[k]) if FORWARD[k] else "14", sci(CENTRAL[k]) if CENTRAL[k] else "14"]
+            for v, x, c in zip(vals, cx, [WHITE, DATA, FWD]):
+                etab.add(MathTex(v, font_size=26, color=c).move_to([x, 0.4 - 0.5 * i, 0]))
+        self.play(FadeIn(etab), run_time=0.6)
+        self.wait(2.5)
+        self.play(FadeOut(etab), run_time=0.3)
 
         nar.say("Past k = 8 both climb: the computer rounds the tiny gaps away.")
         self.play(FadeOut(xl), run_time=0.3)
@@ -554,7 +570,7 @@ class Scene01Derivative(MovingCameraScene):
                   Indicate(ce["vertex_dots"][-1], scale_factor=2.5),
                   run_time=1.5)
         self.wait(0.1)
-        self.play(FadeOut(out), FadeOut(w), run_time=0.3)
+        self.play(FadeOut(out), run_time=0.3)
         nar.say("In code, central costs one more call of f but is far more exact.")
         cp = code_panel("fwd = (f(x+h) - f(x)) / h\ncen = (f(x+h) - f(x-h)) / (2*h)", font_size=24)
         cp.scale_to_fit_width(5.0)
@@ -567,4 +583,4 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("So micrograd never nudges: each operation knows its exact slope.")
         c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=5.4).move_to([3.8, -1.0, 0])
         self.play(FadeIn(c), run_time=0.5)
-        self.wait(5.4)
+        self.wait(4.4)
