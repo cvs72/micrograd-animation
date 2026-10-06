@@ -295,7 +295,8 @@ class Scene01Derivative(MovingCameraScene):
         f3h = F(3.0 + H)
         w = working_line(self, r"\frac{f(x+h)-f(x)}{h}",
                          rf"\frac{{f(3.001)-f(3)}}{{0.001}}=\frac{{{fmt(f3h)}-{fmt(F(3.0))}}}{{0.001}}",
-                         rf"={fmt(S3)}", pos=np.array([4.2, 0.0, 0]), width=4.8)
+                         rf"\frac{{{fmt(f3h)}-{fmt(F(3.0))}}}{{0.001}}={fmt(S3)}", pos=np.array([4.2, 0.0, 0]), width=4.8)
+        self.wait(2.5)
         self.wipe(w)
 
         # table, filled one row at a time
