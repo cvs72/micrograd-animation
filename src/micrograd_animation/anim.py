@@ -225,3 +225,30 @@ def callout(title, body, color=ACTIVE, width=6.0):
                            stroke_color=color, stroke_width=3, fill_color=BLACK, fill_opacity=0.9)
     g.move_to(box)
     return VGroup(box, g)
+
+
+class CrossfadeNarrator(Narrator):
+    """Narrator whose swaps cross-fade in 0.2 s (old and new together) and then idle,
+    so the total time per swap is unchanged but a caption is rarely caught half faded."""
+
+    SWAP = 0.2
+
+    def say(self, text):
+        scene = self.scene
+        if self.current is not None:
+            left = self.min_hold - (self._now() - self.start)
+            if left > 0:
+                scene.wait(left)
+            self.cues[-1][1] = self._now()
+        cap = self._make(text)
+        scene.add_foreground_mobject(cap)
+        old = self.current
+        anims = [FadeIn(cap)] + ([FadeOut(old)] if old is not None else [])
+        scene.play(*anims, run_time=self.SWAP)
+        if old is not None:
+            scene.remove_foreground_mobject(old)
+        scene.wait(2 * self.FADE - self.SWAP)
+        self.current = cap
+        self.start = self._now()
+        self.min_hold = max(2.5, 0.35 * len(text.split()))
+        self.cues.append([self.start, None, text])

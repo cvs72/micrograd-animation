@@ -2,7 +2,7 @@ import numpy as np
 from manim import *
 
 from micrograd_animation.anim import (
-    ACTIVE, BWD, DATA, FWD, GRAD, SECOND, Narrator, act_banner, callout, fmt, recap_line,
+    ACTIVE, BWD, DATA, FWD, GRAD, SECOND, CrossfadeNarrator, act_banner, callout, fmt, recap_line,
     code_panel, title_card, working_line,
 )
 from micrograd_animation.engine import Value
@@ -219,7 +219,7 @@ class Scene01Derivative(MovingCameraScene):
 
     # ---- the scene -----------------------------------------------------
     def construct(self):
-        nar = self.nar = Narrator(self, "S01")
+        nar = self.nar = CrossfadeNarrator(self, "S01")
         title_card(self, "Chapter 1", "What is a derivative, really?")
         keep = self.act_a(nar)
         self.act_b(nar, keep)
@@ -564,10 +564,9 @@ class Scene01Derivative(MovingCameraScene):
         self.play(Create(ce), run_time=0.4)
         nar.say("At k = 4 the forward error is about 3e-4, the central one about 4e-11.")
         mark = DashedLine(ax.c2p(4, -14), ax.c2p(4, 2), color=ACTIVE, stroke_width=3, stroke_opacity=0.6)
-        w = MathTex(rf"{sci(FORWARD[4])}\ \text{{vs}}\ {sci(CENTRAL[4])}", font_size=38, color=ACTIVE)
-        w.move_to([3.8, -0.3, 0])
-        if w.width > 5.4:
-            w.scale_to_fit_width(5.4)
+        w = MathTex(rf"h=10^{{-4}}:\ {sci(FORWARD[4])}\ \text{{vs}}\ {sci(CENTRAL[4])}", font_size=38, color=ACTIVE)
+        w.scale_to_fit_width(4.6)
+        w.move_to([4.5, -0.3, 0])
         mk = MathTex(r"k=4", font_size=30, color=ACTIVE).next_to(ax.c2p(4, 2), RIGHT, buff=0.1)
         self.add(w, mk)
         self.play(Create(mark), run_time=1.0)
@@ -603,7 +602,7 @@ class Scene01Derivative(MovingCameraScene):
         assert err16 == 14.0
         e16 = MathTex(rf"k=16:\ \text{{error}}={fmt(err16)}", font_size=30, color=WHITE)
         e16.next_to(ax.c2p(16, 2), UP, buff=0.12).shift(LEFT * 1.0)
-        self.play(FadeIn(out), FadeIn(e16), run_time=0.6)
+        self.add(out, e16)
         self.play(Indicate(fw["vertex_dots"][-1], scale_factor=2.5),
                   Indicate(ce["vertex_dots"][-1], scale_factor=2.5),
                   run_time=1.5)
