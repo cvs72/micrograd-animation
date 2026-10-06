@@ -305,7 +305,7 @@ class Scene01Derivative(MovingCameraScene):
                          rf"\frac{{f(3.001)-f(3)}}{{0.001}}=\frac{{{fmt(f3h)}-{fmt(F(3.0))}}}{{0.001}}",
                          rf"\frac{{{fmt(f3h)}-{fmt(F(3.0))}}}{{0.001}}={fmt(S3)}", pos=np.array([4.2, 0.0, 0]), width=4.8,
                          hold=3.0)
-        self.wait(4.1)
+        self.wait(2.5)
         self.wipe(w)
 
         # table, filled one row at a time
@@ -340,8 +340,20 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(fl), run_time=0.5)
         self.wait(4.5)
         self.wipe(table, fl)
+        self.play(FadeOut(dot), FadeOut(sec), FadeOut(tri), FadeOut(lab), FadeOut(num), FadeOut(tangent),
+                  run_time=0.5)
+        self.remove(dot, sec, tri, lab, num)
 
         nar.say("Warning: too many zeros in h and floats run out of digits.")
+        hs_w = [1e-4, 1e-8, 1e-12, 1e-16]
+        rows_w = [[(sci(h), WHITE), (fmt(fd(f, 3.0, h)), slope_color(1.0)), (fmt(fd(f, 3.0, h) - 14.0), GRAD)]
+                  for h in hs_w]
+        trs_w, _ = table_rows(rows_w, [r"h", r"\text{slope}", r"\text{error}"])
+        tbl_w = VGroup(*trs_w).move_to([3.8, 1.2, 0])
+        for r in trs_w:
+            self.play(FadeIn(r), run_time=0.6)
+        self.wait(2.5)
+        self.wipe(tbl_w)
         tiny = 1e-16
         w = working_line(self, r"\frac{f(3+h)-f(3)}{h}",
                          rf"\frac{{f(3+10^{{-16}})-f(3)}}{{10^{{-16}}}}=\frac{{{fmt(f(3.0 + tiny))}-{fmt(F(3.0))}}}{{10^{{-16}}}}",
@@ -497,7 +509,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(trs[0]), run_time=0.4)
         for r in trs[1:]:
             self.play(FadeIn(r), run_time=0.7)
-        self.wait(5.0)
+        self.wait(3.5)
         self.wipe(w, dot, sec, tri, lab, num, tangent, tbl)
         self.bkeep = VGroup(ax, labs, graph)
 
