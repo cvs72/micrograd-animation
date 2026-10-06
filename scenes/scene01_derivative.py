@@ -561,8 +561,8 @@ class Scene01Derivative(MovingCameraScene):
         leg2 = MathTex(r"\frac{f(x+h)-f(x-h)}{2h}", font_size=34, color=FWD).move_to([3.9, 1.7, 0])
         sw1 = Line(ORIGIN, RIGHT * 0.5, color=DATA, stroke_width=6).next_to(leg1, LEFT, buff=0.2)
         sw2 = Line(ORIGIN, RIGHT * 0.5, color=FWD, stroke_width=6).next_to(leg2, LEFT, buff=0.2)
-        t1 = Text("forward", font_size=26, color=DATA).next_to(leg1, DOWN, buff=0.1)
-        t2 = Text("central", font_size=26, color=FWD).next_to(leg2, DOWN, buff=0.1)
+        t1 = Text("forward", font_size=26, color=DATA).next_to(leg1, RIGHT, buff=0.2)
+        t2 = Text("central", font_size=26, color=FWD).next_to(leg2, RIGHT, buff=0.2)
         self.play(FadeIn(leg1), FadeIn(t1), FadeIn(sw1), FadeIn(leg2), FadeIn(t2), FadeIn(sw2), run_time=0.8)
         nar.say("We measure the error against the true slope 14, for h = 10^-k.")
         fw = ax.plot_line_graph(ks, ly(FORWARD), line_color=DATA, add_vertex_dots=True,
