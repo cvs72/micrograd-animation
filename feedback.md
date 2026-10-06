@@ -1,13 +1,17 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 4: the MathTex derivation on the right is almost invisible (dark grey on black, only a faint fraction bar). It is unreadable, and no real-number substitution (20.014-20)/0.001 is visible anywhere in the frames.
-- Frame 1: the title banner 'Example A: the lecture's own function' is fine, but the dots fade out toward x=3 and the plot is cut off, so the full 40-point set is never shown. In frames 2-12 the banner shrinks to a bare 'Example A:' with a trailing colon, and nothing follows it.
-- Frame 5: table shows only the x=3 row, and its slope is 14.003 while the live readout shows -21.9531 at x=-3. The table is still filling, but the x=-3 and x=2/3 rows never appear. Warning text on floating point and h=1e-16 is not visible anywhere.
-- Frame 6: the tangent at x=2/3 is a flat segment sitting on the x-axis and overlaps the axis line. The slope readout 0.0030 is white as required. There is no table in this frame, so the table does not persist.
-- Frame 7: Example B shows g(x) but the dot is at x≈-2 with slope 8.2467, not at the flat points x=-1 and x=1. The 'Where is the slope 0?' question is shown, but the reveal at x=±1 is not visible. The caption already gives the answer while the question is on screen. 'Example A: f'(3)=14.0030' is shown in dim grey, which is low contrast.
-- Frame 8: |x| plot has no secants (left -1, right +1) and no readout. The code panel is small and its text is tiny, hard to read at 480p. The highlight box overlaps the 'return' line text and the first line. The kink verdict is never shown.
-- Frame 9: the h=1 case shows only a bare f curve with no secant, no dot and no 17.0000 readout. It does not match the description.
-- Frame 10: a fully black frame with only a caption, with no visual. No Expert corner banner.
-- Frames 11-12: Expert corner has the error plot, but it is a linear k axis with log10 values rather than log axes as described. The formulas lack real numbers substituted. The plot has only one visual and there is no code panel or second visual. There is no h=1e-16 exact-0 point and no on-screen conclusion about micrograd. Frame 12 drops the result line, so the numbers vanish.
-- Three-act check fails: Example B shows only one real visual per frame, and the Expert corner has one plot. There is no on-screen question revealed afterwards in the expert act. Frame 9 and frame 10 carry little content. Frame 10 has a caption, but the frames also contain a banner-less title/recap card.
-- descriptions/S01.md is well-written and specific, but it does not match the frames: it claims a camera zoom, a table filling row by row, a morph into |x| with both secants, an h=1 slope of 17, and exact zeros at 1e-16, none of which are visible.
+- Frame 4: the formula/derivation (MathTex with numbers) is almost invisible, a faint dim fraction at right around y=260 while the slope readout is shown; it is mid-fade and unreadable.
+- Frame 3: the rise-over-run triangle is tiny and cluttered at the dot, and the tangent overlaps the h segment, so it is hard to read. The slope reads 15.4829 with no h shown.
+- Frame 8: Example B abs(x) shows no secants, so the left -1 and right +1 slopes are not visible. The frame shows only a code panel, whose text is small at 480p. No slope readout.
+- Frame 8: the code panel's yellow highlight box overlaps and cuts through the 'my_abs' text on line 1.
+- Frame 9: the h=1 case shows only a bare curve, with no secant and no 17.0000 readout. The 'secant misses the tangent' claim is not visible.
+- Frame 10: a completely black frame with only a caption. It is the expert-corner intro with no banner, which is wasted. The Expert banner is missing here.
+- Frame 12: the expert plot does not show the conclusion that micrograd never uses a tiny h, nor the h=1e-16 result of 0. The log-error x-axis is k, not h, and only up to 16.
+- Frame 7: the slope is 8.2467 at x≈-2, but the g(x) morph from f is not visible. The flat tangents at -1 and 1 are not shown, though the caption claims them. The grey 'Example A: f'(3)=14.0030' text crowds the yellow question below it.
+- Frame 5: the table shows only the x=3 row. The x=-3 row is missing even though the readout is already at -21.9531, and the slope is -21.9531 rather than -21.9970.
+- Frame 6: the flat-tangent slope shows 0.0030 in white, fine. The table is gone, so the three-row table is never fully visible.
+- Frame 2: the question 'f(3+h) above or below 20?' is shown, but no x=-3 sign question is visible in the frames. The floating-point warning (h=1e-16 gives 0) is not visible in any frame.
+- Frame 11: the 3.0e-4 vs 3.8e-11 result in frame 11 is shown, but on frame 12 the numbers disappear. The formulas are typeset, yet the numbers are never substituted into them.
+- Captions: frames 10 and 11 show the Expert banner with no title; the 'Example A:' banner in frames 2-6 is a small corner label that is cut, with no title text (frame 1 has the full banner).
+- Description descriptions/S01.md is specific and matches the intended content, but it claims things the frames do not show (abs(x) secants, h=1 slope 17, x=-3 row, h=1e-16 giving 0).
+- Frame 1: a few points at x≈2-3 on the right fade out of the dot plot, so the plot looks incomplete. This is minor.
 
