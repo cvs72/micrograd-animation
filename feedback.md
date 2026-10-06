@@ -1,12 +1,14 @@
 ## Reviewer feedback for S00 (row un-ticked; fix and re-render)
-- frames/index.txt has an empty description for S00, so I judged against PLAN.md row S00 only.
-- No title card among the 12 frames. Frame 01 is already the code panel, so I can't confirm the 3 s chapter title card or the 'what is a derivative' hook title.
-- Frames 06-08: the question mark is dark red on black, so contrast is poor at 480p. It also sits at the top-right, away from the knob being turned.
-- Frames 06-08: the 'inputs / hidden / output' labels (y≈435) almost touch the caption (y≈470). The caption is crowded against the diagram.
-- Frames 06-08: the network is crammed into the left half and the loss readout and bar are pushed to the far right edge. The layout is unbalanced, with a large empty gap in the middle.
-- Frames 06-08: the knob slider handles are tiny grey bars with yellow dots drawn on top of the edges. It is hard to see which knob is turned and in which direction. The orange dot on a hidden node in frame 08 is unexplained.
-- Frame 04: the check shows 139.0388 against the 138.8338 gradient with no caption or note saying the small difference is expected for h=0.001. The viewer may think it is a mismatch.
-- Frame 04: the ∂g/∂b arrow and formula are cramped at the top edge and the frame has no code panel or graph. It is mostly formulas and numbers.
-- The captions that must say the expression is meaningless and that micrograd uses single numbers on purpose while real libraries use tensors for speed appear in none of the 12 frames. Frame 05 only says 'backprop works on any expression'.
-- The sliders-on-a-network visual is not clearly 3 inputs, 4 hidden and 1 output with the loss bar linked to a specific knob. The bar changes between frames 07 and 08 without showing the knob move.
+- The frames/index.txt description for S00 is empty, so frames could only be judged against the S00 row in PLAN.md.
+- None of the 12 frames shows the 3 s title card (chapter number and one-line question). Frame 01 already shows the code panel.
+- The PLAN.md row requires a caption saying the README expression is meaningless and that micrograd uses single numbers while real libraries use tensors for speed. No frame shows it, and frames 01-05 carry different captions. Frame 05 says only 'Backprop works on any expression. Neural nets are a calmer one.' and omits the meaningless point and the tensor point.
+- The question 'which direction should we turn each knob?' never appears on screen as a question. Frame 06 has only a small '?' next to a knob, and frame 07 has no question.
+- Frame 04: the 'check ∂g/∂a: a = -4 → -3.999, h = 0.001' line is small, thin teal text on black, borderline at 480p. The code panel and graph have disappeared, so this beat is formulas only.
+- Frame 04: 139.0388 is a finite-difference estimate shown next to 138.8338 with no comparison or explanation on screen, so it may look like a contradiction.
+- Frames 06-08: the network diagram is cluttered. The yellow slider handles and grey bars sit on top of crossing edges, and in frame 06 the '?' sits on top of an edge. All of this occupies the left 50% of the frame, and the right half is empty apart from the loss readout and the bar.
+- Frame 06: the bar's top is drawn above the 'start' line and the loss reads 3.0087. 'start' is not labelled with a value and the bar has no scale, so it is hard to read the loss.
+- Frame 05: the 'Gradient' callout text is small (about 24 px) and is squeezed in below the ∂g/∂b readout, close to the caption.
+- Frame 08: only chapters 1-3 are lit while the caption mentions them in a single line. Frame 09 is the same roadmap with only chapter 12 highlighted in YELLOW and the others in teal, so the lighting one at a time is hard to follow.
+- Frames 10-11: the act-preview banners are fine, but the three-act explanation is just three static boxes with icons. The frame-11 callout 'Next: ...' sits very close under the Expert corner box with no caption, and its text is not coloured or highlighted.
+- Frame 12 is not a recap line; it repeats the frame 11 layout. There is no 4 s recap card visible.
 
