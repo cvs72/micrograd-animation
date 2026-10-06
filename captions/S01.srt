@@ -139,6 +139,6 @@ At k = 16 the nudge vanishes: both slopes read exactly 0.
 In code, central costs one more call of f but is far more exact.
 
 36
-00:04:08,867 --> 00:04:13,800
+00:04:08,867 --> 00:04:14,400
 So micrograd never nudges: each operation knows its exact slope.
 
