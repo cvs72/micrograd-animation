@@ -504,7 +504,12 @@ class Scene01Derivative(MovingCameraScene):
             w.scale_to_fit_width(5.4)
         mk = MathTex(r"k=4", font_size=30, color=ACTIVE).next_to(ax.c2p(4, 2), RIGHT, buff=0.1)
         self.play(Create(mark), FadeIn(w), FadeIn(mk), run_time=1.0)
+        win = MathTex(rf"\text{{Answer: central, }}\text{{about }}10^{{{round(float(np.log10(FORWARD[4] / CENTRAL[4])))}}}\times\ \text{{closer}}",
+                      font_size=34, color=ACTIVE).move_to([3.8, -1.2, 0])
+        win.scale_to_fit_width(5.2)
+        self.play(FadeIn(win), Indicate(w), run_time=1.0)
         self.wait(3.0)
+        self.play(FadeOut(win), run_time=0.3)
 
         nar.say("Past k = 8 both climb: the computer rounds the tiny gaps away.")
         self.play(FadeOut(xl), run_time=0.3)

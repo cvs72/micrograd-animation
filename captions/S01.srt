@@ -119,18 +119,18 @@ Predict: at h = 0.0001, which formula lands closer to 14?
 Blue forward step looks only right; teal central looks both sides.
 
 31
-00:03:36,400 --> 00:03:41,600
+00:03:36,400 --> 00:03:41,733
 At k = 4 the forward error is about 3e-4, the central one about 4e-11.
 
 32
-00:03:42,267 --> 00:03:48,267
+00:03:42,400 --> 00:03:48,400
 Past k = 8 both climb: the computer rounds the tiny gaps away.
 
 33
-00:03:48,933 --> 00:03:53,133
+00:03:49,067 --> 00:03:53,267
 At k = 16 the nudge vanishes: both slopes are exactly 0.
 
 34
-00:03:53,800 --> 00:03:57,800
+00:03:53,933 --> 00:03:57,933
 So micrograd never nudges: each operation knows its exact slope.
 
