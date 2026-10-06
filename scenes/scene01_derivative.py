@@ -80,6 +80,10 @@ def make_axes(xr, yr, w, h, xl, yl, nfs=24):
     return ax, labs
 
 
+def zero_tick(ax):
+    return MathTex("0", font_size=24, color=GREY_B).next_to(ax.c2p(0, 0), DL, buff=0.08)
+
+
 def make_probe(axes, fn, xt, ht, reach):
     """Dot on the curve, secant through (x, f(x)) and (x+h, f(x+h)), rise-over-run corner."""
     def slope():
@@ -232,6 +236,7 @@ class Scene01Derivative(MovingCameraScene):
         ax.to_edge(LEFT, buff=0.9).shift(UP * 0.0)
         labs[0].next_to(ax.x_axis, RIGHT, buff=0.15)
         labs[1].next_to(ax.y_axis, UP, buff=0.15)
+        labs.add(zero_tick(ax))
         self.play(Create(ax), FadeIn(labs), run_time=1.5)
         nar.say("Forty x values from -5 up in steps of 0.25, each with its f(x).")
         dots = VGroup(*[Dot(ax.c2p(x, F(x)), radius=0.055, color=DATA) for x in XS])
@@ -356,6 +361,7 @@ class Scene01Derivative(MovingCameraScene):
         ax2.move_to(ax.get_center())
         labs2[0].next_to(ax2.x_axis, RIGHT, buff=0.15)
         labs2[1].next_to(ax2.y_axis, UP, buff=0.15)
+        labs2.add(zero_tick(ax2))
         graph2 = ax2.plot(G, x_range=[-2.15, 2.15], color=DATA, stroke_width=5)
         nar.say("Same idea, new curve g of x: it has a hump and a valley.")
         cur = self.retarget(VGroup(ax, labs, graph), ax2, labs2, graph2)
@@ -370,8 +376,8 @@ class Scene01Derivative(MovingCameraScene):
         q = self.ask(r"\text{Where is the slope } 0\,?")
         self.play(FadeOut(q), xt.animate.set_value(-1.0), run_time=1.5)
         nar.say("The slope reads about 0 at x = -1 (hump top) and x = 1 (valley).")
-        flat1 = Line(ax2.c2p(-1.9, G(-1.0)), ax2.c2p(-0.1, G(-1.0)), color=GREEN, stroke_width=8)
-        flat2 = Line(ax2.c2p(0.1, G(1.0)), ax2.c2p(1.9, G(1.0)), color=GREEN, stroke_width=8)
+        flat1 = Line(ax2.c2p(-1.7, G(-1.0)), ax2.c2p(-0.5, G(-1.0)), color=GREEN, stroke_width=8)
+        flat2 = Line(ax2.c2p(0.5, G(1.0)), ax2.c2p(1.7, G(1.0)), color=GREEN, stroke_width=8)
         self.play(Create(flat1), run_time=0.6)
         e1 = MathTex(rf"g'(-1)=3\cdot(-1)^{{2}}-3={fmt(exact(g3, -1.0))}", font_size=36,
                      color=WHITE).move_to([3.8, 1.1, 0])
@@ -408,10 +414,11 @@ class Scene01Derivative(MovingCameraScene):
         ax3.move_to(ax.get_center())
         labs3[0].next_to(ax3.x_axis, RIGHT, buff=0.15)
         labs3[1].next_to(ax3.y_axis, UP, buff=0.15)
+        labs3.add(zero_tick(ax3))
         graph3 = ax3.plot(ABS, x_range=[-3, 3], color=DATA, stroke_width=5, use_smoothing=False)
         nar.say("Now the absolute value: a V with a sharp corner at x = 0.")
         ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax3, labs3, graph3, morph=False)
-        code = code_panel("def my_abs(x):\n    return x.relu() + (-x).relu()", font_size=24)
+        code = code_panel("def my_abs(x):\n    return x.relu() + (-x).relu()", font_size=28)
         code.scale_to_fit_width(5.6)
         code.move_to([3.8, -0.9, 0])
         code.highlight = SurroundingRectangle(code.code_lines[1], color=ACTIVE, buff=0.0, stroke_width=2)
@@ -430,8 +437,6 @@ class Scene01Derivative(MovingCameraScene):
             h = ht2.get_value()
             return VGroup(
                 Line(ax3.c2p(-h, h), ax3.c2p(0, h), color=WHITE, stroke_width=5),
-                Line(ax3.c2p(0, h), ax3.c2p(0, 0), color=ORANGE, stroke_width=5),
-                Line(ax3.c2p(0, 0), ax3.c2p(h, 0), color=WHITE, stroke_width=5),
                 Line(ax3.c2p(h, 0), ax3.c2p(h, h), color=TEAL, stroke_width=5),
                 Dot(ax3.c2p(-h, h), radius=0.08, color=ORANGE), Dot(ax3.c2p(0, 0), radius=0.08, color=ACTIVE),
                 Dot(ax3.c2p(h, h), radius=0.08, color=TEAL))
@@ -462,6 +467,7 @@ class Scene01Derivative(MovingCameraScene):
         ax4.move_to(ax.get_center())
         labs4[0].next_to(ax4.x_axis, RIGHT, buff=0.15)
         labs4[1].next_to(ax4.y_axis, UP, buff=0.15)
+        labs4.add(zero_tick(ax4))
         graph4 = ax4.plot(F, x_range=[-5, 5], color=DATA, stroke_width=5)
         self.play(FadeIn(was), run_time=0.3)
         nar.say("Back to f. If h is far too big, the secant leaves the tangent.")
@@ -475,6 +481,7 @@ class Scene01Derivative(MovingCameraScene):
                   run_time=0.8)
         self.play(ht3.animate.set_value(1.0), run_time=4.0)
         nar.say("With h = 1 the slope reads 17, not 14: the step is too coarse.")
+        self.remove(was)
         w = working_line(self, r"\frac{f(3+h)-f(3)}{h}",
                          rf"\frac{{f(4)-f(3)}}{{1}}=\frac{{{fmt(F(4.0))}-{fmt(F(3.0))}}}{{1}}",
                          rf"={fmt(fd(F, 3.0, 1.0))}\neq 14", pos=np.array([3.8, 1.0, 0]), width=5.6, hold=3.0)
@@ -487,7 +494,7 @@ class Scene01Derivative(MovingCameraScene):
         for r in trs[1:]:
             self.play(FadeIn(r), run_time=0.7)
         self.wait(5.0)
-        self.wipe(w, dot, sec, tri, lab, num, tangent, tbl, was)
+        self.wipe(w, dot, sec, tri, lab, num, tangent, tbl)
         self.bkeep = VGroup(ax, labs, graph)
 
     # ---- ACT C ---------------------------------------------------------
@@ -508,7 +515,7 @@ class Scene01Derivative(MovingCameraScene):
         ax.x_axis.move_to(ax.c2p(8, -14))  # axis along the bottom, not through y = 0
         xl = MathTex(r"k\ \ (h=10^{-k})", font_size=30).next_to(ax.x_axis, DOWN, buff=0.3)
         yl = MathTex(r"\log_{10}|\text{error}|", font_size=30).next_to(ax.y_axis, UP, buff=0.15)
-        zero = MathTex("0", font_size=24, color=GREY_B).next_to(ax.c2p(0, 0), LEFT, buff=0.12)
+        zero = MathTex("0", font_size=24, color=GREY_B).next_to(ax.c2p(0, -14), DOWN, buff=0.1)
         self.play(*outs, Create(ax), FadeIn(xl), FadeIn(yl), FadeIn(zero), run_time=0.8)
         self.remove(*self.bkeep)
         banner = self.open_act("Expert corner: the size of h", hold=1.0)
@@ -554,16 +561,16 @@ class Scene01Derivative(MovingCameraScene):
                 etab.add(MathTex(v, font_size=26, color=c).move_to([x, -1.3 - 0.4 * i, 0]))
         self.play(FadeIn(etab), run_time=0.6)
         self.wait(2.5)
-        self.play(FadeOut(etab), run_time=0.3)
+        self.remove(etab)
 
         nar.say("Past k = 8 both climb: the computer rounds the tiny gaps away.")
-        noise = MathTex(r"\text{rounding noise, } k>8", font_size=28, color=ORANGE).move_to(ax.c2p(11.5, -11.5))
+        noise = MathTex(r"\text{rounding noise, } k>8", font_size=34, color=WHITE).move_to(ax.c2p(11.0, -10.5))
         self.play(FadeOut(xl), FadeIn(noise), run_time=0.3)
         self.zoom_on(ax.c2p(10, -6) + DOWN * 1.0, 0.45, 2.0)
         self.play(FadeIn(xl), run_time=0.3)
         nar.say("At k = 16 the nudge vanishes: both slopes read exactly 0.")
         out = MathTex(rf"h=10^{{-16}}:\ \text{{slope}}={fmt(fd(f, 3.0, 1e-16))}", font_size=38,
-                      color=ORANGE).move_to([4.3, -0.9, 0])
+                      color=ORANGE).move_to([4.3, -1.3, 0])
         out.scale_to_fit_width(4.6)
         assert (f(3.0 + 1e-16) - f(3.0 - 1e-16)) / 2e-16 == 0.0
         self.play(FadeIn(out), run_time=0.6)
@@ -573,13 +580,13 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("In code, central costs one more call of f but is far more exact.")
         cp = code_panel("fwd = (f(x+h) - f(x)) / h\ncen = (f(x+h) - f(x-h)) / (2*h)", font_size=24)
         cp.scale_to_fit_width(5.0)
-        cp.move_to([4.1, -2.1, 0])
+        cp.move_to([4.1, -2.15, 0])
         hl = SurroundingRectangle(cp.code_lines[1], color=ACTIVE, buff=0.05)
         self.play(FadeIn(cp), run_time=0.6)
         self.play(Create(hl), run_time=0.8)
         self.wait(0.8)
         self.play(FadeOut(cp), FadeOut(hl), run_time=0.3)
         nar.say("So micrograd never nudges: each operation knows its exact slope.")
-        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=5.4).move_to([3.8, -2.1, 0])
+        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=5.4).move_to([3.8, -2.4, 0])
         self.play(FadeIn(c), run_time=0.5)
         self.wait(5.0)
