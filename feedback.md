@@ -1,15 +1,13 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 11: the question text 'Closer to 14 at h = 10^-k?' is nearly invisible (dark on black) and overlaps the chart area, so the reveal is unreadable.
-- Frame 8: the |x| axes are drawn with the g(x) cubic curve still on them (mid-morph), which is a mismatched, confusing state; the y label says |x| but the curve is a cubic.
-- Frame 7: the slope readout reads 8.9940 at the point x=-2, which has no matching on-screen label. The title banner is gone.
-- Frame 5: the slope readout (3.1934) is shown while the dot is at about x=1.2. Two tangent lines (yellow, green) overlap at once and look cluttered. The x=-3 question appears in a muddy olive colour with low contrast.
-- Frame 6: the 'slope = 0.0030' readout is white, but the tangent is flat and the '= 0 ≠ 14' line in orange has no context. The warning about h=1e-16 is not clearly tied to a visual.
-- Frame 9: the code panel text is small and cramped (and the yellow highlight box clips the text). The kink secants are tiny orange and green segments that are barely visible at 480p.
-- Act banners: only 'Example A' is visible in frame 1. 'Example B' and 'Expert corner' banners are not visible in any of the 12 frames, so the three-act requirement fails.
-- Act C: only 2 of the required visuals are shown, and the central error curve starts at -13.7 on the left. There is no on-screen conclusion about micrograd, and the stated values (3.0e-4, 3.8e-11) are not shown.
-- Frame 12: caption says both slopes are exactly 0 at k=16, but the plot at k=16 shows error of about 1, with no marker for it. The plotted values do not match the caption.
-- Frame 10 uses 'Blue forward... teal central' wording, but both curves look blue/teal and are hard to tell apart. Colours are too similar.
-- Frame 3: the rise-over-run triangle is tiny and unlabeled (no h label), so it is unreadable at 480p.
-- Frame 1 and frame 2 captions are present, but frame 6 onwards has no step-by-step formula with numbers substituted ((20.014-20)/0.001). Only the symbolic formula is shown in frame 4.
-- Description descriptions/S01.md matches the plan, but it claims things the frames do not show: the camera zoom, the numeric substitution, the x=-3 and x=2/3 table rows, and the log-axis conclusion.
+- Frames 2-6: Example A banner disappears after frame 1; frames 7-12 never show an 'Example B' or 'Expert corner' banner, so only 1 of 3 act banners is visible.
+- Frame 7: stale 'slope = 8.9940' readout and 'Example A' leftover text remain during g(x) act, cluttering the panel; slope readout is meaningless there.
+- Frame 8: curve labeled |x| (axis label) is still the g(x) cubic morph midway, with y-axis 0..3 mismatched to the curve (curve shape wrong for label); stale 'Example A' text lingers.
+- Frame 10: 'Closer to 14 at h = 10^-4?' question is dark grey/near-black on black and almost unreadable, and overlaps the region under the forward formula; the x-axis label 'k (h=10^-k)' sits very close to caption.
+- Frame 10: caption says 'teal central' but forward curve and its label are blue; frame 11 central curve is green-teal while forward label colour is similar blue — colours hard to distinguish. The reveal in frame 11 shows the curve dipping below the forward line at k=1-3 (error -13), contradicting expected error behaviour of central at large h and the claimed ~1e-11 at k=4 (marker at about -10.4).
+- Frame 6: orange text '= 0 ≠ 14' is detached from the slope readout and floats with no clear referent; slope 0.0030 at x=2/3 mixed with a warning about h=1e-16 is confusing.
+- Frame 5: table shows only one row (x=3) and slope readout 3.1934 while sliding; x=-3 and 2/3 rows are not visible; the sign-question text is dim olive and low contrast.
+- Frame 9: table at right bottom runs close to x-axis label 'x' of the plot (0.001 row near axis at x=5); layout crowded.
+- Frame 3: no caption in this frame; frames 1,2,... captions are present in most frames but frame 3 lacks one, and no typeset step-by-step substitution of numbers (e.g. (20.014-20)/0.001) is visible in any frame.
+- Not enough visuals/requirements across the 12 frames: no Example B changed-vs-original side by side for the kink beyond text, no live h=1 floating-point 1e-16 demonstration, no visible 'micrograd never uses tiny h' conclusion, no 3D view (not required for S01).
+- descriptions/S01.md is specific and mostly matches the plan, but claims (camera zoom, row-by-row table with x=-3 and 2/3 rows, 1e-16 warning with 0 result, conclusion) are not visible in the frames.
 
