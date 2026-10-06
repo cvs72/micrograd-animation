@@ -391,6 +391,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeOut(e2), FadeOut(dot), FadeOut(sec), FadeOut(lab), FadeOut(num), FadeOut(tri),
                   FadeOut(tbl), FadeOut(m1), FadeOut(m2), run_time=0.6)
         self.remove(dot, sec, lab, num, tri)
+        self.play(FadeOut(was), run_time=0.3)
 
         # B2: abs(x) has a kink at 0
         ax3, labs3 = make_axes([-3, 3, 1], [0, 3, 1], 7.0, 3.7,"x", r"|x|")
@@ -401,9 +402,9 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("Now the absolute value: a V with a sharp corner at x = 0.")
         ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax3, labs3, graph3, morph=False)
         code = code_panel("def my_abs(x):\n    return x.relu() + (-x).relu()", font_size=24)
-        code.scale_to_fit_width(5.2)
-        code.move_to([3.8, -1.2, 0])
-        code.highlight = SurroundingRectangle(code.code_lines[1], color=ACTIVE, buff=0.05)
+        code.scale_to_fit_width(5.6)
+        code.move_to([3.8, -0.9, 0])
+        code.highlight = SurroundingRectangle(code.code_lines[1], color=ACTIVE, buff=0.0, stroke_width=2)
         self.play(FadeIn(code), FadeIn(code.highlight), run_time=0.6)
         ht2 = ValueTracker(1.0)
 
@@ -423,8 +424,8 @@ class Scene01Derivative(MovingCameraScene):
         right_val = (ABS(h0) - ABS(0)) / h0
         assert left_val == -1.0 and right_val == 1.0
         nar.say("Two answers: from the left the secant gives -1, from the right +1.")
-        ml = MathTex(rf"\frac{{|0|-|-1|}}{{1}}={fmt(left_val)}", font_size=40, color=ORANGE).move_to([3.8, 1.1, 0])
-        mr = MathTex(rf"\frac{{|1|-|0|}}{{1}}={fmt(right_val)}", font_size=40, color=TEAL).move_to([3.8, 0.0, 0])
+        ml = MathTex(rf"\frac{{|0|-|-1|}}{{1}}={fmt(left_val)}", font_size=40, color=ORANGE).move_to([3.8, 1.8, 0])
+        mr = MathTex(rf"\frac{{|1|-|0|}}{{1}}={fmt(right_val)}", font_size=40, color=TEAL).move_to([3.8, 0.5, 0])
         self.play(FadeOut(q), Create(sl), FadeIn(ml), run_time=1.2)
         self.play(Create(sr), FadeIn(mr), run_time=1.2)
         self.wait(1.5)
@@ -442,6 +443,7 @@ class Scene01Derivative(MovingCameraScene):
         labs4[0].next_to(ax4.x_axis, RIGHT, buff=0.15)
         labs4[1].next_to(ax4.y_axis, UP, buff=0.15)
         graph4 = ax4.plot(F, x_range=[-5, 5], color=DATA, stroke_width=5)
+        self.play(FadeIn(was), run_time=0.3)
         nar.say("Back to f. If h is far too big, the secant leaves the tangent.")
         ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax4, labs4, graph4)
         xt3, ht3 = ValueTracker(3.0), ValueTracker(H)
