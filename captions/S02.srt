@@ -1,0 +1,104 @@
+1
+00:00:03,667 --> 00:00:08,200
+Example A: the lecture's own function, d = a times b plus c.
+
+2
+00:00:08,800 --> 00:00:12,600
+Three inputs feed one output. Which input matters, and which way?
+
+3
+00:00:13,200 --> 00:00:19,400
+Each box is a Value. Times gives e = a*b, then plus c gives d.
+
+4
+00:00:20,000 --> 00:00:26,200
+A partial derivative: nudge ONE input and hold the others still.
+
+5
+00:00:26,800 --> 00:00:32,533
+b is negative, so a bigger a adds less. Does d rise or fall?
+
+6
+00:00:33,133 --> 00:00:52,467
+Nudge a by h = 0.0001 and watch the change travel along the arrows to d.
+
+7
+00:00:53,067 --> 00:01:12,400
+Now b. Since a is positive, a bigger b pushes d up. The slope is 2.
+
+8
+00:01:13,000 --> 00:01:17,867
+Last, c. What slope do you expect? It is simply added to the product.
+
+9
+00:01:18,467 --> 00:01:35,267
+c just adds on, so d rises exactly as c does: the slope is 1.
+
+10
+00:01:35,867 --> 00:01:42,133
+Three slopes: -3, 2 and 1. The slope for a is b; the slope for b is a.
+
+11
+00:01:42,733 --> 00:01:47,267
+The engine's backward pass writes these same slopes into grad.
+
+12
+00:01:47,867 --> 00:01:53,533
+Example B: what if we change the inputs? Watch the slopes recompute.
+
+13
+00:01:54,133 --> 00:02:00,400
+Morph to a = -1, b = 4, c = 0.5: d becomes -3.5 and the bars recompute.
+
+14
+00:02:01,000 --> 00:02:14,867
+The slope for a is the OTHER input b, and the slope for b is a: they swap.
+
+15
+00:02:15,467 --> 00:02:21,000
+Now set b to zero. What happens to the slope for a?
+
+16
+00:02:21,600 --> 00:02:28,600
+The slope for a is exactly 0: a times zero is zero, whatever a is.
+
+17
+00:02:29,200 --> 00:02:35,667
+Set a to zero as well: both slopes are 0, a flat point; only c matters.
+
+18
+00:02:36,267 --> 00:02:46,333
+All four cases side by side: each slope is just the other factor.
+
+19
+00:02:46,933 --> 00:02:52,533
+Expert corner: with two inputs, d = a times b is a surface. Here a saddle.
+
+20
+00:02:53,133 --> 00:02:58,800
+Each point of the floor is a pair (a, b); the height above it is d.
+
+21
+00:02:59,400 --> 00:03:03,667
+Contour lines on the floor join points that have the same d.
+
+22
+00:03:04,267 --> 00:03:10,267
+Our point (2, -3) sits at height 4. Which way is uphill?
+
+23
+00:03:10,867 --> 00:03:21,933
+The gradient (b, a) = (-3, 2) points straight uphill, across the contours.
+
+24
+00:03:22,533 --> 00:03:29,533
+The tangent plane touches the surface here: slope -3 along a, 2 along b.
+
+25
+00:03:30,133 --> 00:03:39,133
+A ball rolling against the gradient slides downhill, and d keeps falling.
+
+26
+00:03:39,733 --> 00:03:44,333
+The gradient is the vector of all the slopes: a compass pointing uphill.
+
