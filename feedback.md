@@ -1,8 +1,8 @@
-## Reviewer feedback for S11 (row un-ticked; fix ONLY the blocking items, rejection 1 of 4)
-- BLOCKING: Frame 5 (Act A loss curve): the layout is broken. The 'loss' axis label is clipped at the top edge, and the '∂L' formula is cut off at the bottom edge. The caption overlaps the x-axis tick labels (15, 20, 25), so the key caption and the formula are not readable.
-- BLOCKING: Frames 1-5 (Act A) never show the update rule p.data += -lr*p.grad, or the loss sum, as typeset MathTex with real numbers substituted. The only formula-like item in the whole scene is the partial '2 · 1.5' in frame 12. Act A therefore lacks the required formula with substituted numbers. The sole fragment is the clipped '∂L' in frame 5.
+## Reviewer feedback for S11 (row un-ticked; fix ONLY the blocking items, rejection 2 of 4)
+- BLOCKING: No frame shows the update rule p <- p - lr*g as MathTex with real numbers substituted (Act A). Frame 2 has only the dataset formulas and frame 11 has only a fragment, '2 · 1.5'. Typeset formulas with substituted numbers before results are required.
+- BLOCKING: Frame 4 asks 'knob #40: gradient -2.3854 ?' as the predict-then-reveal question. No later frame shows the answer (new knob value or direction). The reveal is not visible across the 12 frames.
 (optional, ignore unless you have time:)
-- optional polish: Frame 10 (zero_grad): both axes are empty, with no curves. The colour legend 'zeroed each step / never zeroed' has no line swatches. Check that a neighbouring frame shows the accumulating gradient, since the 'loss still falls' point is not visible in any frame.
-- optional polish: Frame 4 asks 'knob up or down?' (gradient -2.3854), but no sampled frame shows the reveal. The predict-then-reveal beat is only half visible. In frame 8 the loss reads 7.8034 while the plan and frame 7 say about 8.0, so label it as a particular step.
-- optional polish: Frames 3-4 leave the right half empty beside the bar chart. In frame 12 the right side holds only the lone '2 · 1.5' with no result, so the comparison looks unfinished.
+- optional polish: Frame 6 (Example B) has no one-line explanation next to each learning-rate curve, as the description asks. The race is only half drawn, ending at step 15. Check that the explanations appear later.
+- optional polish: The frames do not show the roadmap card of real-training ingredients (mini-batches, cross-entropy, L2, learning-rate decay). Frame 9 shows empty axes for the zero_grad comparison, and no frame shows the filled curves. The Expert corner payoff is not visible.
+- optional polish: Frame 5 caption sits very close to the 'step' axis label at the bottom right. Frames 1 and 8 are mostly empty banner cards. The Example B comparison is modest, with only frame 7 showing the changed prediction bars.
 
