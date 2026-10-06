@@ -131,6 +131,10 @@ Past k = 8 both climb: the computer rounds the tiny gaps away.
 At k = 16 the nudge vanishes: both slopes are exactly 0.
 
 34
-00:03:53,933 --> 00:03:57,933
+00:03:53,933 --> 00:03:58,800
+In code, central costs one more call of f but is far more exact.
+
+35
+00:03:59,467 --> 00:04:03,467
 So micrograd never nudges: each operation knows its exact slope.
 
