@@ -115,34 +115,34 @@ With h = 1 the slope reads 17, not 14: the step is too coarse.
 Expert corner: how good is this nudge, and can we do better?
 
 30
-00:03:30,133 --> 00:03:34,683
+00:03:30,133 --> 00:03:34,667
 We measure the error against the true slope 14, for h = 10^-k.
 
 31
-00:03:35,283 --> 00:03:39,133
+00:03:35,267 --> 00:03:39,067
 Predict: at h = 0.0001, which formula lands closer to 14?
 
 32
-00:03:39,733 --> 00:03:43,533
+00:03:39,667 --> 00:03:43,467
 Blue forward step looks only right; teal central looks both sides.
 
 33
-00:03:44,133 --> 00:03:49,333
+00:03:44,067 --> 00:03:49,267
 At k = 4 the forward error is about 3e-4, the central one about 4e-11.
 
 34
-00:03:49,933 --> 00:03:53,433
+00:03:49,867 --> 00:03:53,333
 So micrograd never nudges: each operation knows its exact slope.
 
 35
-00:03:54,033 --> 00:03:58,900
+00:03:53,933 --> 00:03:58,800
 In code, central costs one more call of f but is far more exact.
 
 36
-00:03:59,500 --> 00:04:03,967
+00:03:59,400 --> 00:04:03,933
 Errors shrink to k = 8, then rounding noise wins.
 
 37
-00:04:04,567 --> 00:04:09,800
+00:04:04,533 --> 00:04:09,733
 At k = 16 both slopes read 0, so the error is the full 14.
 

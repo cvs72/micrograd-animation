@@ -352,7 +352,8 @@ class Scene01Derivative(MovingCameraScene):
 
         nar.say("Warning: too many zeros in h and floats run out of digits.")
         hs_w = [1e-4, 1e-8, 1e-12, 1e-16]
-        rows_w = [[(sci(h), WHITE), (fmt(fd(f, 3.0, h)), slope_color(1.0)), (fmt(fd(f, 3.0, h) - 14.0), "#FFC799")]
+        rows_w = [[(sci(h), WHITE), (f"{fd(f, 3.0, h):.6f}", slope_color(1.0)),
+                   (fmt(fd(f, 3.0, h) - 14.0) if abs(fd(f, 3.0, h) - 14.0) >= 1 else sci(fd(f, 3.0, h) - 14.0), "#FFC799")]
                   for h in hs_w]
         trs_w, _ = table_rows(rows_w, [r"h", r"\text{slope}", r"\text{error}"],
                               xs=(-1.9, 0.1, 1.6))
