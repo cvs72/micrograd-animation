@@ -198,11 +198,11 @@ class Scene01Derivative(MovingCameraScene):
         extra = [] if morph else [FadeOut(cur[2])]
         self.play(FadeOut(cur[0]), FadeOut(cur[1]), *extra, run_time=0.3)
         self.remove(cur[0], cur[1], *([cur[2]] if not morph else []))
-        self.play(FadeIn(ax2), FadeIn(labs2), run_time=0.3)
         if morph:
+            self.play(FadeIn(ax2), FadeIn(labs2), run_time=0.3)
             self.play(Transform(cur[2], graph2), run_time=2.0)
         else:
-            self.play(Create(graph2), run_time=0.8)
+            self.play(FadeIn(ax2), FadeIn(labs2), Create(graph2), run_time=0.6)
             return VGroup(ax2, labs2, graph2)
         self.wait(0.5)
         return VGroup(ax2, labs2, cur[2])
@@ -327,9 +327,10 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("Sliding left, the readout passes white at the bottom, then turns orange.")
         ans = MathTex(rf"\text{{slope}}={fmt(SM3)}<0", font_size=36, color=ORANGE).move_to(QPOS)
         self.play(FadeOut(q), run_time=0.4)
+        self.wait(0.6)
         self.play(xt.animate.set_value(-3.0), FadeOut(tangent), FadeIn(ans), FadeIn(trs[2]),
                   run_time=2.5)
-        self.wait(3.5)
+        self.wait(2.5)
         self.play(FadeOut(ans), run_time=0.3)
 
         nar.say("Near x = 2/3 the tangent is flat: slope about 0, nudges do nothing.")
