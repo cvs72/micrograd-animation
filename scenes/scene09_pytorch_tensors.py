@@ -353,12 +353,12 @@ class Scene09PytorchTensors(MovingCameraScene):
         l_n = MathTex(r"4\cdot 3\cdot 4", font_size=44, color=WHITE).move_to([-2.6, 2.6, 0])
         self.play(Create(base_line), FadeIn(bar), FadeIn(num), FadeIn(bar1), FadeIn(num1), FadeIn(l_m), FadeIn(l_t),
                   FadeIn(l_n), run_time=1.0)
-        self.wait(1.0)
+        self.wait(3.0)
         l_n2 = MathTex(r"4\cdot 3\cdot 8", font_size=44, color=WHITE).move_to(l_n)
-        self.play(trk.animate.set_value(n8), TransformMatchingTex(l_n, l_n2), run_time=2.5)
-        nar.say("Twice the neurons, twice the scalar work. Tensors: still one call.")
+        self.play(trk.animate.set_value(n8), TransformMatchingTex(l_n, l_n2), run_time=1.0)
+        nar.say("8 neurons: 4 * 3 * 8 = 96 products. Tensors: one call.")
         self.play(Indicate(num, color=ACTIVE, scale_factor=1.3), run_time=1.0)
-        self.wait(2.0)
+        self.wait(3.0)
         self.play(FadeOut(tag), run_time=0.3)
         self.clear_stage()
 

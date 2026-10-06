@@ -1,112 +1,112 @@
 1
-00:00:03,667 --> 00:00:07,733
+00:00:03,600 --> 00:00:07,600
 Example A: the same neuron from chapter 5, now written twice.
 
 2
-00:00:08,333 --> 00:00:13,200
+00:00:08,200 --> 00:00:13,100
 On the left our Value version, on the right the same thing in PyTorch.
 
 3
-00:00:13,800 --> 00:00:16,600
+00:00:13,700 --> 00:00:16,500
 PyTorch uses 32-bit floats; .double() matches Python's 64-bit.
 
 4
-00:00:17,200 --> 00:00:25,800
+00:00:17,100 --> 00:00:25,667
 Leaf tensors skip gradients unless asked: requires_grad = True.
 
 5
-00:00:26,400 --> 00:00:30,600
+00:00:26,267 --> 00:00:30,467
 o.backward() is the same call as ours. It fills in every .grad.
 
 6
-00:00:31,200 --> 00:00:36,067
+00:00:31,067 --> 00:00:35,933
 A tensor is a box of numbers, so .item() pulls out one plain number.
 
 7
-00:00:36,667 --> 00:00:48,000
+00:00:36,533 --> 00:00:47,833
 Before comparing: what should x1.grad be? Think 1 - o squared.
 
 8
-00:00:48,600 --> 00:00:53,133
+00:00:48,433 --> 00:00:52,983
 Times w1 = -3, the local slope 0.5 gives -1.5: a downhill nudge.
 
 9
-00:00:53,733 --> 00:00:57,733
+00:00:53,583 --> 00:00:57,583
 The lecture's PyTorch run prints these same numbers (not run here).
 
 10
-00:00:58,333 --> 00:01:01,467
+00:00:58,183 --> 00:01:01,333
 Same maths, same gradients. PyTorch is micrograd plus speed.
 
 11
-00:01:02,067 --> 00:01:06,133
+00:01:01,933 --> 00:01:05,933
 Example B: what if the numbers are not single scalars?
 
 12
-00:01:06,733 --> 00:01:14,200
+00:01:06,533 --> 00:01:13,933
 A tensor is a grid of numbers. This one has 2 rows and 3 columns.
 
 13
-00:01:14,800 --> 00:01:19,467
+00:01:14,533 --> 00:01:19,133
 4 examples, 3 inputs, 4 neurons: how many multiplications?
 
 14
-00:01:20,067 --> 00:01:23,867
+00:01:19,733 --> 00:01:23,583
 Examples times weights gives a 4 by 4 grid of sums.
 
 15
-00:01:24,467 --> 00:01:30,867
+00:01:24,183 --> 00:01:30,317
 micrograd builds each cell by hand: 3 products, then adds.
 
 16
-00:01:31,467 --> 00:01:34,467
+00:01:30,917 --> 00:01:33,917
 16 cells, 3 products each: exactly 48 multiplications.
 
 17
-00:01:35,067 --> 00:01:39,600
+00:01:34,517 --> 00:01:39,017
 A tensor library does the whole grid in one parallel call.
 
 18
-00:01:40,200 --> 00:01:44,733
+00:01:39,617 --> 00:01:44,617
 What if the layer had 8 neurons? Watch the scalar count double.
 
 19
-00:01:45,333 --> 00:01:49,267
-Twice the neurons, twice the scalar work. Tensors: still one call.
+00:01:45,217 --> 00:01:50,150
+8 neurons: 4 * 3 * 8 = 96 products. Tensors: one call.
 
 20
-00:01:49,867 --> 00:01:53,933
+00:01:50,750 --> 00:01:54,750
 Expert corner: where does PyTorch hide tanh's backward pass?
 
 21
-00:01:54,533 --> 00:01:58,733
+00:01:55,350 --> 00:01:59,483
 The lecture hunted for tanh's backward in PyTorch for about 15 minutes.
 
 22
-00:01:59,333 --> 00:02:06,733
+00:02:00,083 --> 00:02:07,483
 The CPU and CUDA kernels hold one line: grad times (1 - o squared).
 
 23
-00:02:07,333 --> 00:02:10,467
+00:02:08,083 --> 00:02:11,250
 That is our tanh _backward: same formula, more hardware.
 
 24
-00:02:11,067 --> 00:02:14,867
+00:02:11,850 --> 00:02:15,650
 To add your own operation, write forward and backward by hand.
 
 25
-00:02:15,467 --> 00:02:27,867
+00:02:16,250 --> 00:02:28,650
 Backward is the derivative you derive by hand: 1.5 (5x^2 - 1).
 
 26
-00:02:28,467 --> 00:02:36,000
+00:02:29,250 --> 00:02:36,750
 Your operation becomes a lego block: forward plus backward.
 
 27
-00:02:36,600 --> 00:02:39,733
+00:02:37,350 --> 00:02:40,483
 PyTorch stores one derivative per operation, like our closures.
 
 28
-00:02:40,333 --> 00:02:44,133
+00:02:41,083 --> 00:02:44,917
 Micrograd is the whole idea. The rest of PyTorch is efficiency.
 
