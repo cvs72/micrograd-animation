@@ -172,26 +172,27 @@ class Scene00Intro(MovingCameraScene):
         pos = np.array([3.9, -1.9, 0.0])
         nar.say("Check it: nudge a by h = 0.001 and see how far g really moves.")
         step = MathTex(rf"\text{{check }}\partial g/\partial a:\ a = {fmt(-4.0)} \to {fmt(-4.0 + NUDGE_H)},\ h = {NUDGE_H}",
-                       font_size=36, color=DATA).move_to([3.9, -0.95, 0])
+                       font_size=36, color=DATA).scale_to_fit_width(6.0).move_to([3.9, -0.95, 0])
         self.play(FadeIn(step))
         w = working_line(
             self, r"\frac{g(a+h)-g(a)}{h}",
             rf"\frac{{{fmt(G_NUDGED)}-{fmt(RG.data)}}}{{{NUDGE_H}}}",
             rf"\frac{{{fmt(G_NUDGED)}-{fmt(RG.data)}}}{{{NUDGE_H}}} = {fmt(NUDGE_SLOPE)}",
             pos=pos, width=6.0, hold=0.5)
+        code.save_state()
         self.play(code.animate.set_opacity(0.0), run_time=0.4)
         self.zoom_on(nar, w, 0.6, 0.3)
         nar.say(f"A bigger h gives {fmt(NUDGE_SLOPE)}; as h shrinks it closes in on {fmt(RA.grad)}.")
-        self.play(FadeOut(w), FadeOut(step), FadeOut(fwd), FadeOut(bwd_a), FadeOut(bwd_b))
-        # gradient callout
+        self.play(FadeOut(w), FadeOut(step), Restore(code))
+        # gradient callout, below the two gradients so it covers nothing
         co = callout("Gradient", "how fast the output moves\nwhen an input is nudged",
-                     color=GRAD, width=5.4).move_to([3.7, -1.0, 0])
+                     color=GRAD, width=5.4).move_to([3.7, -1.55, 0])
         nar.say("Backprop works on any expression. Neural nets are a calmer one.")
         self.play(FadeIn(co))
         self.wait(3.0)
         nar.say("micrograd uses single numbers on purpose; tensors only add speed.")
         self.play(FadeOut(co))
-        self.play(FadeOut(Group(code, g_tex, ra, rb)))
+        self.play(FadeOut(Group(code, g_tex, ra, rb, fwd, bwd_a, bwd_b)))
 
     def construct(self):
         nar = Narrator(self, "S00")
