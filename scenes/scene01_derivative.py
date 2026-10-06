@@ -208,7 +208,7 @@ class Scene01Derivative(MovingCameraScene):
         return VGroup(ax2, labs2, cur[2])
 
     def was_line(self, tex=r"\text{Example A: } f'(3)=14.0030"):
-        t = MathTex(tex, font_size=32, color=GREY_B).move_to([3.8, 3.0, 0])
+        t = MathTex(tex, font_size=34, color="#DDDDDD").move_to([3.8, 3.0, 0])
         self.play(FadeIn(t), run_time=0.5)
         return t
 
@@ -364,7 +364,8 @@ class Scene01Derivative(MovingCameraScene):
         w = working_line(self, r"\frac{f(3+h)-f(3)}{h}",
                          rf"\frac{{f(3+10^{{-16}})-f(3)}}{{10^{{-16}}}}=\frac{{{fmt(f(3.0 + tiny))}-{fmt(F(3.0))}}}{{10^{{-16}}}}",
                          rf"\frac{{{fmt(f(3.0 + tiny))}-{fmt(F(3.0))}}}{{10^{{-16}}}}={fmt(fd(f, 3.0, tiny))}\neq {fmt(exact(f, 3.0))}",
-                         pos=np.array([4.2, -0.5, 0]), width=4.8, hold=3.0)
+                         pos=np.array([4.2, -0.5, 0]), width=4.8, hold=3.0,
+                         colors=(WHITE, WHITE, "#FFC799"))
         self.wipe(w, tbl_w)
         nar.say("So the derivative is the slope at one point: rise over run, h tiny.")
         self.define("Derivative", "slope at one point")
@@ -568,9 +569,9 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(leg1), FadeIn(t1), FadeIn(sw1), FadeIn(leg2), FadeIn(t2), FadeIn(sw2), run_time=0.8)
         nar.say("We measure the error against the true slope 14, for h = 10^-k.")
         fw = ax.plot_line_graph(ks, ly(FORWARD), line_color=DATA, add_vertex_dots=True,
-                                vertex_dot_radius=0.05, stroke_width=4)
+                                vertex_dot_radius=0.1, stroke_width=4)
         ce = ax.plot_line_graph(ks, ly(CENTRAL), line_color=FWD, add_vertex_dots=True,
-                                vertex_dot_radius=0.05, stroke_width=4)
+                                vertex_dot_radius=0.045, stroke_width=3)
         nar.say("Predict: at h = 0.0001, which formula lands closer to 14?")
         q = self.ask(r"\text{Closer to 14 at } h=10^{-4}\,?", pos=np.array([4.0, -0.2, 0]), color=WHITE)
         nar.say("Blue forward step looks only right; teal central looks both sides.")
