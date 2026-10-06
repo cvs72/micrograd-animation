@@ -31,66 +31,66 @@ A bigger h gives 139.0388; as h shrinks it closes in on 138.8338.
 Backprop works on any expression. Neural nets are a calmer one.
 
 9
-00:00:46,067 --> 00:00:50,600
+00:00:46,067 --> 00:00:50,567
 micrograd uses single numbers on purpose; tensors only add speed.
 
 10
-00:00:51,267 --> 00:00:54,733
+00:00:51,167 --> 00:00:54,633
 This tiny network has sixteen knobs; real ones have millions.
 
 11
-00:00:55,400 --> 00:00:58,133
+00:00:55,300 --> 00:00:58,033
 In code, every knob is just a number.
 
 12
-00:00:58,800 --> 00:01:02,267
+00:00:58,700 --> 00:01:02,167
 The loss measures how wrong we are. Lower is better.
 
 13
-00:01:02,933 --> 00:01:06,933
+00:01:02,833 --> 00:01:06,833
 Turn one knob blindly and the mistake grows: wrong way!
 
 14
-00:01:07,600 --> 00:01:11,067
+00:01:07,500 --> 00:01:10,967
 Another knob, other direction: lucky this time, the loss falls.
 
 15
-00:01:11,733 --> 00:01:16,267
+00:01:11,633 --> 00:01:16,167
 But luck will not scale to thousands of knobs. We need a direction.
 
 16
-00:01:17,933 --> 00:01:21,400
+00:01:17,800 --> 00:01:21,267
 Here is our plan: twelve short chapters, one idea each.
 
 17
-00:01:22,067 --> 00:01:24,867
+00:01:21,867 --> 00:01:24,650
 First slopes, several inputs, and the computation graph.
 
 18
-00:01:25,533 --> 00:01:28,667
+00:01:25,250 --> 00:01:28,367
 Then the backward pass, one neuron, and automating it.
 
 19
-00:01:29,333 --> 00:01:32,133
+00:01:28,967 --> 00:01:31,750
 Next, adding up gradients, more operations, and PyTorch.
 
 20
-00:01:32,800 --> 00:01:36,267
+00:01:32,350 --> 00:01:35,800
 Finally a whole network, training it, and a loss surface.
 
 21
-00:01:36,933 --> 00:01:41,133
+00:01:36,400 --> 00:01:40,567
 Every chapter has three acts, so you see each idea three times.
 
 22
-00:01:41,800 --> 00:01:46,000
+00:01:41,167 --> 00:01:45,300
 A uses the lecture's numbers; B changes them and watches what moves.
 
 23
-00:01:46,667 --> 00:01:50,467
+00:01:45,900 --> 00:01:49,733
 The expert corner adds what a specialist would warn you about.
 
 24
-00:01:51,133 --> 00:01:53,933
+00:01:50,333 --> 00:01:53,133
 Chapter 1 answers it, starting with simple slopes.
 
