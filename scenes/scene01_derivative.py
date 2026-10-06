@@ -169,6 +169,10 @@ class Scene01Derivative(MovingCameraScene):
 
     def open_act(self, text):
         self.act_label = text
+        old = getattr(self, "act_tag", None)
+        if old is not None:
+            self.play(FadeOut(old), run_time=0.3)
+            self.act_tag = None
         banner = act_banner(self, text, keep=True)
         self.wait(3.0)
         return banner
