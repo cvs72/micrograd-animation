@@ -1,10 +1,10 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 04: the substituted formula (f(3.001)-f(3))/0.001 = (20.014-20)/0.001 has leftover ghost text from the previous formula overlapping it (garbled digits behind 'f(3.001) − f(3)' and '0.001'). Overlapping text.
-- Frame 07 (Example B, g(x)): the line g'(-1)=3·(-1)^2-3=0 is dark green on black with poor contrast, hard to read at 480p. The slope readout shows -0.0030 while the caption says flat, which is slightly confusing.
-- Frame 08: the abs(x) kink shows no left and right secants (-1 and +1) and no slope readout. The description requires both secants animated, so the frame does not match.
-- Frame 11: the '3.0e-4 vs 3.8e-11' result line and the 'k = 4' label are almost invisible (dim, mid-fade) and overlap the plot area. The yellow marker line starts at the bottom axis and has no visible dot on the curve yet.
-- Frame 10: the table's last row (0.001 ...) sits right next to the axis label 'x' at the lower right of the axes. It is crowded and nearly touches.
-- Missing from frames: the floating-point warning (h=1e-16 giving 0) and the x=2/3 table row. The frames show x=2/3 only as a readout, with no table row. Nothing shows the h=1e-16 result of 0 in Act C.
-- Act A banner appears as a big title card only in frame 01. Later frames show a small 'Example A:' with a trailing colon and no title. This is weak but acceptable.
-- There is no on-screen 'Predict' reveal for the x=-3 sign; frame 05 shows the sign only after the fact. The description's predict-then-reveal for the sign is not visible.
+- Frame 07 (Act B, g(x)): the dot is at x=-1 and the caption says the slope reads about 0, but the readout shows 0.0590. That contradicts the caption and the Act A value 14.0030. The tangent is also barely distinguishable from the axis.
+- Frame 10 (Expert corner): the 'k = 4' label and the '3.0×10^-4 vs 3.8×10^-11' result line are almost black on black and unreadable. The key numbers are effectively invisible on that frame.
+- Act C has only one real visual (the log error plot) plus a text callout. The plan needs at least two real visuals per act, such as a table of errors or a code panel. Nothing in frames 10-12 shows the h=1e-16 result of exactly 0 or the 1e-8 degradation.
+- Frame 08 (|x| kink): the white h segment and orange vertical line run through the y-axis tick label '1' and overlap it. The code panel text is small at 480p. The reveal that the secants are -1 and +1 and that no derivative exists is not visible in any of the 12 frames, so the predict-then-reveal cannot be confirmed.
+- Act A is missing from the frames: the lecture's floating-point warning about too many zeros in h, the sign question at x=-3 before its reveal, and the 2/3 table row (frame 06 shows 0.0030 but the table has no such row). The step-by-step derivation appears only as one substituted fraction in frame 04. The description and the plan claim all of these.
+- Act banners in frames 02-12 are small top-left text ('Example A:' with nothing after it). They look smaller than the 36pt banner spec and read as a truncated label rather than a banner.
+- Frame 03: the secant dot and the point overlap into a tiny cluster at (3,20) and the rise-over-run triangle is not visible. Frame 09 shows slope 16.9810, a mid-transition value, between the 17.0000 target and the caption, which is confusing.
+- Frame 01 (title banner and dots): the right-hand dots fade to near-invisible and the dots do not reach x=5. This is minor.
 
