@@ -1,14 +1,14 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frames 4 and 12 are caught mid-fade or show elements before the caption; frame 4 caption is nearly invisible (dark grey on black), unreadable.
-- Frame 1 is the first frame of the scene: the final dots near x=4–5 are faded and look unfinished.
-- No typeset step-by-step formula with real numbers substituted ((20.014-20)/0.001=14.003) is visible in any frame; only a bare 'slope =' readout.
-- Frame 5: table shows only the x=3 row while the readout is at x=-3; table does not match the current state and is not filled for x=-3 or 2/3. Slope readout at -21.9970 sits very close to the table header column.
-- Frame 6: the warning caption is grey and low contrast; the warning is not shown visually (no h=1e-16 → 0 demonstration). Slope 0.0030 readout is white, fine, but the tangent is flat on the x-axis and nearly merges with it.
-- Frame 7 (Example B g(x)): the 'Example A: f'(3)=14.0030' reference line crowds the 'Where is the slope 0?' question and the slope readout; no caption in this frame; the changed values (g slopes at ±1) are not shown next to the original; the reveal of the answer (flat at -1 and 1) is not visible in any frame.
-- Frames 8–9: the |x| scene never shows the left (-1) and right (+1) secants or the 'no derivative' conclusion; frame 9 still shows |x| while the caption says 'Back to f', with a stale 'Example A' note; the code panel in frame 8 is tiny at 480p.
-- Frame 10: h=1 secant and the value 17.0000 are not drawn; only the bare curve with a caption, so the 'secant visibly misses the tangent' is not visible.
-- Frames 11–12 (Expert corner): the equation text '3.0e-4 vs 3.8e-11' in frame 11 is nearly invisible (fading); the 'log10|error|' axis label is clipped against the left edge and the 'k=4' label overlaps the plot; no visible plot of the h=1e-16 → 0 point or the conclusion about micrograd; the code panel is tiny.
-- Three-act requirements not met: only 12 frames with no distinct Example B visuals beyond the g(x) plot, no on-screen predict-then-reveal in Example B or the Expert corner, and the Expert corner lacks the conclusion text. Captions are missing in frame 7 and the title card is missing a caption; fewer than 10 of 12 frames carry specific captions.
-- Act A banner in frame 1 is a large title but frames 2–6 reduce it to a tiny corner label, inconsistent with Example B/Expert banners (acceptable) but small at 480p.
-- descriptions/S01.md is specific and well-structured, but it claims content the frames do not show (the step-by-step worked formula, the table rows for x=-3 and 2/3, the |x| secants −1/+1, the h=1 secant, the zero result at h=1e-16, the micrograd conclusion), so it does not match the frames.
+- Frames 4 and 5 differ in caption fade: frame 4 caption is nearly invisible (mid-fade), unreadable.
+- Frame 6: the x=2/3 flat tangent shows slope 0.0030 but the warning caption is in dim grey with low contrast; the h=1e-16 → 0 warning is never shown as a number/formula.
+- Frame 5: table shows only the x=3 row while the readout is at x=-3; x=-3 row is missing, table not matching the state.
+- Frame 7: g(x) Example B shows the morph target only; the 'Where is the slope 0?' question overlaps closely with the 'Example A: f'(3)=14.0030' line (cramped, nearly touching), and no caption is present in this frame.
+- Frame 8: |x| shows no secants (left -1 / right +1 not animated or visible); no kink derivative-does-not-exist message visible; code panel sits cramped close to the axis edge.
+- Frame 9: still shows |x| plot under the caption 'Back to f' – frame/caption mismatch; no secant or tangent for h too big.
+- Frame 10: h=1 case shows only the bare f curve with no secant, tangent or slope readout of 17.0000; caption claims something the visual does not show; changed values not shown next to the original ones.
+- Frame 11: Expert corner result text '3.0e-4 vs 3.8e-11' is nearly invisible (mid-fade) and the 'k = 4' label is faint; error plot x-axis starts at k=1 only, h=1e-16 → exactly 0 and the 'micrograd never uses tiny h' conclusion never visible; on a log axis exact 0 cannot be shown and is not explained.
+- Frame 12: code panel is small and hard to read at 480p.
+- Not enough typeset step-by-step derivation with substituted numbers ((20.014-20)/0.001 = 14.003) visible in any frame, although the description file claims it.
+- Three-act check: Act A has only a single table row and few visuals; Example B visuals are mostly bare plots with missing secants; captions are absent in frame 7; Example B originals vs changed values not shown side by side beyond a grey 'f'(3)=14.0030' line.
+- descriptions/S01.md matches the plan but over-claims what frames show (camera zoom, table rows filling, morph, both secants at 0, slope 17 secant, conclusion) that are not visible in the 12 frames.
 
