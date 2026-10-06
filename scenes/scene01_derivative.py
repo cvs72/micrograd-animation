@@ -591,4 +591,4 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("So micrograd never nudges: each operation knows its exact slope.")
         c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=5.4).move_to([3.8, -2.0, 0])
         self.play(FadeIn(c), run_time=0.5)
-        self.wait(6.0)
+        self.wait(4.0)
