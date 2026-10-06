@@ -95,50 +95,54 @@ Predict: what single slope does the corner have at x = 0?
 Two answers: from the left the secant gives -1, from the right +1.
 
 25
-00:02:49,600 --> 00:02:57,000
+00:02:49,600 --> 00:02:56,200
 Shrink h: the secants never agree, so no derivative exists at 0.
 
 26
-00:02:57,600 --> 00:03:02,467
-Back to f. If h is far too big, the secant leaves the tangent.
+00:02:56,800 --> 00:03:02,000
+The corner has no slope. Now back to our parabola, to try a huge h.
 
 27
-00:03:03,067 --> 00:03:19,733
-With h = 1 the slope reads 17, not 14: the step is too coarse.
+00:03:02,600 --> 00:03:07,467
+Back on f: if h is far too big, the secant leaves the tangent.
 
 28
-00:03:20,333 --> 00:03:24,533
-Expert corner: how good is this nudge, and can we do better?
+00:03:08,067 --> 00:03:24,733
+With h = 1 the slope reads 17, not 14: the step is too coarse.
 
 29
-00:03:25,133 --> 00:03:29,667
-We measure the error against the true slope 14, for h = 10^-k.
+00:03:25,333 --> 00:03:29,533
+Expert corner: how good is this nudge, and can we do better?
 
 30
-00:03:30,267 --> 00:03:34,067
-Predict: at h = 0.0001, which formula lands closer to 14?
+00:03:30,133 --> 00:03:34,667
+We measure the error against the true slope 14, for h = 10^-k.
 
 31
-00:03:34,667 --> 00:03:38,467
-Blue forward step looks only right; teal central looks both sides.
+00:03:35,267 --> 00:03:39,067
+Predict: at h = 0.0001, which formula lands closer to 14?
 
 32
-00:03:39,067 --> 00:03:44,267
-At k = 4 the forward error is about 3e-4, the central one about 4e-11.
+00:03:39,667 --> 00:03:43,467
+Blue forward step looks only right; teal central looks both sides.
 
 33
-00:03:44,867 --> 00:03:48,333
-So micrograd never nudges: each operation knows its exact slope.
+00:03:44,067 --> 00:03:49,267
+At k = 4 the forward error is about 3e-4, the central one about 4e-11.
 
 34
-00:03:48,933 --> 00:03:53,800
-In code, central costs one more call of f but is far more exact.
+00:03:49,867 --> 00:03:53,333
+So micrograd never nudges: each operation knows its exact slope.
 
 35
-00:03:54,400 --> 00:03:58,933
-Errors shrink to k = 8, then rounding noise wins.
+00:03:53,933 --> 00:03:58,800
+In code, central costs one more call of f but is far more exact.
 
 36
-00:03:59,533 --> 00:04:04,733
+00:03:59,400 --> 00:04:03,933
+Errors shrink to k = 8, then rounding noise wins.
+
+37
+00:04:04,533 --> 00:04:09,733
 At k = 16 both slopes read 0, so the error is the full 14.
 

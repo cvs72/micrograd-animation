@@ -503,9 +503,11 @@ class Scene01Derivative(MovingCameraScene):
         labs4.add(zero_tick(ax4))
         graph4 = ax4.plot(F, x_range=[-5, 5], color=DATA, stroke_width=5)
         self.add(was)
+        nar.say("The corner has no slope. Now back to our parabola, to try a huge h.")
+        self.wait(1.5)
         ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax4, labs4, graph4, morph=False,
                                         pre=pre_b3)
-        nar.say("Back to f. If h is far too big, the secant leaves the tangent.")
+        nar.say("Back on f: if h is far too big, the secant leaves the tangent.")
         xt3, ht3 = ValueTracker(3.0), ValueTracker(H)
         dot, sec, tri, slope = make_probe(ax4, F, xt3, ht3, (1.3, 16.0))
         tangent = Line(ax4.c2p(3 - 1.3, 20 - 14 * 1.3), ax4.c2p(3 + 1.3, 20 + 14 * 1.3), color=GREEN,
