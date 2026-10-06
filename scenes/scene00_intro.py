@@ -174,7 +174,7 @@ class Scene00Intro(MovingCameraScene):
         # check the slope with a real nudge, zoomed in
         pos = np.array([3.9, -1.9, 0.0])
         nar.say("Check it: nudge a by h = 0.001 and see how far g really moves.")
-        step = MathTex(rf"a: {fmt(-4.0)} \to {fmt(-4.0 + NUDGE_H)},\quad h = {NUDGE_H}",
+        step = MathTex(rf"\text{{check }}\partial g/\partial a:\ a = {fmt(-4.0)} \to {fmt(-4.0 + NUDGE_H)},\ h = {NUDGE_H}",
                        font_size=36, color=DATA).move_to([3.9, -0.95, 0])
         self.play(FadeIn(step))
         w = working_line(
@@ -182,6 +182,7 @@ class Scene00Intro(MovingCameraScene):
             rf"\frac{{{fmt(G_NUDGED)}-{fmt(RG.data)}}}{{{NUDGE_H}}}",
             rf"\frac{{{fmt(G_NUDGED)}-{fmt(RG.data)}}}{{{NUDGE_H}}} = {fmt(NUDGE_SLOPE)}",
             pos=pos, width=6.0, hold=0.5)
+        self.play(code.animate.set_opacity(0.0), run_time=0.4)
         self.zoom_on(nar, w, 0.6, 0.3)
         nar.say(f"A bigger h gives {fmt(NUDGE_SLOPE)}; as h shrinks it closes in on {fmt(RA.grad)}.")
         self.play(FadeOut(w), FadeOut(step), FadeOut(fwd), FadeOut(bwd_a), FadeOut(bwd_b))
@@ -221,7 +222,7 @@ class Scene00Intro(MovingCameraScene):
         assert len(lines) == 16
         self.play(Create(VGroup(*lines.values())), run_time=1.5)
         layer_names = VGroup(*[
-            Text(t, font_size=24, color=SECOND).move_to([x, -2.35, 0])
+            Text(t, font_size=28, color=WHITE).move_to([x, -2.45, 0])
             for t, x in zip(["inputs", "hidden", "output"], LAYER_X)])
         self.play(FadeIn(VGroup(*[n for l in layers for n in l])), FadeIn(heading),
                   FadeIn(layer_names), run_time=1)
@@ -343,21 +344,21 @@ class Scene00Intro(MovingCameraScene):
 
         # ---- the three-act pattern
         nar.say("Every chapter has three acts, so you see each idea three times.")
-        specs = [("Example A: the lecture's numbers", DATA, 2.0),
-                 ("Example B: what if?", ACTIVE, 0.2),
-                 ("Expert corner: what experts add", GRAD, -1.6)]
+        specs = [("Example A: the lecture's numbers", DATA, 2.3),
+                 ("Example B: what if?", ACTIVE, 0.6),
+                 ("Expert corner: what experts add", GRAD, -1.1)]
         banners = VGroup()
         for t, c, y in specs:
             banners.add(act_banner(self, t, color=c, keep=True, pos=[2.2, y, 0]))
         axes = [Axes(x_range=[-2, 2], y_range=[0, 4], x_length=1.8, y_length=1.2,
                      tips=False, axis_config={"stroke_width": 2}).move_to([-4.6, y, 0])
-                for y in (2.0, 0.2)]
+                for y in (2.3, 0.6)]
         curve_a = axes[0].plot(lambda x: x * x, color=DATA)
         curve_b = axes[1].plot(lambda x: x * x, color=DATA)
         curve_b2 = axes[1].plot(lambda x: 0.5 * x ** 3 - x + 2, color=ACTIVE)
         lens = VGroup(Circle(radius=0.35, color=GRAD),
                       Line(DL * 0.25, DL * 0.6, color=GRAD, stroke_width=6)
-                      ).move_to([-4.6, -1.6, 0])
+                      ).move_to([-4.6, -1.1, 0])
         self.play(Create(axes[0]), Create(curve_a), Create(axes[1]), Create(curve_b), Create(lens))
         nar.say("A uses the lecture's numbers; B changes them and watches what moves.")
         self.play(Transform(curve_b, curve_b2), run_time=1.0)
@@ -365,8 +366,8 @@ class Scene00Intro(MovingCameraScene):
         self.play(Indicate(banners[1]), run_time=0.5)
         nar.say("The expert corner adds what a specialist would warn you about.")
         self.play(Indicate(banners[2]), Indicate(lens), run_time=1.0)
-        question = MathTex(r"\text{Next: what is a derivative, really?}", font_size=40,
-                           color=ACTIVE).move_to([0, -2.4, 0])
+        question = MathTex(r"\text{Next: what is a derivative, really?}", font_size=48,
+                           color=WHITE).move_to([0, -2.1, 0])
         self.play(FadeIn(question), run_time=0.5)
         nar.say("Chapter 1 answers it, starting with simple slopes.")
         nar.finish()
