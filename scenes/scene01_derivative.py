@@ -238,6 +238,7 @@ class Scene01Derivative(MovingCameraScene):
         labs[1].next_to(ax.y_axis, UP, buff=0.15)
         labs.add(zero_tick(ax))
         self.play(Create(ax), FadeIn(labs), run_time=1.5)
+        self.close_act(banner)
         nar.say("Forty x values from -5 up in steps of 0.25, each with its f(x).")
         dots = VGroup(*[Dot(ax.c2p(x, F(x)), radius=0.055, color=DATA) for x in XS])
         self.play(LaggedStart(*[FadeIn(d) for d in dots], lag_ratio=0.05), run_time=2.0)
@@ -245,7 +246,6 @@ class Scene01Derivative(MovingCameraScene):
         graph = ax.plot(F, x_range=[-5, 5], color=DATA, stroke_width=5)
         self.play(Create(graph), run_time=1.5)
         self.play(FadeOut(dots), run_time=0.4)
-        self.close_act(banner)
 
         nar.say("Slope tells how steeply the curve climbs when we step right.")
         self.define("Slope", "rise over run")
@@ -278,7 +278,9 @@ class Scene01Derivative(MovingCameraScene):
         tangent = Line(ax.c2p(3 - tang_len, 20 - 14 * tang_len), ax.c2p(3 + tang_len, 20 + 14 * tang_len),
                        color=GREEN, stroke_width=8, stroke_opacity=0.9)
         self.play(FadeIn(tangent), run_time=0.5)
-        self.play(ht.animate.set_value(H), run_time=4.0)
+        for hv, rt in ((0.5, 0.4), (0.1, 0.5), (0.01, 0.5), (H, 0.5)):
+            self.play(ht.animate.set_value(hv), run_time=rt)
+            self.wait(0.5 if hv != H else 0.2)
         self.define("Tangent", "line that just touches")
 
         nar.say("Slope is rise over run; the run from x to x+h is just h.")
@@ -478,7 +480,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(nod), run_time=0.4)
         self.wait(3.5)
         self.play(FadeOut(sl), FadeOut(sr), FadeOut(lg), FadeOut(ml), FadeOut(mr), FadeOut(code), FadeOut(code.highlight),
-                  FadeOut(nod), run_time=0.6)
+                  FadeOut(nod), run_time=0.3)
         self.remove(sl, sr, lg)
         nar.say("Back to f. If h is far too big, the secant leaves the tangent.")
 
