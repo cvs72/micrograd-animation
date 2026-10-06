@@ -1,14 +1,13 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 12 (final frame): the required on-screen conclusion (micrograd never uses a tiny h, it computes exact local derivatives) is not visible. The description and the Act C spec both promise it.
-- Frame 12: the caption sits almost on the x-axis label 'k (h = 10^-k)', so the two lines of text are nearly touching. The 'rounding noise, k > 8' label also sits very close to the green curve.
-- Frame 11: there is no caption, even though it is not a title or recap card.
-- Frame 7: the 'g'(-1) = 3·(-1)^2 - 3 = 0' formula is rendered very dark grey on black, so contrast is too low to read at 480p. The 'Example A: f'(3) = 14.0030' comparison line is also dim.
-- Frame 9: the caption 'With h = 1 the slope reads 17, not 14...' is dark grey on black, so contrast is too low. The secant, tangent and triangle all crowd into one small area near x=3..4 with overlapping coloured lines, and there is no h label on the white segment.
-- Frame 8: the kink is shown with orange and green secants, but there are no -1 / +1 slope labels. The question 'Slope at x = 0?' is never answered in these frames (no 'no derivative' reveal). The code panel at right is small and tight against the frame edge.
-- Frame 3: the secant dots and tangent line crowd around the point (3, 20), where a small white/yellow dot is clipped by the line, so there is no clear h segment or rise-over-run triangle. The slope readout (14.5076) does not match the 14.0030 expected at this stage.
-- Frame 5: there are two redundant slope readouts ('slope = -21.9970' and 'slope = -21.997 < 0') stacked on the right. The table has no x = 2/3 row, and the sign-first question for x = -3 is not visible as a question before its reveal.
-- Act A: the floating-point warning (too many zeros in h gives wrong answers) is not shown in any Act A frame, only the end of Act C. The zoomed rise-over-run triangle with the h segment is also not visible in Act A frames.
-- Act B: no frame shows the morph from f to g, and the changed values are next to the originals only as the small dim 'Example A: f'(3)' line. The x = 1 valley is not shown.
-- Act C: frame 10 is an empty axes with no plot content, and the central-vs-forward curves in frame 11 are not labelled with h = 1e-4 on the plot itself.
-- descriptions/S01.md is detailed and mostly matches the planned content. However, it describes things the frames do not show: the camera zoom into the triangle, the table row for x = 2/3, the morph to |x| with -1/+1 secants, and the micrograd conclusion.
+- Frame 5: overlapping text. A ghost line ('slo…') and the orange 'slope = −21.997 < 0 → …' line collide under the main readout, and the sign line is cut off at the right. It is unreadable.
+- Frame 12: the closing caption ('At k = 16 the nudge vanishes: both slopes read exactly 0.') is almost invisible, with dark grey on black. Its text also sits in the same band as the faded cross-fade. The h=1e-16 → 0 point is never legible.
+- Frame 8 (|x|): the scene should animate left and right secants giving −1 and +1. The frame shows only a tiny orange dot, a faint stray grey line near (1,1), and no secants or slope readout. The kink claim is not visualised.
+- Frame 8: the code panel's highlight box touches or crowds the panel's right edge. The panel is small and hard to read at 480p.
+- Frame 1: the right-hand dots fade to near-invisible, so the plot looks cut off. The banner is a full title box here but a plain 'Example A:' elsewhere.
+- Frame 9: slope = 14.0717 is shown with no h value and no visible secant. The text says 'secant leaves the tangent', but the frame shows the secant lying on the tangent. It does not match the caption.
+- Frame 6: the x=2/3 flat tangent has no formula or number table. The floating-point warning (h=1e-16 giving 0) is only a caption with no visual.
+- Predict-then-reveal: the x=−3 sign question is not visible in any frame. The Example A 'above or below 20' question (frame 2) has no visible reveal. Frame 7 asks where the slope is 0, but the answer (flat at x=±1) is not shown.
+- Frames 3 and 4: the rise-over-run triangle is tiny and unlabelled (no h or rise labels), so the h segment is hard to see. The derivation is only partly substituted: f(3.001) − f(3) appears, but no step-by-step MathTex build-up.
+- Frames 11 and 12: the forward and central curves use similar blue and teal. Frame 12's 'rounding noise, k > 8' text sits on the plot near the curve and the x-axis. The k=16 point where both return 0 cannot be seen on a log plot.
+- Act B morph from f to g is not visible, since only the end state is shown. Example B shows the original values only as small grey text ('Example A: f′(3)=14.0030'), which is too small and low contrast.
 
