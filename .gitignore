@@ -21,3 +21,4 @@ STOP
 PLAN.md.bak.*
 *.bak.*
 prompts/*.bak.*
+.ntfy-topic
