@@ -168,16 +168,17 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeOut(c), run_time=0.4)
 
     def open_act(self, text):
+        self.act_label = text
         banner = act_banner(self, text, keep=True)
         self.wait(3.0)
         return banner
 
     def close_act(self, banner):
         old = getattr(self, "act_tag", None)
-        label = banner[1].text if hasattr(banner[1], "text") else ""
-        tag = Text(label.split(":")[0] + ":", font_size=26, color=YELLOW, weight=BOLD)
+        label = self.act_label
+        tag = Tex(r"\textbf{" + label.split(":")[0] + ":}", font_size=36, color=YELLOW)
         tag.to_corner(UL, buff=0.5)
-        anims = [ReplacementTransform(banner, tag)]
+        anims = [FadeOut(banner), FadeIn(tag)]
         if old is not None:
             anims.append(FadeOut(old))
         self.play(*anims, run_time=0.6)
