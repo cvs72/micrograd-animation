@@ -1,11 +1,15 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frames 7 and 9 (Example B): the g(x) and |x| frames never show the flat tangents at x=-1 and x=1 with slope 0. They also show no -1/+1 secant readouts and no 'no derivative' statement for |x|. The predicted answer is never visibly revealed.
-- Frame 9: the white horizontal segment at y=1 runs through the y-axis tick label '1' on the |x| plot.
-- Frames 10-11: the h=1 case never shows the 17.0000 readout or a secant visibly missing the tangent. Frame 10 reads 14.5368, and in frame 11 the curve is bare and the caption is almost invisible (faded to near-black).
-- Frame 6: the flat-tangent frame at x=2/3 has no caption. It also has no table row for x=2/3, and the table from frame 5 is gone.
-- The floating-point warning (h=1e-16 gives a slope of 0) is not visible in any Act A frame. The rise-over-run zoom and the full step-by-step MathTex derivation are also not visible.
-- Frame 5: the table has only the rows x=3 and x=-3, and the live slope readout (-20.9009) sits right above the separate '-21.997 < 0' line, which is cluttered. The table columns are small at 480p.
-- Frame 12: '3.0 x 10^-4 vs 3.8 x 10^-11' sits almost touching the top-left corner of the 'No h at all' box, and the box crowds the 'h = 10^-16' line. The text at the bottom right is cramped.
-- Frames 1-2 and 6: the Act A banner differs between frames (a boxed title in frame 1, a bare 'Example A:' elsewhere). The bare banner reads as an unfinished label.
-- Descriptions/S01.md matches the planned content but not what the frames show (the zoom, table rows, h=1 reveal and the 1e-16 warning are not visible), so it does not match the frames.
+- Frame 06: the caption is almost invisible (dark grey on black) and nothing is shown besides the flat tangent and 'slope = 0.0030'. The x=2/3 row is missing from the table and there is no explanation of the flat tangent. It reads as a half-faded frame.
+- Frame 10 (Example B, h=1): the caption is nearly invisible (faded). The curve is bare, with no secant, no tangent, no h segment and no slope readout, so the claimed 'secant visibly misses the tangent' is not shown. The caption says 17 but there is no 17.0000 readout.
+- Frame 09 shows 'slope = 15.9440' for the h-too-big case, which matches neither the 17.0000 in the description and caption nor the 14.0030 reference. The viewer sees an unexplained number.
+- Frame 08 (|x|): the left (-1) and right (+1) secants are only hinted at by an orange line and a white segment. There are no slope labels and no -1 / +1 readout, so the 'no derivative at 0' conclusion is not visible. The colour-coded markers (-1 and 1) are unlabeled, and the code panel is small and hard to read at 480p.
+- Frame 07 (g(x)): the tangent is at x≈-1.9 and is not flat. No frame shows the flat tangents at x=-1 and x=1 as the reveal, and no morph from f to g is visible. The question 'Where is the slope 0?' is never visibly answered.
+- Act B has no typeset formulas with substituted numbers. The h=1 case and the kink show no formula such as (f(4)-f(3))/1 = 17.
+- Frame 05: the live readout (-20.9009) and the table row (-3 → -21.997) show different values with no explanation. The orange 'slope = -21.997 < 0' line sits on the readout column and looks redundant. The sign-first prediction at x=-3 is not shown as a question.
+- The floating-point warning from Act A (too many zeros in h gives wrong answers) is not visible in any frame. Only the Act C result at the end hints at it.
+- Act C (frames 11-12) has essentially one real visual, the log plot, plus text and formulas. The frame 12 'rounding noise, k > 8' label sits on the plot and the '3.0×10^-4 vs 3.8×10^-11' line is crowded against the 'No h at all' box. The plot's y-axis label 'log10|error|' is cramped at the top-left, close to the title banner.
+- Frame 01: the right-hand dots fade out, so the 40-point plot is incomplete on that frame. The title banner is only large on this frame; the other frames use a small 'Example A:' label that ends with a colon and has no subtitle.
+- The x-axis in frames 1-6 and 9-10 is drawn at y=0 but f(x) values near the minimum sit on top of it, so the minimum and the flat tangent in frame 6 are hard to distinguish from the axis.
+- Captions are missing or unreadable in frames 06 and 10, so fewer than the required 10 of 12 frames carry a readable caption. Frame 11 'about 10^7 × closer' is tiny at 480p.
+- descriptions/S01.md is specific, but it does not fully match the frames. It claims h=1 reads 17 with the secant visibly missing, the sign-first table row, the 2/3 row and the floating-point warning, none of which is visible on screen.
 
