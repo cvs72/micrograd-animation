@@ -176,10 +176,15 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeOut(banner), run_time=0.5)
         self.remove(banner)
 
-    def retarget(self, cur, ax2, labs2, graph2):
+    def retarget(self, cur, ax2, labs2, graph2, morph=True):
         """Swap axes and labels with a short cross-fade, then morph the curve itself."""
         self.play(FadeOut(cur[0]), FadeOut(cur[1]), FadeIn(ax2), FadeIn(labs2), run_time=0.8)
-        self.play(Transform(cur[2], graph2), run_time=2.0)
+        if morph:
+            self.play(Transform(cur[2], graph2), run_time=2.0)
+        else:
+            self.play(FadeOut(cur[2]), run_time=0.4)
+            self.play(Create(graph2), run_time=1.6)
+            return VGroup(ax2, labs2, graph2)
         self.wait(0.5)
         return VGroup(ax2, labs2, cur[2])
 
@@ -298,8 +303,8 @@ class Scene01Derivative(MovingCameraScene):
         q = self.ask(r"\text{slope at } x=-3:\ +\ \text{or}\ -\,?")
         nar.say("Sliding left, the readout passes white at the bottom, then turns orange.")
         ans = MathTex(rf"\text{{slope}}={fmt(SM3)}<0", font_size=36, color=ORANGE).move_to(QPOS)
-        self.play(ReplacementTransform(q, ans), xt.animate.set_value(-3.0), FadeOut(tangent),
-                  run_time=4.5)
+        self.play(FadeOut(q), xt.animate.set_value(-3.0), FadeOut(tangent), run_time=4.0)
+        self.play(FadeIn(ans), run_time=0.5)
         self.play(FadeIn(trs[2]), run_time=0.8)
         self.wait(1.0)
         self.play(FadeOut(ans), run_time=0.3)
@@ -382,7 +387,7 @@ class Scene01Derivative(MovingCameraScene):
         labs3[1].next_to(ax3.y_axis, UP, buff=0.15)
         graph3 = ax3.plot(ABS, x_range=[-3, 3], color=DATA, stroke_width=5, use_smoothing=False)
         nar.say("Now the absolute value: a V with a sharp corner at x = 0.")
-        ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax3, labs3, graph3)
+        ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax3, labs3, graph3, morph=False)
         code = code_panel("def my_abs(x):\n    return x.relu() + (-x).relu()", font_size=24)
         code.scale_to_fit_width(5.2)
         code.move_to([3.8, -1.2, 0])
