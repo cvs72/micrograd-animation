@@ -192,7 +192,9 @@ class Scene01Derivative(MovingCameraScene):
     def retarget(self, cur, ax2, labs2, graph2, morph=True):
         """Swap axes and labels with a short cross-fade, then morph the curve itself."""
         extra = [] if morph else [FadeOut(cur[2])]
-        self.play(FadeOut(cur[0]), FadeOut(cur[1]), FadeIn(ax2), FadeIn(labs2), *extra, run_time=0.8)
+        self.play(FadeOut(cur[0]), FadeOut(cur[1]), *extra, run_time=0.5)
+        self.remove(cur[0], cur[1], *([cur[2]] if not morph else []))
+        self.play(FadeIn(ax2), FadeIn(labs2), run_time=0.5)
         if morph:
             self.play(Transform(cur[2], graph2), run_time=2.0)
         else:
