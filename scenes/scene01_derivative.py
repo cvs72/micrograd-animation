@@ -473,11 +473,13 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("Shrink h: the secants never agree, so no derivative exists at 0.")
         self.play(ht2.animate.set_value(0.2), run_time=1.5)
         self.play(Indicate(ml), Indicate(mr), run_time=1.2)
-        self.wait(1.5)
-        nar.say("Back to f. If h is far too big, the secant leaves the tangent.")
+        nod = MathTex(r"-1\neq +1:\ \text{no derivative at } 0", font_size=36, color=RED).move_to([3.8, -0.2, 0])
+        self.play(FadeIn(nod), run_time=0.4)
+        self.wait(3.5)
         self.play(FadeOut(sl), FadeOut(sr), FadeOut(lg), FadeOut(ml), FadeOut(mr), FadeOut(code), FadeOut(code.highlight),
-                  run_time=0.6)
+                  FadeOut(nod), run_time=0.6)
         self.remove(sl, sr, lg)
+        nar.say("Back to f. If h is far too big, the secant leaves the tangent.")
 
         # B3: h too big
         ax4, labs4 = make_axes([-5, 5, 1], [0, 100, 20], 7.0, 3.7,"x", "f(x)")
