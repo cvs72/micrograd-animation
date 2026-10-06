@@ -196,9 +196,9 @@ class Scene01Derivative(MovingCameraScene):
     def retarget(self, cur, ax2, labs2, graph2, morph=True):
         """Swap axes and labels with a short cross-fade, then morph the curve itself."""
         extra = [] if morph else [FadeOut(cur[2])]
-        self.play(FadeOut(cur[0]), FadeOut(cur[1]), *extra, run_time=0.5)
+        self.play(FadeOut(cur[0]), FadeOut(cur[1]), *extra, run_time=0.3)
         self.remove(cur[0], cur[1], *([cur[2]] if not morph else []))
-        self.play(FadeIn(ax2), FadeIn(labs2), run_time=0.5)
+        self.play(FadeIn(ax2), FadeIn(labs2), run_time=0.3)
         if morph:
             self.play(Transform(cur[2], graph2), run_time=2.0)
         else:
@@ -409,7 +409,6 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(e2), run_time=0.3)
         self.play(Create(flat2), run_time=0.6)
         self.play(Indicate(m2, scale_factor=2.0, color=TEAL), run_time=1.0)
-        nar.say("The table shows slope 0 only at x = -1 and 1; elsewhere it is 9 or -3.")
         xs_t = [-2.0, -1.0, 0.0, 1.0]
         gs = [(exact(g3, x), G(x)) for x in xs_t]
         rows = [[(fmt(x), WHITE), (fmt(gv), DATA), (fmt(G(x + H)), DATA), (fmt(fd(G, x, H)), slope_color(sv))]
@@ -417,9 +416,11 @@ class Scene01Derivative(MovingCameraScene):
         trs, _ = table_rows(rows, [r"x", r"g(x)", r"g(x+h)", r"\text{slope}"])
         tbl = VGroup(*trs).move_to([3.8, -1.0, 0])
         self.play(FadeIn(trs[0]), run_time=0.4)
+        nar.say("The table shows slope 0 only at x = -1 and 1; elsewhere it is 9 or -3.")
         for r in trs[1:]:
             self.play(FadeIn(r), run_time=0.6)
         self.wait(3.5)
+        nar.say("Now the absolute value: a V with a sharp corner at x = 0.")
         self.play(FadeOut(e1), FadeOut(e2), FadeOut(dot), FadeOut(sec), FadeOut(lab), FadeOut(num), FadeOut(tri),
                   FadeOut(tbl), FadeOut(m1), FadeOut(m2), FadeOut(flat1), FadeOut(flat2), run_time=0.6)
         self.remove(dot, sec, lab, num, tri)
@@ -432,7 +433,6 @@ class Scene01Derivative(MovingCameraScene):
         labs3[1].next_to(ax3.y_axis, UP, buff=0.15)
         labs3.add(zero_tick(ax3))
         graph3 = ax3.plot(ABS, x_range=[-3, 3], color=DATA, stroke_width=5, use_smoothing=False)
-        nar.say("Now the absolute value: a V with a sharp corner at x = 0.")
         ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax3, labs3, graph3, morph=False)
         code = code_panel("def my_abs(x):\n    return x.relu() + (-x).relu()", font_size=28)
         code.scale_to_fit_width(5.6)
@@ -473,6 +473,8 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("Shrink h: the secants never agree, so no derivative exists at 0.")
         self.play(ht2.animate.set_value(0.2), run_time=1.5)
         self.play(Indicate(ml), Indicate(mr), run_time=1.2)
+        self.wait(1.5)
+        nar.say("Back to f. If h is far too big, the secant leaves the tangent.")
         self.play(FadeOut(sl), FadeOut(sr), FadeOut(lg), FadeOut(ml), FadeOut(mr), FadeOut(code), FadeOut(code.highlight),
                   run_time=0.6)
         self.remove(sl, sr, lg)
@@ -485,7 +487,6 @@ class Scene01Derivative(MovingCameraScene):
         labs4.add(zero_tick(ax4))
         graph4 = ax4.plot(F, x_range=[-5, 5], color=DATA, stroke_width=5)
         self.play(FadeIn(was), run_time=0.3)
-        nar.say("Back to f. If h is far too big, the secant leaves the tangent.")
         ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax4, labs4, graph4, morph=False)
         xt3, ht3 = ValueTracker(3.0), ValueTracker(H)
         dot, sec, tri, slope = make_probe(ax4, F, xt3, ht3, (1.3, 16.0))

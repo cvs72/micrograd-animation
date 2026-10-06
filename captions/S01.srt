@@ -63,78 +63,78 @@ So the derivative is the slope at one point: rise over run, h tiny.
 Example B: what if we change the function? A cubic, then a kink.
 
 17
-00:02:14,533 --> 00:02:20,000
+00:02:14,533 --> 00:02:19,600
 Same idea, new curve g of x: it has a hump and a valley.
 
 18
-00:02:20,667 --> 00:02:25,733
+00:02:20,267 --> 00:02:25,333
 Predict: where on this curve is the tangent perfectly flat?
 
 19
-00:02:26,400 --> 00:02:33,267
+00:02:26,000 --> 00:02:33,267
 The slope reads about 0 at x = -1 (hump top) and x = 1 (valley).
 
 20
-00:02:33,933 --> 00:02:41,133
+00:02:33,933 --> 00:02:40,200
 The table shows slope 0 only at x = -1 and 1; elsewhere it is 9 or -3.
 
 21
-00:02:41,800 --> 00:02:46,667
+00:02:40,867 --> 00:02:45,733
 Now the absolute value: a V with a sharp corner at x = 0.
 
 22
-00:02:47,333 --> 00:02:51,533
+00:02:46,400 --> 00:02:50,600
 Predict: what single slope does the corner have at x = 0?
 
 23
-00:02:52,200 --> 00:02:56,733
+00:02:51,267 --> 00:02:55,800
 Two answers: from the left the secant gives -1, from the right +1.
 
 24
-00:02:57,400 --> 00:03:01,600
+00:02:56,467 --> 00:03:00,733
 Shrink h: the secants never agree, so no derivative exists at 0.
 
 25
-00:03:02,267 --> 00:03:08,133
+00:03:01,400 --> 00:03:07,800
 Back to f. If h is far too big, the secant leaves the tangent.
 
 26
-00:03:08,800 --> 00:03:25,467
+00:03:08,467 --> 00:03:25,133
 With h = 1 the slope reads 17, not 14: the step is too coarse.
 
 27
-00:03:26,133 --> 00:03:30,333
+00:03:25,800 --> 00:03:30,000
 Expert corner: how good is this nudge, and can we do better?
 
 28
-00:03:31,000 --> 00:03:35,533
+00:03:30,667 --> 00:03:35,200
 We measure the error against the true slope 14, for h = 10^-k.
 
 29
-00:03:36,200 --> 00:03:40,000
+00:03:35,867 --> 00:03:39,667
 Predict: at h = 0.0001, which formula lands closer to 14?
 
 30
-00:03:40,667 --> 00:03:44,467
+00:03:40,333 --> 00:03:44,133
 Blue forward step looks only right; teal central looks both sides.
 
 31
-00:03:45,133 --> 00:03:50,333
+00:03:44,800 --> 00:03:50,000
 At k = 4 the forward error is about 3e-4, the central one about 4e-11.
 
 32
-00:03:51,000 --> 00:03:54,467
+00:03:50,667 --> 00:03:54,133
 So micrograd never nudges: each operation knows its exact slope.
 
 33
-00:03:55,133 --> 00:04:00,000
+00:03:54,800 --> 00:03:59,667
 In code, central costs one more call of f but is far more exact.
 
 34
-00:04:00,667 --> 00:04:05,200
+00:04:00,333 --> 00:04:04,867
 Errors shrink to k = 8, then rounding noise wins.
 
 35
-00:04:05,867 --> 00:04:12,467
+00:04:05,533 --> 00:04:12,133
 At k = 16 the nudge vanishes: both slopes read exactly 0.
 
