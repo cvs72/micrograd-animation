@@ -103,38 +103,38 @@ Back to f. If h is far too big, the secant leaves the tangent.
 With h = 1 the slope reads 17, not 14: the step is too coarse.
 
 27
-00:03:16,400 --> 00:03:21,000
+00:03:16,400 --> 00:03:20,600
 Expert corner: how good is this nudge, and can we do better?
 
 28
-00:03:21,667 --> 00:03:26,200
+00:03:21,267 --> 00:03:25,800
 We measure the error against the true slope 14, for h = 10^-k.
 
 29
-00:03:26,867 --> 00:03:30,667
+00:03:26,467 --> 00:03:30,267
 Predict: at h = 0.0001, which formula lands closer to 14?
 
 30
-00:03:31,333 --> 00:03:36,400
+00:03:30,933 --> 00:03:36,000
 Blue forward step looks only right; teal central looks both sides.
 
 31
-00:03:37,067 --> 00:03:42,400
+00:03:36,667 --> 00:03:42,000
 At k = 4 the forward error is about 3e-4, the central one about 4e-11.
 
 32
-00:03:43,067 --> 00:03:49,067
+00:03:42,667 --> 00:03:48,667
 Past k = 8 both climb: the computer rounds the tiny gaps away.
 
 33
-00:03:49,733 --> 00:03:53,933
+00:03:49,333 --> 00:03:53,533
 At k = 16 the nudge vanishes: both slopes are exactly 0.
 
 34
-00:03:54,600 --> 00:03:59,467
+00:03:54,200 --> 00:03:59,067
 In code, central costs one more call of f but is far more exact.
 
 35
-00:04:00,133 --> 00:04:04,133
+00:03:59,733 --> 00:04:03,733
 So micrograd never nudges: each operation knows its exact slope.
 

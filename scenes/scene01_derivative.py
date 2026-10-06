@@ -167,14 +167,15 @@ class Scene01Derivative(MovingCameraScene):
         self.wait(hold)
         self.play(FadeOut(c), run_time=0.4)
 
-    def open_act(self, text):
+    def open_act(self, text, hold=3.0):
         self.act_label = text
         old = getattr(self, "act_tag", None)
         if old is not None:
             self.play(FadeOut(old), run_time=0.3)
             self.act_tag = None
         banner = act_banner(self, text, keep=True)
-        self.wait(3.0)
+        if hold:
+            self.wait(hold)
         return banner
 
     def close_act(self, banner):
@@ -474,7 +475,7 @@ class Scene01Derivative(MovingCameraScene):
     def act_c(self, nar):
         nar.say("Expert corner: how good is this nudge, and can we do better?")
         self.wipe(self.bkeep)
-        banner = self.open_act("Expert corner: the size of h")
+        banner = self.open_act("Expert corner: the size of h", hold=0)
         ks = list(range(1, 17))
         ly = lambda d: [float(np.log10(d[k])) for k in ks]
         ax = Axes(x_range=[0, 16, 4], y_range=[-14, 2, 2], x_length=7.0, y_length=4.0, tips=False,
@@ -488,6 +489,7 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("We measure the error against the true slope 14, for h = 10^-k.")
         zero = MathTex("0", font_size=24, color=GREY_B).next_to(ax.c2p(0, 0), LEFT, buff=0.12)
         self.play(Create(ax), FadeIn(xl), FadeIn(yl), FadeIn(zero), run_time=1.5)
+        self.wait(2.0)
         self.close_act(banner)
         fw = ax.plot_line_graph(ks, ly(FORWARD), line_color=DATA, add_vertex_dots=True,
                                 vertex_dot_radius=0.05, stroke_width=4)
