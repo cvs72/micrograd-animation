@@ -173,8 +173,15 @@ class Scene01Derivative(MovingCameraScene):
         return banner
 
     def close_act(self, banner):
-        self.play(FadeOut(banner), run_time=0.5)
-        self.remove(banner)
+        old = getattr(self, "act_tag", None)
+        label = banner[1].text if hasattr(banner[1], "text") else ""
+        tag = Text(label.split(":")[0] + ":", font_size=26, color=YELLOW, weight=BOLD)
+        tag.to_corner(UL, buff=0.5)
+        anims = [ReplacementTransform(banner, tag)]
+        if old is not None:
+            anims.append(FadeOut(old))
+        self.play(*anims, run_time=0.6)
+        self.act_tag = tag
 
     def retarget(self, cur, ax2, labs2, graph2, morph=True):
         """Swap axes and labels with a short cross-fade, then morph the curve itself."""
