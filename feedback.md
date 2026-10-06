@@ -1,9 +1,12 @@
 ## Reviewer feedback for S00 (row un-ticked; fix and re-render)
-- Frame 4: the layout is broken. The orange arrow and dg/db = 645.5773 are pushed to the top edge and sit by themselves. The dg/da readout is gone and the arrow points at nothing. The code panel and g are also gone, so the check has no visible context.
-- Frame 4: the teal 'check dg/da: a = -4 -> -3.999, h = 0.001' line is much smaller than the formulas around it and hard to read at 480p. The check gives 139.0388 and dg/da is 138.8338, with no caption or line saying that this is expected finite-difference error.
-- Frames 6-7: the slider handles on the input-to-hidden lines overlap each other and the lines. Two yellow dots sit almost on top of each other at about (193,183) and (193,217), so it is unclear which knob is being turned. In frame 7 a stray orange dot appears at a hidden node.
-- Frames 6-7: the network fills only the left half and the right half is empty. The red question mark in frame 6 is far from the knob being turned and from the loss readout, so it points at nothing. The layer labels 'inputs/hidden/output' sit very close to the caption box.
-- Frame 7: loss = 0.834 against 3.0087 in frame 6 has no on-screen working or link to which knob moved. The 'start' marker line crosses the bar edge and its label is tiny.
-- Frames 8-9: the roadmap strip jumps from 3 lit chapters to all 12 lit with chapter 12 in yellow. The 'one chapter at a time' lighting is not shown in the sampled frames. The grey '1 Derivative' and 'Next' boxes in the later frames use small serif text that is less legible at 480p.
-- Frames 10-11: the three-act preview uses small icons. The Example A, Example B and Expert corner banners are fine. Frame 11 puts the 'Next: what is a derivative, really?' box very close to the Expert corner box, nearly touching. No recap line card is visible, and there is no title card in the 12 sampled frames.
+- frames/index.txt has an empty description for S00, so I judged against PLAN.md row S00 only.
+- No title card among the 12 frames. Frame 01 is already the code panel, so I can't confirm the 3 s chapter title card or the 'what is a derivative' hook title.
+- Frames 06-08: the question mark is dark red on black, so contrast is poor at 480p. It also sits at the top-right, away from the knob being turned.
+- Frames 06-08: the 'inputs / hidden / output' labels (y≈435) almost touch the caption (y≈470). The caption is crowded against the diagram.
+- Frames 06-08: the network is crammed into the left half and the loss readout and bar are pushed to the far right edge. The layout is unbalanced, with a large empty gap in the middle.
+- Frames 06-08: the knob slider handles are tiny grey bars with yellow dots drawn on top of the edges. It is hard to see which knob is turned and in which direction. The orange dot on a hidden node in frame 08 is unexplained.
+- Frame 04: the check shows 139.0388 against the 138.8338 gradient with no caption or note saying the small difference is expected for h=0.001. The viewer may think it is a mismatch.
+- Frame 04: the ∂g/∂b arrow and formula are cramped at the top edge and the frame has no code panel or graph. It is mostly formulas and numbers.
+- The captions that must say the expression is meaningless and that micrograd uses single numbers on purpose while real libraries use tensors for speed appear in none of the 12 frames. Frame 05 only says 'backprop works on any expression'.
+- The sliders-on-a-network visual is not clearly 3 inputs, 4 hidden and 1 output with the loss bar linked to a specific knob. The bar changes between frames 07 and 08 without showing the knob move.
 
