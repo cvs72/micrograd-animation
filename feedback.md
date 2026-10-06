@@ -1,14 +1,13 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 09 (empty log-axes, start of Expert corner): no 'Expert corner' banner and no caption. Combined with frame 01 (title card), the captions are missing in some frames and the count is borderline.
-- Expert corner has only one real visual, the log-error plot. The act needs at least two (e.g. a table or code panel of the h values and errors).
-- Frame 11: the forward-difference curve stops at k=8 and is not drawn for k>8, although the description says both methods degrade and read 0 at 1e-16. Only one line is visible in the rounding region, so the plot is incomplete or misleading.
-- Frame 11: the central curve starts at about -13.6 at k=1, which is odd and unexplained. The y-axis crosses at -13.3, so the lowest point sits on the x-axis line.
-- Frame 12: the formula '3.0e-4 vs 3.8e-11' is wedged right above the 'No h at all' box and the 'h=10^-16: slope=0' text, with a very tight, nearly touching layout. The label 'rounding noise, k>8' floats in the plot area without a pointer.
-- Frame 12: the caption says both slopes read exactly 0 at k=16, but the plot shows error of about 10^1 with no marker explaining it.
-- Frame 06: the x=2/3 flat-tangent frame shows no table. The earlier rows (3 and -3) have disappeared and there is no 2/3 row, and the h=1e-16 warning formula '20-20 / 10^-16 = 0 ≠ 14' is shown beside a flat tangent at 2/3, which mixes two ideas.
-- Frame 07: Act B g(x)=x^3-3x only shows the predict question at x=-2. No frame shows the reveal of the flat tangents at x=-1 and x=1 (hump and valley). The 'Example A: f′(3)=14.0030' note sits tight against the yellow question.
-- Frame 08: the abs(x) frame shows the secants at -1 and +1 but no slope values (-1 / +1) and no 'no derivative' conclusion. The white horizontal line runs through the y-axis tick label '1'.
-- Frame 09 (back to f with h=1): the readout shows 16.9594, not the required 17.0000, and the secant is drawn at the wrong h. This does not match the description.
-- descriptions/S01.md is specific and mostly accurate, but it claims reveals (x=2/3 table row, g flat at ±1, abs secants -1/+1, slope 17) that the frames do not show.
-- Frames do not clearly show typeset predict-then-reveal for x=-3 slope sign, apart from the readout in frame 05.
+- Frame 06: the readout says slope = 0.0030 at the flat point x=2/3, but the formula beside it is (20-20)/10^-16 = 0 ≠ 14. Two different ideas share one frame. The x=2/3 flat-tangent case is never explained, and the floating-point warning has no clear visual of its own.
+- Frame 05: the table has only rows x=3 and x=-3. The x=2/3 row is not visible in any frame, so the table never reaches the flat-tangent case.
+- Frame 08: the |x| scene shows only the bare V with no left secant (-1) or right secant (+1) and no 'no derivative' conclusion. The kink demonstration from the description is missing, and the frame has no slope readout.
+- Frame 07: g(x) is shown with the tangent at x=-2 and the prompt 'Where is the slope 0?'. No frame reveals flat tangents at x=-1 and x=1. The predict-then-reveal in Act B is never completed, and there is no f→g morph.
+- Frame 10: the Act B h=1 frame is caught mid-fade. The 'slope = 17.0000', '17 ≠ 14' and table text is almost invisible dark grey, and the secant is unreadable. Original and changed values (14.003 vs 17) are not clearly side by side.
+- Frame 01: the dots on the right (x>2.5) are fading out into the black background, so the plot looks clipped. The title banner here is long, while later frames show a truncated 'Example A:' banner with no descriptor.
+- Frame 03: the rise-over-run triangle and the h segment are tiny and cluttered around the dot, with no visible labels for h or the rise. The slope 15.0505 appears with no formula, and the tangent is a thick green line over the dot.
+- Frame 12: the conclusion box, '3.0e-4 vs 3.8e-11' and the 'h = 10^-16 : slope = 0' line are packed tightly on the right side and nearly touch. 'rounding noise, k > 8' sits close to the curve.
+- Frame 11: the ' k=4' marker and the error label are fine, but the forward and central lines are not clearly distinguishable from the white dots, and the plot has no title naming the function or x=3.
+- Frame 09: the secant that leaves the tangent is barely visible, drawn as a faint green line on the tangent. The caption says it leaves the tangent, but the frame shows no visible gap.
+- Depth requirements: typeset formulas with real numbers appear in only a few frames (04, 06). I see no predict-then-reveal completed on screen for the sign question at x=-3. The description md does match the planned content, but several described elements (kink secants, g flat points, x=2/3 row, camera zoom) are absent from the frames.
 
