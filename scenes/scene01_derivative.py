@@ -507,11 +507,11 @@ class Scene01Derivative(MovingCameraScene):
             outs.append(FadeOut(old_tag))
         ks = list(range(1, 17))
         ly = lambda d: [float(np.log10(d[k])) for k in ks]
-        ax = Axes(x_range=[0, 16, 4], y_range=[-14, 2, 2], x_length=7.0, y_length=4.0, tips=False,
+        ax = Axes(x_range=[0, 16, 4], y_range=[-14, 2, 2], x_length=7.0, y_length=3.7, tips=False,
                   axis_config={"include_numbers": True, "font_size": 24, "color": GREY_B,
                                "decimal_number_config": {"num_decimal_places": 0}})
         ax.to_edge(LEFT, buff=0.9).shift(UP * 0.0)
-        ax.shift(UP * 0.3)
+        ax.shift(UP * 0.55)
         ax.x_axis.move_to(ax.c2p(8, -14))  # axis along the bottom, not through y = 0
         xl = MathTex(r"k\ \ (h=10^{-k})", font_size=30).next_to(ax.x_axis, DOWN, buff=0.3)
         yl = MathTex(r"\log_{10}|\text{error}|", font_size=30).next_to(ax.y_axis, UP, buff=0.15)
@@ -522,22 +522,23 @@ class Scene01Derivative(MovingCameraScene):
         self.remove(*self.bkeep)
         banner = self.open_act("Expert corner: the size of h", hold=1.0)
         self.close_act(banner)
-        nar.say("We measure the error against the true slope 14, for h = 10^-k.")
-        fw = ax.plot_line_graph(ks, ly(FORWARD), line_color=DATA, add_vertex_dots=True,
-                                vertex_dot_radius=0.05, stroke_width=4)
-        ce = ax.plot_line_graph(ks, ly(CENTRAL), line_color=FWD, add_vertex_dots=True,
-                                vertex_dot_radius=0.05, stroke_width=4)
         leg1 = MathTex(r"\frac{f(x+h)-f(x)}{h}", font_size=34, color=DATA).move_to([3.9, 2.4, 0])
         leg2 = MathTex(r"\frac{f(x+h)-f(x-h)}{2h}", font_size=34, color=FWD).move_to([3.9, 0.8, 0])
         sw1 = Line(ORIGIN, RIGHT * 0.5, color=DATA, stroke_width=6).next_to(leg1, LEFT, buff=0.2)
         sw2 = Line(ORIGIN, RIGHT * 0.5, color=FWD, stroke_width=6).next_to(leg2, LEFT, buff=0.2)
         t1 = Text("forward", font_size=26, color=DATA).next_to(leg1, DOWN, buff=0.1)
         t2 = Text("central", font_size=26, color=FWD).next_to(leg2, DOWN, buff=0.1)
+        self.play(FadeIn(leg1), FadeIn(t1), FadeIn(sw1), FadeIn(leg2), FadeIn(t2), FadeIn(sw2), run_time=0.8)
+        nar.say("We measure the error against the true slope 14, for h = 10^-k.")
+        fw = ax.plot_line_graph(ks, ly(FORWARD), line_color=DATA, add_vertex_dots=True,
+                                vertex_dot_radius=0.05, stroke_width=4)
+        ce = ax.plot_line_graph(ks, ly(CENTRAL), line_color=FWD, add_vertex_dots=True,
+                                vertex_dot_radius=0.05, stroke_width=4)
         nar.say("Predict: at h = 0.0001, which formula lands closer to 14?")
-        q = self.ask(r"\text{Closer to 14 at } h=10^{-4}\,?", pos=np.array([3.8, 1.0, 0]), color=WHITE)
+        q = self.ask(r"\text{Closer to 14 at } h=10^{-4}\,?", pos=np.array([4.0, -0.2, 0]), color=WHITE)
         nar.say("Blue forward step looks only right; teal central looks both sides.")
-        self.play(FadeOut(q), Create(fw), FadeIn(leg1), FadeIn(t1), FadeIn(sw1), run_time=0.4)
-        self.play(Create(ce), FadeIn(leg2), FadeIn(t2), FadeIn(sw2), run_time=0.4)
+        self.play(FadeOut(q), Create(fw), run_time=0.4)
+        self.play(Create(ce), run_time=0.4)
         nar.say("At k = 4 the forward error is about 3e-4, the central one about 4e-11.")
         mark = Line(ax.c2p(4, -14), ax.c2p(4, 2), color=ACTIVE, stroke_width=3)
         w = MathTex(rf"{sci(FORWARD[4])}\ \text{{vs}}\ {sci(CENTRAL[4])}", font_size=38, color=ACTIVE)
@@ -548,32 +549,23 @@ class Scene01Derivative(MovingCameraScene):
         self.add(w, mk)
         self.play(Create(mark), run_time=1.0)
         win = MathTex(rf"\text{{Answer: central, }}\text{{about }}10^{{{round(float(np.log10(FORWARD[4] / CENTRAL[4])))}}}\times\ \text{{closer}}",
-                      font_size=34, color=ACTIVE).move_to([3.8, -1.2, 0])
-        win.scale_to_fit_width(5.2)
+                      font_size=34, color=ACTIVE).move_to([4.3, -0.9, 0])
+        win.scale_to_fit_width(4.3)
         self.play(FadeIn(win), Indicate(w), run_time=1.0)
         self.wait(1.0)
-        self.play(FadeOut(win), run_time=0.3)
+        nar.say("So micrograd never nudges: each operation knows its exact slope.")
+        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=4.6).move_to([4.2, -1.45, 0])
+        self.play(FadeOut(win), FadeIn(c), run_time=0.5)
+        self.wait(2.0)
         nar.say("Errors shrink to k = 8, then rounding wins: at k = 16 the slope is 0.")
-        cx = [2.2, 3.7, 5.4]
-        etab = VGroup(*[MathTex(t, font_size=28, color=GREY_B).move_to([x, -0.9, 0]) for t, x in
-                        zip([r"k", r"\text{forward}", r"\text{central}"], cx)])
-        for i, k in enumerate([4, 8, 12, 16]):
-            vals = [str(k), sci(FORWARD[k]) if FORWARD[k] else "14", sci(CENTRAL[k]) if CENTRAL[k] else "14"]
-            for v, x, c in zip(vals, cx, [WHITE, DATA, FWD]):
-                etab.add(MathTex(v, font_size=26, color=c).move_to([x, -1.3 - 0.4 * i, 0]))
-        self.play(FadeIn(etab), run_time=0.6)
-        self.wait(2.5)
-        self.remove(etab)
-
-        nar.say("Past k = 8 both climb: the computer rounds the tiny gaps away.")
-        noise = MathTex(r"\text{rounding noise, } k>8", font_size=34, color=WHITE).move_to(ax.c2p(11.0, -10.5))
+        noise = MathTex(r"\text{rounding noise, } k>8", font_size=34, color=WHITE).move_to(ax.c2p(12.0, -11.5))
         self.play(FadeOut(xl), FadeIn(noise), run_time=0.3)
         self.zoom_on(ax.c2p(10, -6) + DOWN * 1.0, 0.45, 2.0)
         self.play(FadeIn(xl), run_time=0.3)
         nar.say("In code, central costs one more call of f but is far more exact.")
         cp = code_panel("fwd = (f(x+h) - f(x)) / h\ncen = (f(x+h) - f(x-h)) / (2*h)", font_size=24)
-        cp.scale_to_fit_width(5.0)
-        cp.move_to([4.1, -1.95, 0])
+        cp.scale_to_fit_width(4.6)
+        cp.move_to([3.9, -2.4, 0])
         hl = SurroundingRectangle(cp.code_lines[1], color=ACTIVE, buff=0.05)
         self.play(FadeIn(cp), run_time=0.6)
         self.play(Create(hl), run_time=0.8)
@@ -581,14 +573,11 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeOut(cp), FadeOut(hl), run_time=0.3)
         nar.say("At k = 16 the nudge vanishes: both slopes read exactly 0.")
         out = MathTex(rf"h=10^{{-16}}:\ \text{{slope}}={fmt(fd(f, 3.0, 1e-16))}", font_size=38,
-                      color=ORANGE).move_to([4.3, -1.05, 0])
-        out.scale_to_fit_width(4.6)
+                      color=ORANGE).move_to([4.3, -2.4, 0])
+        out.scale_to_fit_width(4.4)
         assert (f(3.0 + 1e-16) - f(3.0 - 1e-16)) / 2e-16 == 0.0
         self.play(FadeIn(out), run_time=0.6)
         self.play(Indicate(fw["vertex_dots"][-1], scale_factor=2.5),
                   Indicate(ce["vertex_dots"][-1], scale_factor=2.5),
                   run_time=1.5)
-        nar.say("So micrograd never nudges: each operation knows its exact slope.")
-        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=5.4).move_to([3.8, -2.0, 0])
-        self.play(FadeIn(c), run_time=0.5)
-        self.wait(4.0)
+        self.wait(3.0)
