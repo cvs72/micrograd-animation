@@ -479,7 +479,8 @@ class Scene01Derivative(MovingCameraScene):
         lab, num = make_readout(slope, TOPR + LEFT * 0.9)
         self.play(FadeIn(tangent), FadeIn(dot), FadeIn(sec), FadeIn(tri), FadeIn(lab), FadeIn(num),
                   run_time=0.8)
-        self.play(ht3.animate.set_value(1.0), run_time=4.0)
+        self.play(ht3.animate.set_value(1.0), run_time=2.5)
+        self.wait(1.5)
         nar.say("With h = 1 the slope reads 17, not 14: the step is too coarse.")
         self.remove(was)
         w = working_line(self, r"\frac{f(3+h)-f(3)}{h}",
