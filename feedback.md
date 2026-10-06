@@ -1,9 +1,12 @@
 ## Reviewer feedback for S00 (row un-ticked; fix and re-render)
-- Frame 7: the description asks for a question mark when a knob is turned blindly and the loss gets worse. Only the loss readout (1.2513) and the bar are shown, with no question mark and no visible 'worse' beat. Frame 8 then jumps to the loss falling (0.834).
-- The closing question 'what is a derivative, really?' appears in none of the 12 frames. The last frame (12) is the three-act preview with no question and no recap line.
-- Frame 6: the grey slider handles on the network lines are low contrast and cross each other in the input-to-hidden area. Faint ghost circles sit beside the handles. The sliders read as clutter, not as knobs.
-- Frames 6-8: the network sits in the left half and the right half is mostly empty. The layer labels 'inputs', 'hidden', 'output' and the 'mistake' label are small and grey, so they will be hard to read at 480p.
-- Frame 2: the arrow towards 'g = ?' is almost black on black and effectively invisible, so it points at nothing until frame 3.
-- Frame 12: no caption is on screen, although captions are required at all times except on the title card and the recap line.
-- Across the 12 frames I never see a caption saying the README expression is meaningless and only a demo. I also see no caption on micrograd using single numbers while real libraries use tensors for speed. Frames 1-5 show other captions, so these required points appear to be missing.
+- The frames don't show the blind-knob beat. Frame 7 shows loss = 1.2513 with a bar and no question mark. Frame 8 shows the loss falling to 0.834 with no preceding bad turn. No frame has the loss getting worse next to a question mark, as the description requires.
+- No title card in the 12 frames, and no frame poses the closing question 'what is a derivative, really?'. A predict-then-reveal question does appear (g = ? in frame 2), but it has no pulsing question mark and no 3-second hold that I can see.
+- Frame 12 has no caption while the three-act preview is still on screen. Captions should be present everywhere except the title card and recap line.
+- Frames 6 to 8: the grey slider handles overlap the connection lines. Two handles cross each other between input 1 and hidden 3 (they look like an X), which reads as clutter. The handles are low-contrast grey, and some of the yellow dots sit on top of them.
+- Frames 6 to 8: the network is squeezed into the left half and the right half is empty, except for the loss readout and bar in frames 7 and 8. The bar has no numeric scale. The layout is unbalanced and the visual is small.
+- Frame 10: the roadmap highlights only chapter 9 (PyTorch) while the caption says 'Next, adding up gradients, more operations, and PyTorch'. The highlight doesn't match the caption, and the lighting-up of chapters one at a time isn't visible across the frames (frame 9 has none lit).
+- Frame 2: the arrow from the code panel to 'g = ?' is almost invisible (dark teal on black), so the arrow is poor contrast and effectively points at nothing.
+- Frame 3 and 4: the arrows are fine, but the check line 'a: -4 → -3.999, h = 0.001' is small and thin. Its blue text on black is low contrast at 480p.
+- The three-act preview (frames 11 and 12) has a small icon column on the left. The icons are only generic parabolas, and the act-B icon changes to a cubic without explanation. The previews don't show the banners in the real act-banner style (font 36, held for 2.5 s), so the three banner previews are weak.
+- The index.txt description field for S00 is empty, so I can't confirm a match against it. descriptions/S00.md was not checked.
 
