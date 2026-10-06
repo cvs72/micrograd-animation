@@ -285,12 +285,14 @@ class Scene00Intro(MovingCameraScene):
         ty = -2.4 + BASE_LOSS / LMAX * 3.0
         base_tick = Line([5.0, ty, 0], [6.2, ty, 0], color=WHITE, stroke_width=2)
         bar_label = Text("mistake", font_size=24, color=SECOND).next_to(frame_bar, LEFT, buff=0.3)
+        tick_label = Text("start", font_size=24, color=WHITE).next_to(base_tick, LEFT, buff=0.1)
+        bar_label.next_to(frame_bar, DOWN, buff=0.15)
         nar.say("The loss measures how wrong we are. Lower is better.")
         self.play(FadeOut(code), FadeOut(knob_node))
         r = always_redraw(readout)
         b = always_redraw(bar)
         self.play(FadeIn(r), Create(frame_bar), FadeIn(bar_label), FadeIn(b),
-                  Create(base_tick))
+                  Create(base_tick), FadeIn(tick_label))
         self.wait(0.5)
 
         # ---- blind turn makes it worse
