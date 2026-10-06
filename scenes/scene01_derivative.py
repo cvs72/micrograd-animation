@@ -544,14 +544,14 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(win), Indicate(w), run_time=1.0)
         self.wait(1.0)
         self.play(FadeOut(win), FadeOut(w), run_time=0.3)
-        nar.say("Errors shrink until k = 8, then rounding wins; at k = 16 both are 14.")
+        nar.say("Errors shrink to k = 8, then rounding wins: at k = 16 the slope is 0.")
         cx = [2.2, 3.7, 5.4]
-        etab = VGroup(*[MathTex(t, font_size=28, color=GREY_B).move_to([x, 1.0, 0]) for t, x in
+        etab = VGroup(*[MathTex(t, font_size=28, color=GREY_B).move_to([x, -0.2, 0]) for t, x in
                         zip([r"k", r"\text{forward}", r"\text{central}"], cx)])
         for i, k in enumerate([4, 8, 12, 16]):
             vals = [str(k), sci(FORWARD[k]) if FORWARD[k] else "14", sci(CENTRAL[k]) if CENTRAL[k] else "14"]
             for v, x, c in zip(vals, cx, [WHITE, DATA, FWD]):
-                etab.add(MathTex(v, font_size=26, color=c).move_to([x, 0.4 - 0.5 * i, 0]))
+                etab.add(MathTex(v, font_size=26, color=c).move_to([x, -0.8 - 0.5 * i, 0]))
         self.play(FadeIn(etab), run_time=0.6)
         self.wait(2.5)
         self.play(FadeOut(etab), run_time=0.3)
@@ -560,7 +560,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeOut(xl), run_time=0.3)
         self.zoom_on(ax.c2p(10, -6) + DOWN * 1.0, 0.45, 2.0)
         self.play(FadeIn(xl), run_time=0.3)
-        nar.say("At k = 16 the nudge vanishes: both slopes are exactly 0.")
+        nar.say("At k = 16 the nudge vanishes: both slopes read exactly 0.")
         out = MathTex(rf"h=10^{{-16}}:\ \text{{slope}}={fmt(fd(f, 3.0, 1e-16))}", font_size=38,
                       color=ORANGE).move_to([4.3, -1.4, 0])
         out.scale_to_fit_width(4.6)

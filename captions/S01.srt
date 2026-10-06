@@ -123,22 +123,22 @@ Blue forward step looks only right; teal central looks both sides.
 At k = 4 the forward error is about 3e-4, the central one about 4e-11.
 
 32
-00:03:46,533 --> 00:03:52,133
-Errors shrink until k = 8, then rounding wins; at k = 16 both are 14.
+00:03:46,533 --> 00:03:52,467
+Errors shrink to k = 8, then rounding wins: at k = 16 the slope is 0.
 
 33
-00:03:52,800 --> 00:03:57,400
+00:03:53,133 --> 00:03:57,733
 Past k = 8 both climb: the computer rounds the tiny gaps away.
 
 34
-00:03:58,067 --> 00:04:02,267
-At k = 16 the nudge vanishes: both slopes are exactly 0.
+00:03:58,400 --> 00:04:02,600
+At k = 16 the nudge vanishes: both slopes read exactly 0.
 
 35
-00:04:02,933 --> 00:04:07,800
+00:04:03,267 --> 00:04:08,133
 In code, central costs one more call of f but is far more exact.
 
 36
-00:04:08,467 --> 00:04:13,400
+00:04:08,800 --> 00:04:13,733
 So micrograd never nudges: each operation knows its exact slope.
 
