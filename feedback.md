@@ -1,14 +1,13 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 4: caption is fading and nearly unreadable (dark grey on black); no formula with substituted numbers (20.014-20)/0.001 is visible in any frame, no MathTex derivation.
-- Frame 6: slope readout 0.0030 at x=2/3 but the tangent is drawn at the curve bottom with the dot; table has gone; caption is a warning but no floating-point visual; the h=1e-16 warning is only a caption.
-- Frame 5: table shows only the x=3 row while slider is at x=-3 (no -21.997 row); table text is small and low-contrast; yellow tangent hard to see.
-- Frame 7 (Act B): g(x) plot shown but slope readout 8.9940 at x=-2 with no caption at all; no flat tangent at x=-1/1 visible; no morph from f shown; Example A line overlaps closely with the question text.
-- Frame 8: |x| shown with code panel but no left/right secants (-1/+1) and no 'no derivative' conclusion; code panel text is tiny at 480p.
-- Frame 9: stale Example A readout on |x| plot while caption says 'Back to f'; inconsistent leftover elements.
-- Frame 10: h=1 case shows only the bare f curve; no secant, no 17.0000 value, no tangent comparison, nothing showing the secant missing the tangent; right half empty.
-- Frame 11: formula 3.0e-4 vs 3.8e-11 is nearly invisible (faded); log-axis plot curves/labels: x-axis labelled k not h, y-axis starts at -14 with the dot at the axis edge; k=4 label faded.
-- Frame 12: conclusion about micrograd never using tiny h and the h=1e-16 exact-0 result not shown; code panel tiny.
-- Act B banner and Expert banner present, but missing the required three-act depth: no on-screen predict-then-reveal reveal (question in frame 7 'Where is the slope 0?' is never answered in frames), no changed values beside originals in Example B beyond a single grey line, captions absent in frame 7, no 3D view required only for S02/S12 so not applicable.
-- Frame 1 and 2: Act A banner is large in frame 1 and truncated to 'Example A:' with an empty subtitle in the others; frame 1 lower-right of the plot is dimmed points fading, fine but empty right half.
-- descriptions/S01.md is specific and well-written but claims things frames do not show (formula worked with numbers, table rows for -3 and 2/3, morph to g and |x| secants, h=1 secant missing tangent, h=1e-16 giving 0, micrograd conclusion), so it does not match the frames.
+- Frame 04: the caption 'Real numbers in the formula: nudge by h = 0.001 and divide by h' is almost invisible, mid-fade and dark grey on black. The promised MathTex formula with substituted numbers (20.014 - 20)/0.001 is not visible in any frame.
+- Frame 03: the rise-over-run triangle and h segment are tiny and unreadable at 480p. The slope readout shows 15.4780 but nothing explains it. No secant is visible.
+- Frame 05: the table shows only the x=3 row while the dot is at x=-3, so it is out of sync with the plot. The table is small and low contrast, and the x=-3 row is missing. The 'predict the sign' question for x=-3 is not shown, and the caption says the readout 'passes white at the bottom' with no matching visual.
+- Frame 06: the caption is dim grey, low contrast. The slope readout is 0.0030 but there is no label for x=2/3. The tangent is a thin yellow line hugging the x axis. The h=1e-16 zero result is never shown.
+- Frame 07: Example B has no caption at all. 'Example A: f'(3)=14.0030' is crammed directly under the slope readout and the yellow question, so the three text lines are packed together. The original and changed values are compared only here. The curve morph from f to g is not shown, and the flat-tangent points at x=-1 and x=1 are not shown. The answer to 'Where is the slope 0?' is never revealed.
+- Frames 08-09: the abs(x) kink has no left and right secants and no -1/+1 readout, so the 'no derivative' idea is never visualised. In frame 09 the caption says 'Back to f' but the plot still shows |x|, so caption and visual do not match.
+- Frame 10: the h=1 case shows only the bare f(x) curve with no point, secant, tangent or readout. The caption says the slope reads 17, not 14, but nothing on screen shows it, and the secant missing the tangent is not visualised.
+- Frame 11: the formula labels and the '3.0e-4 vs 3.8e-11' line are faded to near-invisible dark grey. The 'k = 4' label sits on top of the plot, overlapping the y-axis region. Captions must not be dim.
+- Frame 12: no conclusion about micrograd is shown on screen, and the h=1e-16 result of exactly 0 is not shown. The code panel is small, and its yellow highlight box overlaps the text.
+- Act coverage: the formula with real numbers substituted, the full table, the predict-then-reveal reveals and the Act B secants are missing across all 12 frames. Frame 01 has no caption-free issue, but frame 07 has no caption and several others have dim captions.
+- Description descriptions/S01.md is specific and matches the intended script, but it describes things the frames do not show (substituted formula, filled table, kink secants, h=1 secant, h=1e-16 giving 0, micrograd conclusion), so it does not match the frames.
 
