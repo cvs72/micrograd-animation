@@ -1,9 +1,12 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 08 is caught mid-crossfade: the g(x) plot, the slope=0.0030 readout, the g'(-1)/g'(1) formulas and the table are half-faded and unreadable while the caption already says 'Now the absolute value'. Nothing legible is on screen except the caption.
-- Act A frames never show the x=2/3 row (slope about 0.003, flat tangent). The table in frame 05 has only x=3 and x=-3. The description promises x=2/3 in the table.
-- No visible predict-then-reveal for the SIGN of the slope at x=-3. Frame 05 jumps straight to a slider at x≈-0.6 with a slope of -7.9773. Only the f(3+h) question (frame 02) and the 'Where is the slope 0?' question (frame 07) are shown.
-- Expert corner (frames 11-12) has only one real visual, the log-error plot, plus text callouts. The brief requires at least two real visuals per act, for example a table of the error values or a code panel.
-- Frames 11-12: the forward-difference curve stops at k=8 and then seems to merge into the central curve, so at k=16 the plot does not show the forward error of 14. The caption in frame 12 says 'both slopes read 0', but only one point is plotted at k=16.
-- Frame 12 is crowded. The '3.0×10^-4 vs 3.8×10^-11' line sits directly beneath the 'central' legend label with almost no gap, and the right column stacks four items tightly. The code text in frame 09 is small at 480p.
-- Frame 10 shows the changed values (h=1, 0.1, 0.001) next to the original ones, which is good. The abs(x) frame 09 shows no f(3)=14 comparison, though the Example A reference line is in frame 07. Example B comparison to the original is inconsistent across frames.
+- Frame 12: the 'h = 10^-16 : slope = 0' line is dark brown on black and nearly unreadable. The 'k = 16 : error = 14' label at the top of the plot is also faded and low-contrast.
+- Frame 12: the '3.0e-4 vs 3.8e-11' line sits right against the 'No h at all' box, which crowds the layout.
+- Frame 9: the caption says 'Back to f. If h is far too big...' but the frame still shows the |x| plot, so caption and visual do not match.
+- Frames 8 and 9: the white horizontal secant segment at y=1 runs across the y-axis tick label '1' and overlaps it.
+- Frames 11 and 12: the forward-difference curve stops at k=8 and only the green central curve continues to k=16. The description says both degrade after about 1e-8 and both read 0 at 1e-16, so the plot misses the forward branch.
+- Act B: the g(x)=x^3-3x frame (7) is only the question state, with the tangent at x=-2 and slope 8.9940. The flat tangents at x=-1 and x=1 are never shown, so the reveal is missing. The f-to-g morph is also not visible.
+- Act A: the x=-3 sign-first question and the secant triangle with the h segment are not shown. The frame 5 slider dot sits at x≈0.6 with slope -0.7026, which matches no row in the table.
+- Frame 5: the table's x=0.6667 row has slope 0.003, but the readout beside it shows -0.7026, so the displayed numbers disagree.
+- Act C has no on-screen question that is revealed afterwards. Typeset formulas with substituted numbers are present in Act A and the Act B |x| frame, but Act C has only the generic formulas.
+- The description file matches the content, but several described beats (g flats, morph, x=-3 sign prediction) are not visible in the 12 frames.
 
