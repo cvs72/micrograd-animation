@@ -133,7 +133,7 @@ class Scene00Intro(MovingCameraScene):
         code.to_edge(LEFT, buff=0.5).to_edge(UP, buff=0.6)
         nar.say("This is the demo from the micrograd README: a and b go in.")
         self.play(FadeIn(code), run_time=1)
-        self.wait(1)
+        self.wait(0.4)
         nar.say("The expression is meaningless. It only shows what the engine can do.")
         hl = SurroundingRectangle(code.code_lines[3], color=ACTIVE, buff=0.05)
         self.play(Create(hl))
@@ -150,7 +150,7 @@ class Scene00Intro(MovingCameraScene):
                     color=FWD, buff=0, stroke_width=5)
         self.play(FadeIn(fwd), run_time=0.6)
         self.play(TransformMatchingTex(g_q, g_tex), Indicate(g_tex, color=FWD))
-        self.wait(1)
+        self.wait(0.4)
         # predict then reveal the slope of a
         qa = MathTex(r"\frac{\partial g}{\partial a} = ?", font_size=44, color=GRAD).move_to([3.9, 1.3, 0])
         qb = MathTex(r"\frac{\partial g}{\partial b} = ?", font_size=44, color=GRAD).move_to([3.9, 0.0, 0])
@@ -170,7 +170,7 @@ class Scene00Intro(MovingCameraScene):
         nar.say(f"Nudge a up a little and g grows about {RA.grad:.1f} times as fast.")
         self.play(ReplacementTransform(qa, ra), ReplacementTransform(qb, rb))
         self.play(FadeIn(bwd_a), FadeIn(bwd_b), run_time=0.6)
-        self.wait(1.0)
+        self.wait(0.4)
         # check the slope with a real nudge, zoomed in
         pos = np.array([3.9, -1.9, 0.0])
         nar.say("Check it: nudge a by h = 0.001 and see how far g really moves.")
@@ -181,7 +181,7 @@ class Scene00Intro(MovingCameraScene):
             self, r"\frac{g(a+h)-g(a)}{h}",
             rf"\frac{{{fmt(G_NUDGED)}-{fmt(RG.data)}}}{{{NUDGE_H}}}",
             rf"\frac{{{fmt(G_NUDGED)}-{fmt(RG.data)}}}{{{NUDGE_H}}} = {fmt(NUDGE_SLOPE)}",
-            pos=pos, width=6.0, hold=1.0)
+            pos=pos, width=6.0, hold=0.5)
         self.zoom_on(nar, w, 0.6, 0.3)
         nar.say(f"A bigger h gives {fmt(NUDGE_SLOPE)}; as h shrinks it closes in on {fmt(RA.grad)}.")
         self.play(FadeOut(w), FadeOut(step), FadeOut(fwd), FadeOut(bwd_a), FadeOut(bwd_b))
@@ -226,7 +226,7 @@ class Scene00Intro(MovingCameraScene):
         self.play(FadeIn(VGroup(*[n for l in layers for n in l])), FadeIn(heading),
                   FadeIn(layer_names), run_time=1)
         nar.say("This tiny network has sixteen knobs; real ones have millions.")
-        self.wait(1)
+        self.wait(0.4)
         # slider handles on a few lines
         ka = lines[(1, 1, 0)]   # hidden 1 -> output  (KNOB_A)
         kb = lines[(0, 0, 2)]   # input 0 -> hidden 2 (KNOB_B)
@@ -260,7 +260,7 @@ class Scene00Intro(MovingCameraScene):
         nar.say("In code, every knob is just a number.")
         self.play(FadeIn(code), FadeIn(knob_node))
         self.play(Indicate(knob_node.data_t, color=ACTIVE))
-        self.wait(1)
+        self.wait(0.4)
 
         # ---- loss readout and bar
         def current_loss():
@@ -294,19 +294,19 @@ class Scene00Intro(MovingCameraScene):
 
         # ---- blind turn makes it worse
         nar.say("Turn one knob blindly and the mistake grows: wrong way!")
-        self.play(ta.animate.set_value(1.0), run_time=2, rate_func=smooth)
+        self.play(ta.animate.set_value(1.0), run_time=1.4, rate_func=smooth)
         q = Text("?", font_size=80, color="#FF5555", weight=BOLD).move_to([6.1, 1.6, 0])
         self.play(FadeIn(q, scale=1.5))
         self.play(Indicate(q, color=RED))
         self.wait(0.4)
-        self.play(ta.animate.set_value(0.0), FadeOut(q), run_time=1.5)
+        self.play(ta.animate.set_value(0.0), FadeOut(q), run_time=1.0)
 
         # ---- another knob, lucky
         nar.say("Another knob, other direction: lucky, the loss falls.")
-        self.play(tb.animate.set_value(1.0), run_time=2, rate_func=smooth)
+        self.play(tb.animate.set_value(1.0), run_time=1.4, rate_func=smooth)
         self.wait(0.4)
         nar.say("With thousands of knobs, guessing is hopeless. We need a direction.")
-        flow = particle_flow(ka, knob_grad(KNOB_A), reverse=True, run_time=2.0)
+        flow = particle_flow(ka, knob_grad(KNOB_A), reverse=True, run_time=1.5)
         self.play(Circumscribe(r, color=ACTIVE), flow)
         self.remove(flow.dots)
         nar.clear()
@@ -360,12 +360,15 @@ class Scene00Intro(MovingCameraScene):
                       ).move_to([-4.6, -1.6, 0])
         self.play(Create(axes[0]), Create(curve_a), Create(axes[1]), Create(curve_b), Create(lens))
         nar.say("A uses the lecture's numbers; B changes them and watches what moves.")
-        self.play(Transform(curve_b, curve_b2), run_time=2)
-        self.play(Indicate(banners[0]), run_time=1)
-        self.play(Indicate(banners[1]), run_time=1)
+        self.play(Transform(curve_b, curve_b2), run_time=1.0)
+        self.play(Indicate(banners[0]), run_time=0.5)
+        self.play(Indicate(banners[1]), run_time=0.5)
         nar.say("The expert corner adds what a specialist would warn you about.")
-        self.play(Indicate(banners[2]), Indicate(lens), run_time=1.5)
-        self.wait(0.5)
+        self.play(Indicate(banners[2]), Indicate(lens), run_time=1.0)
+        question = MathTex(r"\text{Next: what is a derivative, really?}", font_size=40,
+                           color=ACTIVE).move_to([0, -2.4, 0])
+        self.play(FadeIn(question), run_time=0.5)
+        nar.say("Chapter 1 answers it, starting with simple slopes.")
         nar.finish()
         self.play(FadeOut(Group(*self.mobjects)))
         recap_line(self, "What is a derivative, really?", color=ACTIVE)
