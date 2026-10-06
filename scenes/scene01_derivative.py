@@ -155,16 +155,16 @@ class Scene01Derivative(MovingCameraScene):
         cap.remove_updater(follow)
         follow(cap)
 
-    def ask(self, tex, pos=QPOS, color=YELLOW):
+    def ask(self, tex, pos=QPOS, color=YELLOW, pulses=3):
         q = MathTex(tex, font_size=36, color=color).move_to(pos)
         if q.width > 5.4:
             q.scale_to_fit_width(5.4)
         self.add(q)
-        for _ in range(3):
+        for _ in range(pulses):
             self.play(Indicate(q, scale_factor=1.15, color=color), run_time=1.0)
         return q
 
-    def define(self, title, body, hold=4.0):
+    def define(self, title, body, hold=3.3):
         c = callout(title, body, width=5.4).move_to(MID)
         self.play(FadeIn(c), run_time=0.3)
         self.wait(hold)
@@ -196,7 +196,7 @@ class Scene01Derivative(MovingCameraScene):
         """Swap axes and labels with a short cross-fade, then morph the curve itself.
         `pre` are extra mobjects faded in the same step (no empty frames in between)."""
         extra = [] if morph else [FadeOut(cur[2])]
-        self.play(FadeOut(cur[0]), FadeOut(cur[1]), *extra, *[FadeOut(m) for m in pre], run_time=0.4)
+        self.play(FadeOut(cur[0]), FadeOut(cur[1]), *extra, *[FadeOut(m) for m in pre], run_time=0.2)
         self.remove(cur[0], cur[1], *pre, *([cur[2]] if not morph else []))
         if morph:
             self.play(FadeIn(ax2), FadeIn(labs2), run_time=0.3)
@@ -329,19 +329,18 @@ class Scene01Derivative(MovingCameraScene):
         self.wait(1.0)
 
         nar.say("Predict: at x = -3, will the slope be positive or negative?")
-        q = self.ask(r"\text{slope at } x=-3:\ +\ \text{or}\ -\,?")
+        q = self.ask(r"\text{slope at } x=-3:\ +\ \text{or}\ -\,?", pulses=4)
         nar.say("Sliding left, the readout passes white at the bottom, then turns orange.")
         ans = MathTex(rf"\text{{slope}}={fmt(SM3)}<0", font_size=36, color=ORANGE).move_to(QPOS)
         self.play(xt.animate.set_value(-3.0), FadeOut(tangent), ReplacementTransform(q, ans),
-                  FadeIn(trs[2]), run_time=2.5)
+                  FadeIn(trs[2]), run_time=1.5)
         self.wait(2.5)
         self.play(FadeOut(ans), run_time=0.3)
 
         nar.say("Sliding right, the slope shrinks toward 0 near the bottom.")
-        self.play(xt.animate.set_value(2 / 3), run_time=3.0)
+        self.play(xt.animate.set_value(2 / 3), FadeIn(trs[3]), run_time=3.0)
         nar.say("Near x = 2/3 the tangent is flat: slope about 0, nudges do nothing.")
         self.play(Indicate(num, color=WHITE), run_time=1.2)
-        self.play(FadeIn(trs[3]), run_time=0.8)
         fl = MathTex(r"f'(x)=6x-4=0\ \Rightarrow\ x=\tfrac{2}{3}", font_size=36, color=WHITE).move_to(QPOS)
         self.play(FadeIn(fl), run_time=0.5)
         self.wait(3.0)
@@ -426,9 +425,9 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("The table shows slope 0 only at x = -1 and 1; elsewhere it is 9 or -3.")
         for r in trs[1:]:
             self.play(FadeIn(r), run_time=0.6)
-        self.wait(5.5)
+        self.wait(4.0)
         nar.say("Now the absolute value: a V with a sharp corner at x = 0.")
-        pre_b2 = [e1, e2, dot, sec, lab, num, tri, tbl, m1, m2, flat1, flat2, was]
+        pre_b2 = [e1, e2, dot, sec, lab, num, tri, tbl, m1, m2, flat1, flat2]
 
         # B2: abs(x) has a kink at 0
         ax3, labs3 = make_axes([-3, 3, 1], [0, 3, 1], 7.0, 3.7,"x", r"|x|")
@@ -607,4 +606,4 @@ class Scene01Derivative(MovingCameraScene):
         self.play(Indicate(fw["vertex_dots"][-1], scale_factor=2.5),
                   Indicate(ce["vertex_dots"][-1], scale_factor=2.5),
                   run_time=1.5)
-        self.wait(4.5)
+        self.wait(3.8)
