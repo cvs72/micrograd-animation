@@ -1,0 +1,96 @@
+1
+00:00:03,667 --> 00:00:08,533
+Example A: one tanh neuron with two weights, w1 and w2, and bias 0.5.
+
+2
+00:00:09,133 --> 00:00:13,333
+Every pair (w1, w2) gives one loss: the height above that spot.
+
+3
+00:00:13,933 --> 00:00:25,467
+At the start (-2.5, 2) the engine adds four squared errors.
+
+4
+00:00:26,067 --> 00:00:33,800
+Doing that for every grid point builds a landscape: low is good.
+
+5
+00:00:34,400 --> 00:00:39,000
+Contour lines on the floor join points with equal loss, like a map.
+
+6
+00:00:39,600 --> 00:00:45,133
+Our ball starts at (-2.5, 2). Which way should it roll?
+
+7
+00:00:45,733 --> 00:00:54,333
+The gradient (orange) points uphill; we step the opposite way (teal).
+
+8
+00:00:54,933 --> 00:01:04,533
+One update: w1 minus learning rate times its slope.
+
+9
+00:01:05,133 --> 00:01:13,133
+Now 25 steps: each one re-asks the engine for the slope, then moves.
+
+10
+00:01:13,733 --> 00:01:19,733
+Seen from above, the path crosses contours toward the lower rings.
+
+11
+00:01:20,333 --> 00:01:25,800
+Example B: what if we start elsewhere, or take much bigger steps?
+
+12
+00:01:26,400 --> 00:01:30,667
+Three starting points, each tried with a small and a huge step.
+
+13
+00:01:31,267 --> 00:01:35,267
+Small steps: the ball slides down and settles in the valley.
+
+14
+00:01:35,867 --> 00:01:44,400
+Predict: will a step twenty times bigger get there sooner?
+
+15
+00:01:45,000 --> 00:02:07,000
+No: it overshoots the valley and lands higher, worse than before.
+
+16
+00:02:07,600 --> 00:02:11,867
+Huge steps fly off the map; the small ones always finish lower.
+
+17
+00:02:12,467 --> 00:02:18,933
+Expert corner: the gradient is perpendicular to the contour lines.
+
+18
+00:02:19,533 --> 00:02:24,533
+Gradient arrows on the map cross every ring at right angles.
+
+19
+00:02:25,133 --> 00:02:36,733
+Check one ring: slope and contour meet at about 90 degrees.
+
+20
+00:02:37,333 --> 00:02:44,867
+But in a saturated corner the surface is flat: slope almost zero.
+
+21
+00:02:45,467 --> 00:02:51,000
+Twenty-five steps and the ball has hardly moved: the plateau traps it.
+
+22
+00:02:51,600 --> 00:02:57,400
+Real networks have millions of weights: no surface to draw.
+
+23
+00:02:58,000 --> 00:03:01,533
+Same idea: one slope per weight, at every single point.
+
+24
+00:03:02,133 --> 00:03:06,267
+The bowl is an analogy; the downhill rule is the real thing.
+
