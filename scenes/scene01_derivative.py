@@ -333,15 +333,14 @@ class Scene01Derivative(MovingCameraScene):
         q = self.ask(r"\text{slope at } x=-3:\ +\ \text{or}\ -\,?")
         nar.say("Sliding left, the readout passes white at the bottom, then turns orange.")
         ans = MathTex(rf"\text{{slope}}={fmt(SM3)}<0", font_size=36, color=ORANGE).move_to(QPOS)
-        self.play(FadeOut(q), run_time=0.4)
-        self.wait(0.6)
-        self.play(xt.animate.set_value(-3.0), FadeOut(tangent), FadeIn(ans), FadeIn(trs[2]),
-                  run_time=2.5)
+        self.play(xt.animate.set_value(-3.0), FadeOut(tangent), ReplacementTransform(q, ans),
+                  FadeIn(trs[2]), run_time=2.5)
         self.wait(2.5)
         self.play(FadeOut(ans), run_time=0.3)
 
-        nar.say("Near x = 2/3 the tangent is flat: slope about 0, nudges do nothing.")
+        nar.say("Now slide right again, to the bottom of the parabola.")
         self.play(xt.animate.set_value(2 / 3), run_time=3.0)
+        nar.say("Near x = 2/3 the tangent is flat: slope about 0, nudges do nothing.")
         self.play(Indicate(num, color=WHITE), run_time=1.2)
         self.play(FadeIn(trs[3]), run_time=0.8)
         fl = MathTex(r"f'(x)=6x-4=0\ \Rightarrow\ x=\tfrac{2}{3}", font_size=36, color=WHITE).move_to(QPOS)
