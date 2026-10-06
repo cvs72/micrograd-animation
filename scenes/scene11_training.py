@@ -293,9 +293,21 @@ class Scene11Training(MovingCameraScene):
         nar.say("Negative gradient: raising the knob lowers the loss, so go up.")
         self.show_callout("Learning rate", "how big a step we take: here 0.05", RIGHT * 3.3 + UP * 0.3, width=6.0)
         new = wd - 0.05 * g
-        w = working_line(self, r"p\leftarrow p-\eta\,g", f"{wd:.4f}-0.05\\cdot({g:.4f})", fmt(new),
-                         pos=RIGHT * 3.3 + UP * 1.2, width=6.6, hold=2.5)
-        self.play(FadeOut(w), FadeOut(gcol), run_time=0.4)
+        f0 = MathTex(r"p\leftarrow p-\eta\,g", font_size=44, color=WHITE).move_to(RIGHT * 3.3 + UP * 1.3)
+        f1 = MathTex(rf"p\leftarrow {wd:.4f}-0.05\cdot({g:.4f})", font_size=44, color=DATA)
+        f2 = MathTex(rf"p\leftarrow {wd:.4f}-0.05\cdot({g:.4f})={new:.4f}", font_size=44, color=WHITE)
+        for f in (f1, f2):
+            f.scale_to_fit_width(6.4).move_to(RIGHT * 3.3 + UP * 1.3)
+        self.play(FadeIn(f0), run_time=0.6)
+        self.wait(1.0)
+        self.play(TransformMatchingTex(f0, f1), run_time=1.0)
+        self.wait(2.0)
+        self.play(ReplacementTransform(f1, f2), run_time=1.0)
+        ans = Text(f"Answer: knob #{m + 1} goes UP, {wd:.4f} to {new:.4f}", font_size=30, color=ACTIVE)
+        ans.scale_to_fit_width(min(ans.width, 6.4)).next_to(f2, DOWN, buff=0.4)
+        self.play(FadeIn(ans), Indicate(f2, color=ACTIVE), run_time=1.0)
+        self.wait(3.0)
+        self.play(FadeOut(f2), FadeOut(ans), FadeOut(gcol), run_time=0.4)
         self.show_callout("Gradient descent", "forward, backward, update: repeat many times",
                           RIGHT * 3.3 + UP * 1.4, width=6.4)
 

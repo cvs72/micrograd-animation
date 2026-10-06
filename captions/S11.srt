@@ -35,86 +35,86 @@ backward() gives each knob a gradient: its effect on the loss.
 Predict: this gradient is negative. Knob up or down?
 
 10
-00:00:57,933 --> 00:01:14,933
+00:00:57,933 --> 00:01:16,200
 Negative gradient: raising the knob lowers the loss, so go up.
 
 11
-00:01:15,533 --> 00:01:31,133
+00:01:16,800 --> 00:01:32,400
 30 steps at 0.05. The lecture: 0.1, 20 steps, loss 0.0103.
 
 12
-00:01:31,733 --> 00:01:38,800
+00:01:33,000 --> 00:01:40,067
 Loss fell from 6.2443 to 0.0346: blue bars meet grey.
 
 13
-00:01:39,400 --> 00:01:51,400
+00:01:40,667 --> 00:01:52,667
 Same run in the network: line thickness shows weight size.
 
 14
-00:01:52,000 --> 00:01:57,267
+00:01:53,267 --> 00:01:58,533
 Example B: what if the learning rate changes? Five runs, same start.
 
 15
-00:01:57,867 --> 00:02:02,067
+00:01:59,133 --> 00:02:03,333
 Predict: all five start at the same loss. Which rate ends lowest?
 
 16
-00:02:02,667 --> 00:02:14,467
+00:02:03,933 --> 00:02:15,733
 Each line is one run of 30 steps. We race them live.
 
 17
-00:02:15,067 --> 00:02:22,267
+00:02:16,333 --> 00:02:23,533
 Fastest here is 0.3, not the biggest rate: 1.0 jumps and gets stuck.
 
 18
-00:02:22,867 --> 00:02:27,133
+00:02:24,133 --> 00:02:28,400
 Why is 1.0 stuck? Compare its predictions with those of 0.3.
 
 19
-00:02:27,733 --> 00:02:32,733
+00:02:29,000 --> 00:02:34,000
 Now the same network trained with rate 1.0: every bar jumps to -1.
 
 20
-00:02:33,333 --> 00:02:45,267
+00:02:34,600 --> 00:02:46,533
 Two answers are now wrong, and tanh is flat there, so the gradient dies.
 
 21
-00:02:45,867 --> 00:02:49,867
+00:02:47,133 --> 00:02:51,200
 Expert corner: what really goes wrong, and what real training adds.
 
 22
-00:02:50,467 --> 00:02:53,933
+00:02:51,800 --> 00:02:55,267
 The classic bug: forget to zero the gradients before backward().
 
 23
-00:02:54,533 --> 00:03:05,333
+00:02:55,867 --> 00:03:06,733
 Predict: if we never zero them, will the loss still go down?
 
 24
-00:03:05,933 --> 00:03:11,133
+00:03:07,333 --> 00:03:12,533
 Yes, it still falls here, which is why the bug is so easy to miss.
 
 25
-00:03:11,733 --> 00:03:21,533
+00:03:13,133 --> 00:03:22,933
 Kept gradients pile up, so every step is too big.
 
 26
-00:03:22,133 --> 00:03:26,300
+00:03:23,533 --> 00:03:27,733
 41 knobs but only 4 examples: the network can simply memorise them.
 
 27
-00:03:26,900 --> 00:03:35,300
+00:03:28,333 --> 00:03:36,733
 Low loss on these four says nothing about unseen examples.
 
 28
-00:03:35,900 --> 00:03:41,400
+00:03:37,333 --> 00:03:42,867
 The loss is a design choice: it decides what we aim for.
 
 29
-00:03:42,000 --> 00:03:51,400
+00:03:43,467 --> 00:03:52,867
 A mistake of 1.5 pulls with 3 under squared loss, 1 under absolute.
 
 30
-00:03:52,000 --> 00:04:07,800
+00:03:53,467 --> 00:04:09,400
 Real training adds four things to this loop.
 
