@@ -1,0 +1,88 @@
+1
+00:00:03,667 --> 00:00:08,200
+Example A: the lecture's own network, 3 inputs, 4, 4, then 1 output.
+
+2
+00:00:08,800 --> 00:00:17,333
+A neuron is Value arithmetic: weights times inputs, plus a bias, then tanh.
+
+3
+00:00:17,933 --> 00:00:25,867
+A layer is just a list of neurons that all read the same inputs.
+
+4
+00:00:26,467 --> 00:00:34,933
+An MLP chains layers: one layer's outputs feed the next layer.
+
+5
+00:00:35,533 --> 00:00:46,000
+MLP(3, [4, 4, 1]) run on x = [2, 3, -1]: the signal moves layer by layer.
+
+6
+00:00:46,600 --> 00:00:52,867
+Zoom in: a hidden neuron owns 3 weights and 1 bias to learn.
+
+7
+00:00:53,467 --> 00:00:57,600
+Predict: how many numbers does this network hold that we may turn?
+
+8
+00:00:58,200 --> 00:01:18,067
+Count them layer by layer: 16, then 20, then 5. Each is a knob.
+
+9
+00:01:18,667 --> 00:01:23,667
+Example B: what if we change the shape of the network?
+
+10
+00:01:24,267 --> 00:01:28,133
+Predict: make both hidden layers 8 wide. Do the knobs double?
+
+11
+00:01:28,733 --> 00:01:39,067
+More than double: 113 parameters, because the layers feed each other.
+
+12
+00:01:39,667 --> 00:01:51,600
+Shrink it to MLP(2, [4, 1]): the diagram redraws, only 17 knobs remain.
+
+13
+00:01:52,200 --> 00:01:57,600
+Predict: same network, same input, three random seeds. Same output?
+
+14
+00:01:58,200 --> 00:02:10,467
+No: each seed sets different knobs, so the output differs.
+
+15
+00:02:11,067 --> 00:02:16,333
+Expert corner: why must the weights start random, not all equal?
+
+16
+00:02:16,933 --> 00:02:22,133
+Start every weight at 0.5 and every bias at 0, and look at the gradients.
+
+17
+00:02:22,733 --> 00:02:26,600
+Predict: will the four neurons of a layer get different gradients?
+
+18
+00:02:27,200 --> 00:02:31,667
+No: identical. Each neuron sees the same inputs and acts the same.
+
+19
+00:02:32,267 --> 00:02:36,400
+So they stay twins forever: extra neurons would add nothing new.
+
+20
+00:02:37,000 --> 00:02:46,867
+Random weights break the tie: each neuron gets its own gradient.
+
+21
+00:02:47,467 --> 00:02:59,133
+Counting knobs in general: each layer has (inputs + 1) times neurons.
+
+22
+00:02:59,733 --> 00:03:05,933
+Bigger layers cost more: parameters grow with width times width.
+
