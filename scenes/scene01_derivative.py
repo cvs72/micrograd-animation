@@ -160,7 +160,7 @@ class Scene01Derivative(MovingCameraScene):
         q = MathTex(tex, font_size=36, color=color).move_to(pos)
         if q.width > 5.4:
             q.scale_to_fit_width(5.4)
-        self.play(FadeIn(q), run_time=0.5)
+        self.add(q)
         for _ in range(3):
             self.play(Indicate(q, scale_factor=1.15, color=color), run_time=1.0)
         return q
@@ -193,11 +193,12 @@ class Scene01Derivative(MovingCameraScene):
         self.play(*anims, run_time=0.6)
         self.act_tag = tag
 
-    def retarget(self, cur, ax2, labs2, graph2, morph=True):
-        """Swap axes and labels with a short cross-fade, then morph the curve itself."""
+    def retarget(self, cur, ax2, labs2, graph2, morph=True, pre=()):
+        """Swap axes and labels with a short cross-fade, then morph the curve itself.
+        `pre` are extra mobjects faded in the same step (no empty frames in between)."""
         extra = [] if morph else [FadeOut(cur[2])]
-        self.play(FadeOut(cur[0]), FadeOut(cur[1]), *extra, run_time=0.3)
-        self.remove(cur[0], cur[1], *([cur[2]] if not morph else []))
+        self.play(FadeOut(cur[0]), FadeOut(cur[1]), *extra, *[FadeOut(m) for m in pre], run_time=0.4)
+        self.remove(cur[0], cur[1], *pre, *([cur[2]] if not morph else []))
         if morph:
             self.play(FadeIn(ax2), FadeIn(labs2), run_time=0.3)
             self.play(Transform(cur[2], graph2), run_time=2.0)
@@ -264,8 +265,12 @@ class Scene01Derivative(MovingCameraScene):
         lab, num = make_readout(slope, TOPR + LEFT * 0.9)
         nar.say("Above: the curve climbs. White is the step h, orange the rise.")
         ans = MathTex(rf"f(3+{fmt(1.0)})={fmt(F(4.0))}>{fmt(F(3.0))}", font_size=36, color=FWD).move_to(QPOS)
+        hl = MathTex(r"h=", font_size=36, color=GREY_B).move_to(TOPR + LEFT * 1.55 + DOWN * 0.5)
+        hn = DecimalNumber(0, num_decimal_places=3, font_size=36, color=WHITE)
+        hn.add_updater(lambda m: m.set_value(ht.get_value()).next_to(hl, RIGHT, buff=0.15))
+        hn.update()
         self.play(ReplacementTransform(q, ans), FadeIn(sec), FadeIn(tri), FadeIn(lab), FadeIn(num),
-                  run_time=1.0)
+                  FadeIn(hl), FadeIn(hn), run_time=1.0)
         self.wait(1.0)
         self.play(ht.animate.set_value(0.5), run_time=1.0)
         nar.say("Zoom in: a line through two curve points is a secant.")
@@ -344,8 +349,8 @@ class Scene01Derivative(MovingCameraScene):
         self.wait(4.5)
         self.wipe(table, fl)
         self.play(FadeOut(dot), FadeOut(sec), FadeOut(tri), FadeOut(lab), FadeOut(num), FadeOut(tangent),
-                  run_time=0.5)
-        self.remove(dot, sec, tri, lab, num)
+                  FadeOut(hl), FadeOut(hn), run_time=0.5)
+        self.remove(dot, sec, tri, lab, num, hl, hn)
 
         nar.say("Warning: too many zeros in h and floats run out of digits.")
         hs_w = [1e-4, 1e-8, 1e-12, 1e-16]
@@ -361,7 +366,7 @@ class Scene01Derivative(MovingCameraScene):
         w = working_line(self, r"\frac{f(3+h)-f(3)}{h}",
                          rf"\frac{{f(3+10^{{-16}})-f(3)}}{{10^{{-16}}}}=\frac{{{fmt(f(3.0 + tiny))}-{fmt(F(3.0))}}}{{10^{{-16}}}}",
                          rf"\frac{{{fmt(f(3.0 + tiny))}-{fmt(F(3.0))}}}{{10^{{-16}}}}={fmt(fd(f, 3.0, tiny))}\neq {fmt(exact(f, 3.0))}",
-                         pos=np.array([4.2, 0.0, 0]), width=4.8)
+                         pos=np.array([4.2, 0.0, 0]), width=4.8, hold=3.0)
         self.wipe(w)
         nar.say("So the derivative is the slope at one point: rise over run, h tiny.")
         self.define("Derivative", "slope at one point")
@@ -424,10 +429,7 @@ class Scene01Derivative(MovingCameraScene):
             self.play(FadeIn(r), run_time=0.6)
         self.wait(3.5)
         nar.say("Now the absolute value: a V with a sharp corner at x = 0.")
-        self.play(FadeOut(e1), FadeOut(e2), FadeOut(dot), FadeOut(sec), FadeOut(lab), FadeOut(num), FadeOut(tri),
-                  FadeOut(tbl), FadeOut(m1), FadeOut(m2), FadeOut(flat1), FadeOut(flat2), run_time=0.6)
-        self.remove(dot, sec, lab, num, tri)
-        self.play(FadeOut(was), run_time=0.3)
+        pre_b2 = [e1, e2, dot, sec, lab, num, tri, tbl, m1, m2, flat1, flat2, was]
 
         # B2: abs(x) has a kink at 0
         ax3, labs3 = make_axes([-3, 3, 1], [0, 3, 1], 7.0, 3.7,"x", r"|x|")
@@ -436,7 +438,8 @@ class Scene01Derivative(MovingCameraScene):
         labs3[1].next_to(ax3.y_axis, UP, buff=0.15)
         labs3.add(zero_tick(ax3))
         graph3 = ax3.plot(ABS, x_range=[-3, 3], color=DATA, stroke_width=5, use_smoothing=False)
-        ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax3, labs3, graph3, morph=False)
+        ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax3, labs3, graph3, morph=False,
+                                          pre=pre_b2)
         code = code_panel("def my_abs(x):\n    return x.relu() + (-x).relu()", font_size=28)
         code.scale_to_fit_width(5.6)
         code.move_to([3.8, -0.9, 0])
@@ -479,10 +482,8 @@ class Scene01Derivative(MovingCameraScene):
         nod = MathTex(r"-1\neq +1:\ \text{no derivative at } 0", font_size=36, color=RED).move_to([3.8, -0.2, 0])
         self.play(FadeIn(nod), run_time=0.4)
         self.wait(3.5)
-        self.play(FadeOut(sl), FadeOut(sr), FadeOut(lg), FadeOut(ml), FadeOut(mr), FadeOut(code), FadeOut(code.highlight),
-                  FadeOut(nod), run_time=0.3)
-        self.remove(sl, sr, lg)
         nar.say("Back to f. If h is far too big, the secant leaves the tangent.")
+        pre_b3 = [sl, sr, lg, ml, mr, code, code.highlight, nod]
 
         # B3: h too big
         ax4, labs4 = make_axes([-5, 5, 1], [0, 100, 20], 7.0, 3.7,"x", "f(x)")
@@ -491,8 +492,9 @@ class Scene01Derivative(MovingCameraScene):
         labs4[1].next_to(ax4.y_axis, UP, buff=0.15)
         labs4.add(zero_tick(ax4))
         graph4 = ax4.plot(F, x_range=[-5, 5], color=DATA, stroke_width=5)
-        self.play(FadeIn(was), run_time=0.3)
-        ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax4, labs4, graph4, morph=False)
+        self.add(was)
+        ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax4, labs4, graph4, morph=False,
+                                        pre=pre_b3)
         xt3, ht3 = ValueTracker(3.0), ValueTracker(H)
         dot, sec, tri, slope = make_probe(ax4, F, xt3, ht3, (1.3, 16.0))
         tangent = Line(ax4.c2p(3 - 1.3, 20 - 14 * 1.3), ax4.c2p(3 + 1.3, 20 + 14 * 1.3), color=GREEN,
@@ -593,7 +595,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeOut(xl), FadeIn(noise), run_time=0.3)
         self.zoom_on(ax.c2p(10, -6) + DOWN * 1.0, 0.45, 2.0)
         self.play(FadeIn(xl), run_time=0.3)
-        nar.say("At k = 16 the nudge vanishes: both slopes read exactly 0.")
+        nar.say("At k = 16 both slopes read 0, so the error is the full 14.")
         out = MathTex(rf"h=10^{{-16}}:\ \text{{slope}}={fmt(fd(f, 3.0, 1e-16))}", font_size=38,
                       color=ORANGE).move_to([4.3, -2.3, 0])
         out.scale_to_fit_width(4.4)
