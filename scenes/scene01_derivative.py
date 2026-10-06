@@ -202,7 +202,7 @@ class Scene01Derivative(MovingCameraScene):
         if morph:
             self.play(Transform(cur[2], graph2), run_time=2.0)
         else:
-            self.play(Create(graph2), run_time=1.6)
+            self.play(Create(graph2), run_time=0.8)
             return VGroup(ax2, labs2, graph2)
         self.wait(0.5)
         return VGroup(ax2, labs2, cur[2])
@@ -214,7 +214,7 @@ class Scene01Derivative(MovingCameraScene):
 
     def wipe(self, *mobs):
         mobs = [m for m in mobs if m is not None]
-        self.play(*[FadeOut(m) for m in mobs], run_time=0.7)
+        self.play(*[FadeOut(m) for m in mobs], run_time=0.4)
         self.remove(*mobs)
 
     # ---- the scene -----------------------------------------------------
@@ -336,14 +336,17 @@ class Scene01Derivative(MovingCameraScene):
         self.play(xt.animate.set_value(2 / 3), run_time=3.0)
         self.play(Indicate(num, color=WHITE), run_time=1.2)
         self.play(FadeIn(trs[3]), run_time=0.8)
-        self.wait(1.5)
-        self.wipe(table)
+        fl = MathTex(r"f'(x)=6x-4=0\ \Rightarrow\ x=\tfrac{2}{3}", font_size=36, color=WHITE).move_to(QPOS)
+        self.play(FadeIn(fl), run_time=0.5)
+        self.wait(4.5)
+        self.wipe(table, fl)
 
         nar.say("Warning: too many zeros in h and floats run out of digits.")
         tiny = 1e-16
         w = working_line(self, r"\frac{f(3+h)-f(3)}{h}",
                          rf"\frac{{f(3+10^{{-16}})-f(3)}}{{10^{{-16}}}}=\frac{{{fmt(f(3.0 + tiny))}-{fmt(F(3.0))}}}{{10^{{-16}}}}",
-                         rf"={fmt(fd(f, 3.0, tiny))}\neq {fmt(exact(f, 3.0))}", pos=np.array([4.2, 0.0, 0]), width=4.8)
+                         rf"\frac{{{fmt(f(3.0 + tiny))}-{fmt(F(3.0))}}}{{10^{{-16}}}}={fmt(fd(f, 3.0, tiny))}\neq {fmt(exact(f, 3.0))}",
+                         pos=np.array([4.2, 0.0, 0]), width=4.8)
         self.wipe(w)
         nar.say("So the derivative is the slope at one point: rise over run, h tiny.")
         self.define("Derivative", "slope at one point")
@@ -479,8 +482,8 @@ class Scene01Derivative(MovingCameraScene):
         lab, num = make_readout(slope, TOPR + LEFT * 0.9)
         self.play(FadeIn(tangent), FadeIn(dot), FadeIn(sec), FadeIn(tri), FadeIn(lab), FadeIn(num),
                   run_time=0.8)
-        self.play(ht3.animate.set_value(1.0), run_time=2.5)
-        self.wait(1.5)
+        self.play(ht3.animate.set_value(1.0), run_time=1.2)
+        self.wait(2.0)
         nar.say("With h = 1 the slope reads 17, not 14: the step is too coarse.")
         self.remove(was)
         w = working_line(self, r"\frac{f(3+h)-f(3)}{h}",
@@ -500,7 +503,6 @@ class Scene01Derivative(MovingCameraScene):
 
     # ---- ACT C ---------------------------------------------------------
     def act_c(self, nar):
-        nar.say("Expert corner: how good is this nudge, and can we do better?")
         old_tag = getattr(self, "act_tag", None)
         self.act_tag = None
         outs = [FadeOut(m) for m in self.bkeep]
@@ -521,6 +523,7 @@ class Scene01Derivative(MovingCameraScene):
         zero_y.shift(RIGHT * 0.0)
         self.play(*outs, Create(ax), FadeIn(xl), FadeIn(yl), FadeIn(zero), FadeIn(zero_y), run_time=0.8)
         self.remove(*self.bkeep)
+        nar.say("Expert corner: how good is this nudge, and can we do better?")
         banner = self.open_act("Expert corner: the size of h", hold=1.0)
         self.close_act(banner)
         leg1 = MathTex(r"\frac{f(x+h)-f(x)}{h}", font_size=34, color=DATA).move_to([3.9, 2.4, 0])
