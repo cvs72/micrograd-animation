@@ -27,86 +27,86 @@ Four leaf Values: a, b, c and f. Nothing has been computed yet.
 Before we compute: will L end up positive or negative?
 
 8
-00:00:39,333 --> 00:00:52,400
+00:00:39,333 --> 00:00:52,867
 First, e = a times b. The numbers flow forward along the arrows.
 
 9
-00:00:53,000 --> 00:01:06,067
+00:00:53,467 --> 00:01:07,000
 Then d = e plus c. Each new node is born from its children.
 
 10
-00:01:06,667 --> 00:01:19,733
+00:01:07,600 --> 00:01:21,133
 Finally L = d times f, which gives minus 8. The forward pass is done.
 
 11
-00:01:20,333 --> 00:01:24,467
+00:01:21,733 --> 00:01:25,867
 The round circles are only drawing helpers. Only rectangles are Values.
 
 12
-00:01:25,067 --> 00:01:31,067
+00:01:26,467 --> 00:01:32,467
 Zoom on d: its children are just the inputs it was computed from.
 
 13
-00:01:31,667 --> 00:01:36,733
+00:01:33,067 --> 00:01:38,133
 That is a computation graph: Values joined by operations.
 
 14
-00:01:37,333 --> 00:01:43,400
+00:01:38,733 --> 00:01:44,800
 Example B: what if we build a different shape from the same pieces?
 
 15
-00:01:44,000 --> 00:01:49,200
+00:01:45,400 --> 00:01:50,600
 Think first: with (a + b) times (c + f), how many plus nodes appear?
 
 16
-00:01:49,800 --> 00:01:54,333
+00:01:51,200 --> 00:01:55,733
 Same two operations, new shape: two plus nodes feed one times node.
 
 17
-00:01:54,933 --> 00:02:09,467
+00:01:56,333 --> 00:02:10,867
 Now the numbers: 3 minus 1 is 2, 2 plus 4 is 6, and 2 times 6 is 12.
 
 18
-00:02:10,067 --> 00:02:14,667
+00:02:11,467 --> 00:02:16,067
 Same pieces, different graph: the shape comes from the expression.
 
 19
-00:02:15,267 --> 00:02:19,933
+00:02:16,667 --> 00:02:21,333
 Expert corner: the graph is built while the code runs.
 
 20
-00:02:20,533 --> 00:02:28,933
+00:02:21,933 --> 00:02:30,333
 This loop adds one number per turn. Watch the graph grow with it.
 
 21
-00:02:29,533 --> 00:02:34,067
+00:02:30,933 --> 00:02:35,467
 With three turns we get seven Values: one start, three inputs, three sums.
 
 22
-00:02:34,667 --> 00:02:39,400
+00:02:36,067 --> 00:02:40,800
 Predict: change three to five. How many Values will the graph hold?
 
 23
-00:02:40,000 --> 00:02:45,467
+00:02:41,400 --> 00:02:46,867
 11 Values! Same code, a different graph: the data decides the shape.
 
 24
-00:02:46,067 --> 00:02:50,333
+00:02:47,467 --> 00:02:51,733
 Every node keeps its children in _prev, so backprop can walk back.
 
 25
-00:02:50,933 --> 00:02:55,400
+00:02:52,333 --> 00:02:56,800
 That is why training uses so much memory: nothing is freed early.
 
 26
-00:02:56,000 --> 00:03:01,200
+00:02:57,400 --> 00:03:02,600
 Rebinding: c = c plus 1 does not change the old c node at all.
 
 27
-00:03:01,800 --> 00:03:06,333
+00:03:03,200 --> 00:03:07,733
 It builds a brand new node and moves the name c onto it.
 
 28
-00:03:06,933 --> 00:03:11,467
+00:03:08,333 --> 00:03:12,933
 The old node stays in the graph, and d still points to it.
 

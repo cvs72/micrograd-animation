@@ -156,7 +156,8 @@ class Scene03GraphForward(Scene):
         dots = VGroup(*[f.dots for f in fls])
         self.add(dots)
         self.play(*fls)
-        self.remove(dots)
+        self.remove(dots, *dots.submobjects, *[f.mobject for f in fls])
+        self.remove(*[d for f in fls for d in f.dots.submobjects])
 
     def code_hud(self, text):
         c = code_panel(text, font_size=24)
@@ -265,8 +266,8 @@ class Scene03GraphForward(Scene):
             self.flow(arrows[k][-1:])
             res_m = working_line(self, sym, sub, res, pos=[3.7, 2.1, 0], width=5.0,
                                  colors=(WHITE, WHITE, LIGHT))
-            self.play(nodes[k].data_t.animate.set_opacity(1), Indicate(nodes[k], color=ACTIVE),
-                      FadeOut(res_m), run_time=0.9)
+            self.play(nodes[k].data_t.animate.set_opacity(1), FadeOut(res_m), run_time=0.6)
+            self.play(Indicate(nodes[k], color=ACTIVE), run_time=0.8)
             self.wait(0.4)
         # the circles are only drawing helpers
         nar.say("The round circles are only drawing helpers. Only rectangles are Values.")
@@ -476,3 +477,6 @@ class Scene03GraphForward(Scene):
         nar.say("The old node stays in the graph, and d still points to it.")
         self.play(Indicate(old_c, color=ACTIVE), Indicate(a_old_d, color=ACTIVE), run_time=1.5)
         self.wait(2.5)
+        self.play(*[FadeOut(m) for m in (old_c, d_node, one_n, new_c, circ, a_old_d, a_old_n,
+                                         a_one_n, a_n_new, note, line, name_tag, tag)],
+                  run_time=0.6)
