@@ -139,38 +139,38 @@ Expert corner: tanh gradients vanish in the tails, and ReLU can die.
 Expert corner: tanh and its slope, 1 minus tanh squared, drawn together.
 
 36
-00:04:59,367 --> 00:05:03,500
+00:04:59,367 --> 00:05:03,567
 In the red bands the slope is under 0.1: the gradient vanishes.
 
 37
-00:05:04,100 --> 00:05:13,000
+00:05:04,167 --> 00:05:13,067
 Predict: far out on the tail, is the slope big or tiny?
 
 38
-00:05:13,600 --> 00:05:18,467
+00:05:13,667 --> 00:05:18,533
 At n = 4 the slope is 0.0013: weights feeding this neuron barely learn.
 
 39
-00:05:19,067 --> 00:05:23,933
+00:05:19,133 --> 00:05:24,033
 So the scale of weights and inputs matters: huge sums land in the tails.
 
 40
-00:05:24,533 --> 00:05:33,267
+00:05:24,633 --> 00:05:33,213
 ReLU keeps positive numbers and zeroes the negatives. Meet two ReLU neurons.
 
 41
-00:05:33,867 --> 00:05:40,000
+00:05:33,813 --> 00:05:39,893
 The healthy one passes x times w = 2 straight through.
 
 42
-00:05:40,600 --> 00:05:56,133
+00:05:40,493 --> 00:05:55,873
 Predict: now w = -1 and x = 2. Does any gradient get through?
 
 43
-00:05:56,733 --> 00:06:03,000
+00:05:56,473 --> 00:06:02,653
 The sum is -2, so relu outputs 0 and blocks the backward flow.
 
 44
-00:06:03,600 --> 00:06:10,200
+00:06:03,253 --> 00:06:09,853
 Both gradients are exactly 0.0: this neuron can never recover on its own.
 
