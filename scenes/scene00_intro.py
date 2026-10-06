@@ -220,7 +220,7 @@ class Scene00Intro(MovingCameraScene):
         assert len(lines) == 16
         self.play(Create(VGroup(*lines.values())), run_time=1.5)
         layer_names = VGroup(*[
-            Text(t, font_size=28, color=WHITE).move_to([x, -2.45, 0])
+            Text(t, font_size=28, color=WHITE).move_to([x, -2.2, 0])
             for t, x in zip(["inputs", "hidden", "output"], LAYER_X)])
         self.play(FadeIn(VGroup(*[n for l in layers for n in l])), FadeIn(heading),
                   FadeIn(layer_names), run_time=1)
@@ -294,9 +294,9 @@ class Scene00Intro(MovingCameraScene):
         # ---- blind turn makes it worse
         nar.say("Turn one knob blindly and the mistake grows: wrong way!")
         self.play(ta.animate.set_value(1.0), run_time=1.0, rate_func=smooth)
-        q = Text("?", font_size=80, color="#FF5555", weight=BOLD).move_to([6.1, 1.6, 0])
+        q = Text("?", font_size=80, color=ACTIVE, weight=BOLD).next_to(h_a, UP, buff=0.25)
         self.play(FadeIn(q, scale=1.5))
-        self.play(Indicate(q, color=RED))
+        self.play(Indicate(q, color=WHITE))
         self.play(ta.animate.set_value(0.0), FadeOut(q), run_time=1.0)
 
         # ---- another knob, lucky
