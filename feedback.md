@@ -1,14 +1,16 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 5: the question 'slope at x=-3: + or -?' is dim and nearly unreadable. The table shows only the x=3 row. The slope readout is -9.8627 at x=-1, not the specified -21.9970 at x=-3, and the dot sits at x=-1.
-- Frame 6: the slope is 0.0030 at x=2/3 but the text is plain white and the table is gone. A near-invisible smudge sits around x=740-790, y=270 right of the plot. The warning caption appears with no float-warning visual.
-- Frame 4: the caption is dim grey and low contrast. No derivation with real numbers is visible as MathTex; there is no (20.014-20)/0.001 formula in any frame.
-- Frame 7: Example B shows g(x) with slope 8.9940 and the 'Where is the slope 0?' question, but the reveal of x=-1 and x=1 is never shown. The 'Example A: f'(3)=14.0030' text is the only side-by-side with the original and has no matching g value.
-- Frame 8: |x| is shown only with a code panel. The left and right secants (-1 / +1) and the 'no derivative' conclusion are not visible.
-- Frame 9: the title says Example B but the curve is a morphing mix of |x| and f, with no secant and no h=1 slope of 17.0000 shown. The 'Example A' note is the only extra.
-- Frame 10: a plain f plot with no overlay, so only one visual in this frame. The Example B banner is still shown on an Expert-corner transition caption.
-- Frame 11: the yellow k=4 label is dim and the 3.0e-4 vs 3.8e-11 result text is dim olive and low contrast. The forward error curve stops at k=8 and is hidden by the central curve, so the plot is hard to read. The y-axis label 'log10|error|' crowds the top-left edge. The k=4 vertical line floats at the wrong height.
-- Frame 12: no conclusion about micrograd and no h=1e-16 exact-zero result are shown. The plot lacks a legend, so curve colours are matched only through the formulas.
-- Act coverage: frame 1 (title) has the Act A banner, but there is no recap or conclusion frame. The Expert-corner conclusion 'micrograd never uses a tiny h' is not shown in any frame. Act B has fewer than two real visuals in most frames.
-- Captions are missing in some frames: 7 (the question is on screen, but there is no change-of-values table), and frames 2, 3 and 10 have only generic captions.
-- Visible content only partly matches descriptions/S01.md: the description promises a zoom into the triangle, a table of three rows, a morph to |x| with both secants, h=1 giving 17, and h=1e-16 giving 0, and none of these are shown.
+- Frame 9: Example B shows f(x) axes (0–100) but the curve drawn is |x|-shaped (V), not the parabola; no secant or tangent for h=1 visible. Mismatch with caption 'Back to f'.
+- Frame 10: caption says slope reads 17 not 14 but there is no secant, tangent, slope readout or formula; the h=1 case is not visualised.
+- Frame 8: the |x| kink is shown only as a plain V and code panel; no left/right secants (-1 and +1) visible, so the no-derivative point is not demonstrated.
+- Frame 7: g(x) hump/valley is shown but no flat tangent at x=±1 and no morph from f visible; the 'Where is the slope 0?' question is shown but its reveal is not in the frames.
+- Frame 11: Expert corner has overlapping/near-invisible faded text ('k = 4' and '3.0×10^-4 vs 3.8×10^-11' are almost black on black, unreadable) and the label 'k=4' collides with the plot area.
+- Frame 11/12: the plot does not show the conclusion that both errors hit exactly 0 at h=1e-16, nor the micrograd conclusion; the central curve rises above forward beyond k=8 with no annotation; no conclusion text on screen.
+- Frame 1: dots fade out to near-black on the right end (x>3), so points are barely visible; also the title banner is large while later banners are tiny top-left (inconsistent).
+- Frame 3: rise-over-run triangle is tiny and cluttered at the dot, hardly legible at 480p; slope readout 15.1021 shown without formula with numbers substituted.
+- Frame 4: formula shown only symbolically; numbers (20.014−20)/0.001 not substituted on screen.
+- Frame 5: the table is shown, but the slope is shown twice (large readout and orange 'slope = −21.997 < 0'), redundant; table columns are small.
+- Frame 6: x=2/3 flat tangent is shown, but readout 0.0030 is plain white with no table row; the floating-point warning (h=1e-16 gives 0) never appears in any frame.
+- Three-act check: Example B only has changed values next to originals as a small gray 'Example A: f′(3)=14.0030' line; Act B visuals are weak (frames 9, 10 have no extra visual); the Expert corner has only one real plot plus a code panel; the 3D requirement is not applicable to S01.
+- Captions: frames 1–12 mostly have captions, but the Act A banner on frame 2–6 reads 'Example A:' with a trailing colon and no title, and frame 1 caption is generic.
+- descriptions/S01.md is specific, but it describes content absent from the frames (h=1e-16 warning, camera zoom on triangle, both secants for |x|, conclusion about micrograd), so it does not match what is shown.
 
