@@ -263,12 +263,16 @@ class Scene01Derivative(MovingCameraScene):
         q = self.ask(r"f(3+h)\ \text{above or below}\ 20\,?")
         lab, num = make_readout(slope, TOPR + LEFT * 0.9)
         nar.say("Above: the curve climbs. White is the step h, orange the rise.")
-        ans = MathTex(rf"f(3+{fmt(1.0)})={fmt(F(4.0))}>{fmt(F(3.0))}", font_size=36, color=FWD).move_to(QPOS)
+        def live_ans():
+            hv = ht.get_value()
+            return MathTex(rf"f(3+{fmt(hv)})={fmt(F(3.0 + hv))}>{fmt(F(3.0))}", font_size=36,
+                           color=FWD).move_to(QPOS)
+        ans = always_redraw(live_ans)
         hl = MathTex(r"h=", font_size=36, color=GREY_B).move_to(TOPR + LEFT * 1.55 + DOWN * 0.5)
         hn = DecimalNumber(0, num_decimal_places=3, font_size=36, color=WHITE)
         hn.add_updater(lambda m: m.set_value(ht.get_value()).next_to(hl, RIGHT, buff=0.15))
         hn.update()
-        self.play(ReplacementTransform(q, ans), FadeIn(sec), FadeIn(tri), FadeIn(lab), FadeIn(num),
+        self.play(FadeOut(q), FadeIn(ans), FadeIn(sec), FadeIn(tri), FadeIn(lab), FadeIn(num),
                   FadeIn(hl), FadeIn(hn), run_time=1.0)
         self.wait(1.0)
         self.play(ht.animate.set_value(0.5), run_time=1.0)
