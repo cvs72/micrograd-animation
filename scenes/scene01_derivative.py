@@ -186,7 +186,7 @@ class Scene01Derivative(MovingCameraScene):
     # ---- ACT A ---------------------------------------------------------
     def act_a(self, nar):
         nar.say("Example A: the lecture's own function, a parabola we can plot.")
-        act_banner(self, "Act A: the lecture's own function")
+        act_banner(self, "Example A: the lecture's own function")
         ax, labs = make_axes([-5, 5, 1], [0, 100, 20], 7.0, 3.7,"x", "f(x)")
         ax.to_edge(LEFT, buff=0.9).shift(UP * 0.0)
         labs[0].next_to(ax.x_axis, RIGHT, buff=0.15)
@@ -287,7 +287,7 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("Example B: what if we change the function? A cubic, then a kink.")
         self.play(FadeOut(dot), FadeOut(sec), FadeOut(tri), FadeOut(lab), FadeOut(num), run_time=0.6)
         self.remove(dot, sec, tri, lab, num)
-        act_banner(self, "Act B: what if the function changes?")
+        act_banner(self, "Example B: what if the function changes?")
 
         # B1: morph f into g(x) = x^3 - 3x
         ax2, labs2 = make_axes([-3, 3, 1], [-4, 4, 2], 7.0, 3.7,"x", "g(x)")
@@ -384,7 +384,7 @@ class Scene01Derivative(MovingCameraScene):
     def act_c(self, nar):
         nar.say("Expert corner: how good is this nudge, and can we do better?")
         self.wipe(self.bkeep)
-        act_banner(self, "Act C: expert corner, the size of h")
+        act_banner(self, "Expert corner: the size of h")
         ks = list(range(1, 17))
         ly = lambda d: [float(np.log10(d[k])) for k in ks]
         ax = Axes(x_range=[0, 16, 4], y_range=[-14, 2, 2], x_length=7.0, y_length=3.6, tips=False,
@@ -407,7 +407,7 @@ class Scene01Derivative(MovingCameraScene):
         t2 = Text("central", font_size=26, color=FWD).next_to(leg2, DOWN, buff=0.1)
         nar.say("Predict: at h = 0.0001, which formula lands closer to 14?")
         q = self.ask(r"\text{Closer to 14 at } h=10^{-4}\,?", pos=np.array([3.8, -1.0, 0]))
-        nar.say("Forward (blue) is ours; central (teal) also looks to the left.")
+        nar.say("Blue forward step looks only right; teal central looks both sides.")
         self.play(FadeOut(q), Create(fw), FadeIn(leg1), FadeIn(t1), run_time=2.5)
         self.play(Create(ce), FadeIn(leg2), FadeIn(t2), run_time=2.5)
         nar.say("At k = 4 the forward error is about 3e-4, the central one about 4e-11.")
@@ -416,7 +416,8 @@ class Scene01Derivative(MovingCameraScene):
         w.move_to([3.8, -1.0, 0])
         if w.width > 5.4:
             w.scale_to_fit_width(5.4)
-        self.play(Create(mark), FadeIn(w), run_time=1.0)
+        mk = MathTex(r"k=4", font_size=30, color=ACTIVE).next_to(ax.c2p(4, 2), RIGHT, buff=0.1)
+        self.play(Create(mark), FadeIn(w), FadeIn(mk), run_time=1.0)
         self.wait(2.0)
         self.play(FadeOut(w), run_time=0.3)
 

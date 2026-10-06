@@ -71,58 +71,58 @@ Predict: where on this curve is the tangent perfectly flat?
 At x = -1 (top of the hump) and x = 1 (bottom of the valley).
 
 19
-00:02:09,933 --> 00:02:14,767
+00:02:10,000 --> 00:02:14,867
 Now the absolute value: a V with a sharp corner at x = 0.
 
 20
-00:02:15,367 --> 00:02:19,533
+00:02:15,533 --> 00:02:19,733
 Predict: what single slope does the corner have at x = 0?
 
 21
-00:02:20,133 --> 00:02:24,667
+00:02:20,400 --> 00:02:24,933
 Two answers: from the left the secant gives -1, from the right +1.
 
 22
-00:02:25,333 --> 00:02:31,600
+00:02:25,600 --> 00:02:31,867
 Shrink h: the secants never agree, so no derivative exists at 0.
 
 23
-00:02:32,200 --> 00:02:39,500
+00:02:32,533 --> 00:02:39,867
 Back to f. If h is far too big, the secant leaves the tangent.
 
 24
-00:02:40,167 --> 00:02:49,300
+00:02:40,533 --> 00:02:49,667
 With h = 1 the slope reads 17, not 14: the step is too coarse.
 
 25
-00:02:49,900 --> 00:02:54,200
+00:02:50,333 --> 00:02:54,733
 Expert corner: how good is this nudge, and can we do better?
 
 26
-00:02:54,800 --> 00:02:59,350
+00:02:55,400 --> 00:02:59,933
 We measure the error against the true slope 14, for h = 10^-k.
 
 27
-00:02:59,950 --> 00:03:03,800
+00:03:00,600 --> 00:03:04,400
 Predict: at h = 0.0001, which formula lands closer to 14?
 
 28
-00:03:04,400 --> 00:03:09,400
-Forward (blue) is ours; central (teal) also looks to the left.
+00:03:05,067 --> 00:03:10,133
+Blue forward step looks only right; teal central looks both sides.
 
 29
-00:03:10,000 --> 00:03:15,250
+00:03:10,800 --> 00:03:16,000
 At k = 4 the forward error is about 3e-4, the central one about 4e-11.
 
 30
-00:03:15,850 --> 00:03:21,783
+00:03:16,667 --> 00:03:22,667
 Past k = 8 both climb: the computer rounds the tiny gaps away.
 
 31
-00:03:22,383 --> 00:03:26,550
+00:03:23,333 --> 00:03:27,533
 At k = 16 the nudge vanishes: both slopes are exactly 0.
 
 32
-00:03:27,150 --> 00:03:31,150
+00:03:28,200 --> 00:03:32,200
 So micrograd never nudges: each operation knows its exact slope.
 
