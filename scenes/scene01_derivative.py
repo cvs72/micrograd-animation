@@ -420,9 +420,10 @@ class Scene01Derivative(MovingCameraScene):
             h = ht2.get_value()
             return Line(ax3.c2p(0, 0), ax3.c2p(1.5 * h, ABS(1.5 * h)), color=TEAL, stroke_width=5)
 
+        sl, sr = always_redraw(sec_left), always_redraw(sec_right)
+        self.play(Create(sl), Create(sr), run_time=1.0)
         nar.say("Predict: what single slope does the corner have at x = 0?")
         q = self.ask(r"\text{Slope at } x=0\,?")
-        sl, sr = always_redraw(sec_left), always_redraw(sec_right)
         h0 = ht2.get_value()
         left_val = (ABS(0) - ABS(-h0)) / h0
         right_val = (ABS(h0) - ABS(0)) / h0
@@ -430,8 +431,8 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("Two answers: from the left the secant gives -1, from the right +1.")
         ml = MathTex(rf"\frac{{|0|-|-1|}}{{1}}={fmt(left_val)}", font_size=40, color=ORANGE).move_to([3.8, 1.8, 0])
         mr = MathTex(rf"\frac{{|1|-|0|}}{{1}}={fmt(right_val)}", font_size=40, color=TEAL).move_to([3.8, 0.5, 0])
-        self.play(FadeOut(q), Create(sl), FadeIn(ml), run_time=1.2)
-        self.play(Create(sr), FadeIn(mr), run_time=1.2)
+        self.play(FadeOut(q), FadeIn(ml), Indicate(sl, color=ORANGE), run_time=1.2)
+        self.play(FadeIn(mr), Indicate(sr, color=TEAL), run_time=1.2)
         self.wait(1.5)
         nar.say("Shrink h: the secants never agree, so no derivative exists at 0.")
         self.play(ht2.animate.set_value(0.2), run_time=3.0)
@@ -498,7 +499,7 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("We measure the error against the true slope 14, for h = 10^-k.")
         zero = MathTex("0", font_size=24, color=GREY_B).next_to(ax.c2p(0, 0), LEFT, buff=0.12)
         self.play(Create(ax), FadeIn(xl), FadeIn(yl), FadeIn(zero), run_time=1.5)
-        self.wait(2.0)
+        self.wait(0.8)
         self.close_act(banner)
         fw = ax.plot_line_graph(ks, ly(FORWARD), line_color=DATA, add_vertex_dots=True,
                                 vertex_dot_radius=0.05, stroke_width=4)
