@@ -1,15 +1,14 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 06: the caption is almost invisible (dark grey on black) and nothing is shown besides the flat tangent and 'slope = 0.0030'. The x=2/3 row is missing from the table and there is no explanation of the flat tangent. It reads as a half-faded frame.
-- Frame 10 (Example B, h=1): the caption is nearly invisible (faded). The curve is bare, with no secant, no tangent, no h segment and no slope readout, so the claimed 'secant visibly misses the tangent' is not shown. The caption says 17 but there is no 17.0000 readout.
-- Frame 09 shows 'slope = 15.9440' for the h-too-big case, which matches neither the 17.0000 in the description and caption nor the 14.0030 reference. The viewer sees an unexplained number.
-- Frame 08 (|x|): the left (-1) and right (+1) secants are only hinted at by an orange line and a white segment. There are no slope labels and no -1 / +1 readout, so the 'no derivative at 0' conclusion is not visible. The colour-coded markers (-1 and 1) are unlabeled, and the code panel is small and hard to read at 480p.
-- Frame 07 (g(x)): the tangent is at x≈-1.9 and is not flat. No frame shows the flat tangents at x=-1 and x=1 as the reveal, and no morph from f to g is visible. The question 'Where is the slope 0?' is never visibly answered.
-- Act B has no typeset formulas with substituted numbers. The h=1 case and the kink show no formula such as (f(4)-f(3))/1 = 17.
-- Frame 05: the live readout (-20.9009) and the table row (-3 → -21.997) show different values with no explanation. The orange 'slope = -21.997 < 0' line sits on the readout column and looks redundant. The sign-first prediction at x=-3 is not shown as a question.
-- The floating-point warning from Act A (too many zeros in h gives wrong answers) is not visible in any frame. Only the Act C result at the end hints at it.
-- Act C (frames 11-12) has essentially one real visual, the log plot, plus text and formulas. The frame 12 'rounding noise, k > 8' label sits on the plot and the '3.0×10^-4 vs 3.8×10^-11' line is crowded against the 'No h at all' box. The plot's y-axis label 'log10|error|' is cramped at the top-left, close to the title banner.
-- Frame 01: the right-hand dots fade out, so the 40-point plot is incomplete on that frame. The title banner is only large on this frame; the other frames use a small 'Example A:' label that ends with a colon and has no subtitle.
-- The x-axis in frames 1-6 and 9-10 is drawn at y=0 but f(x) values near the minimum sit on top of it, so the minimum and the flat tangent in frame 6 are hard to distinguish from the axis.
-- Captions are missing or unreadable in frames 06 and 10, so fewer than the required 10 of 12 frames carry a readable caption. Frame 11 'about 10^7 × closer' is tiny at 480p.
-- descriptions/S01.md is specific, but it does not fully match the frames. It claims h=1 reads 17 with the secant visibly missing, the sign-first table row, the 2/3 row and the floating-point warning, none of which is visible on screen.
+- Frame 09 (empty log-axes, start of Expert corner): no 'Expert corner' banner and no caption. Combined with frame 01 (title card), the captions are missing in some frames and the count is borderline.
+- Expert corner has only one real visual, the log-error plot. The act needs at least two (e.g. a table or code panel of the h values and errors).
+- Frame 11: the forward-difference curve stops at k=8 and is not drawn for k>8, although the description says both methods degrade and read 0 at 1e-16. Only one line is visible in the rounding region, so the plot is incomplete or misleading.
+- Frame 11: the central curve starts at about -13.6 at k=1, which is odd and unexplained. The y-axis crosses at -13.3, so the lowest point sits on the x-axis line.
+- Frame 12: the formula '3.0e-4 vs 3.8e-11' is wedged right above the 'No h at all' box and the 'h=10^-16: slope=0' text, with a very tight, nearly touching layout. The label 'rounding noise, k>8' floats in the plot area without a pointer.
+- Frame 12: the caption says both slopes read exactly 0 at k=16, but the plot shows error of about 10^1 with no marker explaining it.
+- Frame 06: the x=2/3 flat-tangent frame shows no table. The earlier rows (3 and -3) have disappeared and there is no 2/3 row, and the h=1e-16 warning formula '20-20 / 10^-16 = 0 ≠ 14' is shown beside a flat tangent at 2/3, which mixes two ideas.
+- Frame 07: Act B g(x)=x^3-3x only shows the predict question at x=-2. No frame shows the reveal of the flat tangents at x=-1 and x=1 (hump and valley). The 'Example A: f′(3)=14.0030' note sits tight against the yellow question.
+- Frame 08: the abs(x) frame shows the secants at -1 and +1 but no slope values (-1 / +1) and no 'no derivative' conclusion. The white horizontal line runs through the y-axis tick label '1'.
+- Frame 09 (back to f with h=1): the readout shows 16.9594, not the required 17.0000, and the secant is drawn at the wrong h. This does not match the description.
+- descriptions/S01.md is specific and mostly accurate, but it claims reveals (x=2/3 table row, g flat at ±1, abs secants -1/+1, slope 17) that the frames do not show.
+- Frames do not clearly show typeset predict-then-reveal for x=-3 slope sign, apart from the readout in frame 05.
 
