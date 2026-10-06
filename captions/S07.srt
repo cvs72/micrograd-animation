@@ -1,0 +1,124 @@
+1
+00:00:03,600 --> 00:00:09,133
+Example A: what is the gradient of b = a + a, with a = 3?
+
+2
+00:00:09,733 --> 00:00:15,267
+Both sides add a to itself, so b is 6; the plus node reads a twice.
+
+3
+00:00:15,867 --> 00:00:20,367
+Before the code runs: what should a.grad be? Nudge a, b moves twice.
+
+4
+00:00:20,967 --> 00:00:25,100
+Same rule on both sides; the only difference is = against +=.
+
+5
+00:00:25,700 --> 00:00:30,900
+The plus node starts with b.grad = 1, then passes it down the first arrow.
+
+6
+00:00:31,500 --> 00:00:36,100
+The second arrow arrives: the left side overwrites, the right side adds.
+
+7
+00:00:36,700 --> 00:00:42,967
+Right: 1 + 1 = 2. Left: the first 1 is erased, so it keeps only 1. Wrong!
+
+8
+00:00:43,567 --> 00:00:48,433
+Gradient accumulation: shares from every path must be summed.
+
+9
+00:00:49,033 --> 00:00:55,300
+The lecture's bigger case: f = d * e, where a and b each feed d and e.
+
+10
+00:00:55,900 --> 00:01:01,433
+f starts at grad 1; the product node gives d.grad = 1 and e.grad = -6.
+
+11
+00:01:02,033 --> 00:01:09,700
+Now d runs first: a gets b * 1 = 3 and b gets a * 1 = -2, on both sides.
+
+12
+00:01:10,300 --> 00:01:16,100
+Then e runs. It sends -6 to a and b: left overwrites, right adds on top.
+
+13
+00:01:16,700 --> 00:01:25,433
+The buggy side lost d's share: -6 and -6 instead of -3 and -8.
+
+14
+00:01:26,033 --> 00:01:30,900
+Overwriting is only right when each node is used once; a shared node adds.
+
+15
+00:01:31,500 --> 00:01:36,033
+Example B: what if a feeds the output two, three or more times?
+
+16
+00:01:36,633 --> 00:01:44,633
+Three cases on one screen: b = a + a, z = a + a + a, and y = x times x.
+
+17
+00:01:45,233 --> 00:01:50,100
+Predict first: for z = a + a + a, what should a.grad be?
+
+18
+00:01:50,700 --> 00:01:58,033
+Three arrows, three shares: the real gradient is 3, the bug says 1.
+
+19
+00:01:58,633 --> 00:02:08,300
+Check it: nudge a by 0.001 and watch how fast the output moves.
+
+20
+00:02:08,900 --> 00:02:13,100
+The yellow nudge always matches the green bar, never the red one.
+
+21
+00:02:13,700 --> 00:02:19,633
+So the bug grows with the uses: a node used k times loses k - 1 shares.
+
+22
+00:02:20,233 --> 00:02:24,300
+Expert corner: the chain rule adds one term for every path.
+
+23
+00:02:24,900 --> 00:02:30,100
+Take the notebook graph again. Every route from f down to a is one path.
+
+24
+00:02:30,700 --> 00:02:43,433
+Path one goes through d and carries e times b; path two goes through e.
+
+25
+00:02:44,033 --> 00:02:56,767
+Same for b: one route through d, one through e, one product each.
+
+26
+00:02:57,367 --> 00:03:01,900
+Each path adds its share: a node's gradient is the sum over paths.
+
+27
+00:03:02,500 --> 00:03:07,033
+Frameworks keep adding on purpose, so you must zero grads before each step.
+
+28
+00:03:07,633 --> 00:03:14,633
+Here y = x times x, x = 3: the true slope is 6 each step, not 12 or 18.
+
+29
+00:03:15,233 --> 00:03:20,100
+Used on purpose: add the gradients of four small batches into one big one.
+
+30
+00:03:20,700 --> 00:03:25,967
+Their sum is 10, the gradient of the whole batch, with less memory at once.
+
+31
+00:03:26,567 --> 00:03:31,100
+The rule: += inside the engine, zero the grads once per optimizer step.
+
