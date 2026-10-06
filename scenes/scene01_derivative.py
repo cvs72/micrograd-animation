@@ -127,7 +127,7 @@ def make_readout(slope_fn, pos, label=r"\text{slope}="):
 
 def table_rows(rows, header, xs=(-1.95, -0.65, 0.65, 2.0)):
     """Small table of MathTex cells; columns at fixed offsets so rows can be added one by one."""
-    head = VGroup(*[MathTex(h, font_size=30, color=GREY_B).move_to([x, 0, 0]) for h, x in zip(header, xs)])
+    head = VGroup(*[MathTex(h, font_size=32, color=WHITE).move_to([x, 0, 0]) for h, x in zip(header, xs)])
     out = [head]
     for i, r in enumerate(rows):
         row = VGroup(*[MathTex(c, font_size=30, color=col).move_to([x, -0.5 * (i + 1), 0])
@@ -352,7 +352,7 @@ class Scene01Derivative(MovingCameraScene):
 
         nar.say("Warning: too many zeros in h and floats run out of digits.")
         hs_w = [1e-4, 1e-8, 1e-12, 1e-16]
-        rows_w = [[(sci(h), WHITE), (fmt(fd(f, 3.0, h)), slope_color(1.0)), (fmt(fd(f, 3.0, h) - 14.0), GRAD)]
+        rows_w = [[(sci(h), WHITE), (fmt(fd(f, 3.0, h)), slope_color(1.0)), (fmt(fd(f, 3.0, h) - 14.0), "#FFC799")]
                   for h in hs_w]
         trs_w, _ = table_rows(rows_w, [r"h", r"\text{slope}", r"\text{error}"],
                               xs=(-1.9, 0.1, 1.6))
