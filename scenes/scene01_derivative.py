@@ -566,7 +566,7 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("At k = 4 the forward error is about 3e-4, the central one about 4e-11.")
         mark = Line(ax.c2p(4, -14), ax.c2p(4, 2), color=ACTIVE, stroke_width=3)
         w = MathTex(rf"{sci(FORWARD[4])}\ \text{{vs}}\ {sci(CENTRAL[4])}", font_size=38, color=ACTIVE)
-        w.move_to([3.8, -0.4, 0])
+        w.move_to([3.8, -0.55, 0])
         if w.width > 5.4:
             w.scale_to_fit_width(5.4)
         mk = MathTex(r"k=4", font_size=30, color=ACTIVE).next_to(ax.c2p(4, 2), RIGHT, buff=0.1)
@@ -578,7 +578,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(win), Indicate(w), run_time=1.0)
         self.wait(1.0)
         nar.say("So micrograd never nudges: each operation knows its exact slope.")
-        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=4.6).move_to([4.2, -1.3, 0])
+        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=4.6).move_to([4.2, -1.45, 0])
         self.play(FadeOut(win), FadeIn(c), run_time=0.5)
         self.wait(2.0)
         nar.say("In code, central costs one more call of f but is far more exact.")
@@ -591,13 +591,13 @@ class Scene01Derivative(MovingCameraScene):
         self.wait(0.8)
         self.play(FadeOut(cp), FadeOut(hl), run_time=0.3)
         nar.say("Errors shrink to k = 8, then rounding noise wins.")
-        noise = MathTex(r"\text{rounding noise, } k>8", font_size=34, color=WHITE).move_to(ax.c2p(12.0, -11.5))
+        noise = MathTex(r"\text{rounding noise, } k>8", font_size=34, color=WHITE).move_to(ax.c2p(11.0, -12.3))
         self.play(FadeOut(xl), FadeIn(noise), run_time=0.3)
         self.zoom_on(ax.c2p(10, -6) + DOWN * 1.0, 0.45, 2.0)
         self.play(FadeIn(xl), run_time=0.3)
         nar.say("At k = 16 both slopes read 0, so the error is the full 14.")
         out = MathTex(rf"h=10^{{-16}}:\ \text{{slope}}={fmt(fd(f, 3.0, 1e-16))}", font_size=38,
-                      color=ORANGE).move_to([4.3, -2.3, 0])
+                      color=ORANGE).move_to([4.3, -2.45, 0])
         out.scale_to_fit_width(4.4)
         assert (f(3.0 + 1e-16) - f(3.0 - 1e-16)) / 2e-16 == 0.0
         err16 = abs(fd(f, 3.0, 1e-16) - 14.0)
