@@ -474,7 +474,13 @@ class Scene01Derivative(MovingCameraScene):
     # ---- ACT C ---------------------------------------------------------
     def act_c(self, nar):
         nar.say("Expert corner: how good is this nudge, and can we do better?")
-        self.wipe(self.bkeep)
+        old_tag = getattr(self, "act_tag", None)
+        self.act_tag = None
+        outs = [FadeOut(m) for m in self.bkeep]
+        if old_tag is not None:
+            outs.append(FadeOut(old_tag))
+        self.play(*outs, run_time=0.7)
+        self.remove(*self.bkeep)
         banner = self.open_act("Expert corner: the size of h", hold=0)
         ks = list(range(1, 17))
         ly = lambda d: [float(np.log10(d[k])) for k in ks]
