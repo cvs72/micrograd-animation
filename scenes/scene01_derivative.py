@@ -570,7 +570,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(Create(hl), run_time=0.8)
         self.wait(0.8)
         self.play(FadeOut(cp), FadeOut(hl), run_time=0.3)
-        nar.say("Errors shrink to k = 8, then rounding wins: at k = 16 the slope is 0.")
+        nar.say("Errors shrink to k = 8, then rounding noise wins.")
         noise = MathTex(r"\text{rounding noise, } k>8", font_size=34, color=WHITE).move_to(ax.c2p(12.0, -11.5))
         self.play(FadeOut(xl), FadeIn(noise), run_time=0.3)
         self.zoom_on(ax.c2p(10, -6) + DOWN * 1.0, 0.45, 2.0)
@@ -580,7 +580,11 @@ class Scene01Derivative(MovingCameraScene):
                       color=ORANGE).move_to([4.3, -2.3, 0])
         out.scale_to_fit_width(4.4)
         assert (f(3.0 + 1e-16) - f(3.0 - 1e-16)) / 2e-16 == 0.0
-        self.play(FadeIn(out), run_time=0.6)
+        err16 = abs(fd(f, 3.0, 1e-16) - 14.0)
+        assert err16 == 14.0
+        e16 = MathTex(rf"k=16:\ \text{{error}}={fmt(err16)}", font_size=30, color=ACTIVE)
+        e16.next_to(ax.c2p(16, 2), UP, buff=0.12).shift(LEFT * 1.0)
+        self.play(FadeIn(out), FadeIn(e16), run_time=0.6)
         self.play(Indicate(fw["vertex_dots"][-1], scale_factor=2.5),
                   Indicate(ce["vertex_dots"][-1], scale_factor=2.5),
                   run_time=1.5)

@@ -131,10 +131,10 @@ So micrograd never nudges: each operation knows its exact slope.
 In code, central costs one more call of f but is far more exact.
 
 34
-00:03:57,400 --> 00:04:03,333
-Errors shrink to k = 8, then rounding wins: at k = 16 the slope is 0.
+00:03:57,400 --> 00:04:01,933
+Errors shrink to k = 8, then rounding noise wins.
 
 35
-00:04:04,000 --> 00:04:10,600
+00:04:02,600 --> 00:04:09,200
 At k = 16 the nudge vanishes: both slopes read exactly 0.
 
