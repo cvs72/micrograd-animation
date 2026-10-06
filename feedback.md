@@ -1,13 +1,14 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 9 (Example B, h=1): a half-faded MathTex fraction f(3+h)-f(3)/h is still visible under the 'Example A: f'(3)=14.0030' line, so the leftover ghost overlaps and clutters the readout column.
-- Frame 11 (Expert corner): a faded table of numbers sits behind and below the '3.0e-4 vs 3.8e-11' line, a ghost overlapping text and unreadable.
-- Frame 12: the orange 'h = 10^-16 : slope = 0' sits directly under the yellow '3.0e-4 vs 3.8e-11' line with almost no gap, and the 'rounding noise, k > 8' label is tiny, low contrast orange on black and hard to read at 480p. The caption is also dimmed grey.
-- Frame 8 (|x|): the orange vertical secant line runs through the y-axis tick label '1', and the white run segment crosses the axis labels. The code panel text is very small for 480p. The kink reveal (left secant -1, right +1, no derivative) is never shown, because the only frame for this part ends on the unanswered question.
-- Frame 7 (g(x)): the green tangent line runs through the y-axis tick label '2' and the dot sits on the axis. The question 'where is the slope zero?' is not posed before this reveal.
-- Frame 6: the flat tangent at x=2/3 lies on the x-axis line, so it is hard to tell it from the axis. The table is not shown (the x=2/3 row is missing), and no frame shows the table completed.
-- Frame 5: the predict question for the SIGN of the slope at x=-3 is not visible. Only the answer is shown, so predict-then-reveal is incomplete there. The table has only 2 rows.
-- Required depth: no frame shows the lecture's floating-point warning (too many zeros in h) in Act A, and the rise-over-run triangle with the h segment is only visible in frames 2 and 9, not in the main Act A derivation. Act A formula frames (3-4) have limited derivation steps.
-- Act B has only one real visual per frame, mostly a plot with a readout. Frame 7's changed values appear next to the originals only as a small grey line.
-- Frame 1 has a heavy title-like banner while the other frames use a small top-left banner, an inconsistent style. The x-axis 0 tick is missing in frames 1-6 and in the error plot of frames 10-12 (y-axis 0 label floats off the axis).
-- Descriptions/S01.md is specific and matches the plan, but it claims things the frames do not show: the camera zoom, the table filling to the x=2/3 row, the morph from f to g, the kink secants -1/+1 reveal, and the exact h=1e-16 forward and central results. FAIL on mismatch.
+- Frame 11: a ghosted, nearly invisible table sits under the '3.0e-4 vs 3.8e-11' line and the caption. It overlaps that text and cannot be read.
+- Frame 9: the faded formula (f(3+h)-f(3))/h is almost invisible against black. The h=1 case also shows no substituted numbers, such as (37-20)/1 = 17.
+- Frames 10-11: the y-axis labels jump from 2 straight to -2, with no 0 label and uneven spacing. The axis starts at -14 with the x-axis line drawn at -14, which looks mislabeled. The plot has no legend tying line colours to forward and central except small swatches on the right.
+- Frame 12: the caption is dim grey and low contrast. The conclusion that micrograd never uses a tiny h and computes exact local derivatives is not on screen in any frame. The floating-point warning (h=1e-16 gives 0) appears only as a small orange label.
+- Frame 8: the abs(x) frame shows coloured secants but no -1 / +1 slope values. The 'no derivative' conclusion is never shown, and the code panel is tiny at 480p.
+- Frame 7: the g(x) frame shows only the substitution g'(-1)=3*(-1)^2-3=0. The curve morph from f to g is not visible, and the x=+1 valley is not shown.
+- Act B is thin: only frames 7-9 and no Example B banner title. Banners read just 'Example A:' / 'Example B:' with a trailing colon and no text, and only frame 1 has a boxed banner, so styling is inconsistent.
+- Act A is missing from the frames: the rise-over-run triangle with the h segment, the predict-then-reveal for the sign at x=-3 (frame 5 shows only the result), and the step-by-step slope derivation. The table has only two rows (x=3, x=-3). The x=2/3 row is missing in frame 6 and the table is gone.
+- Frame 5: the readout 'slope = -21.9970' and the orange line 'slope = -21.997 < 0' are redundant and crowded. Frame 3 shows the slope 14.4525, with a stray tiny circle next to the dot.
+- Frame 1: the title banner covers the top while the plot is shifted left, leaving a large empty right half. The dots fade at the right end, so the 40 points are not all clearly visible.
+- Act C has no code panel or table visible. The frame 11 table is unreadable, so fewer than two real visuals are readable in Act C.
+- Scene needs a revision before publishing; descriptions/S01.md covers the content, but the frames do not fully show it (floating-point warning, kink secants, conclusion).
 
