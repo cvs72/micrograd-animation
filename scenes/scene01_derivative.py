@@ -378,12 +378,13 @@ class Scene01Derivative(MovingCameraScene):
         assert exact(g3, -1.0) == 0.0 and exact(g3, 1.0) == 0.0
         m1 = Dot(ax2.c2p(-1, G(-1.0)), radius=0.12, color=TEAL)
         m2 = Dot(ax2.c2p(1, G(1.0)), radius=0.12, color=TEAL)
-        self.play(FadeIn(e1), FadeIn(m1), run_time=0.6)
+        self.play(FadeIn(e1), FadeIn(m1), run_time=0.3)
         self.play(Indicate(m1, scale_factor=2.0, color=TEAL), run_time=1.0)
         self.wait(1.0)
         e2 = MathTex(rf"g'(1)=3\cdot 1^{{2}}-3={fmt(exact(g3, 1.0))}", font_size=36,
-                     color=WHITE).move_to([3.8, 1.1, 0])
-        self.play(xt.animate.set_value(1.0), ReplacementTransform(e1, e2), FadeIn(m2), run_time=2.0)
+                     color=WHITE).move_to([3.8, 0.5, 0])
+        self.play(xt.animate.set_value(1.0), FadeIn(m2), run_time=2.0)
+        self.play(FadeIn(e2), run_time=0.3)
         self.play(Create(flat2), run_time=0.6)
         self.play(Indicate(m2, scale_factor=2.0, color=TEAL), run_time=1.0)
         nar.say("The table shows slope 0 only at x = -1 and 1; elsewhere it is 9 or -3.")
@@ -392,12 +393,12 @@ class Scene01Derivative(MovingCameraScene):
         rows = [[(fmt(x), WHITE), (fmt(gv), DATA), (fmt(G(x + H)), DATA), (fmt(fd(G, x, H)), slope_color(sv))]
                 for x, (sv, gv) in zip(xs_t, gs)]
         trs, _ = table_rows(rows, [r"x", r"g(x)", r"g(x+h)", r"\text{slope}"])
-        tbl = VGroup(*trs).move_to([3.8, -0.7, 0])
+        tbl = VGroup(*trs).move_to([3.8, -1.0, 0])
         self.play(FadeIn(trs[0]), run_time=0.4)
         for r in trs[1:]:
             self.play(FadeIn(r), run_time=0.6)
         self.wait(3.5)
-        self.play(FadeOut(e2), FadeOut(dot), FadeOut(sec), FadeOut(lab), FadeOut(num), FadeOut(tri),
+        self.play(FadeOut(e1), FadeOut(e2), FadeOut(dot), FadeOut(sec), FadeOut(lab), FadeOut(num), FadeOut(tri),
                   FadeOut(tbl), FadeOut(m1), FadeOut(m2), FadeOut(flat1), FadeOut(flat2), run_time=0.6)
         self.remove(dot, sec, lab, num, tri)
         self.play(FadeOut(was), run_time=0.3)
@@ -499,7 +500,6 @@ class Scene01Derivative(MovingCameraScene):
             outs.append(FadeOut(old_tag))
         self.play(*outs, run_time=0.4)
         self.remove(*self.bkeep)
-        banner = self.open_act("Expert corner: the size of h", hold=0)
         ks = list(range(1, 17))
         ly = lambda d: [float(np.log10(d[k])) for k in ks]
         ax = Axes(x_range=[0, 16, 4], y_range=[-14, 2, 2], x_length=7.0, y_length=4.0, tips=False,
@@ -513,6 +513,7 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("We measure the error against the true slope 14, for h = 10^-k.")
         zero = MathTex("0", font_size=24, color=GREY_B).next_to(ax.c2p(0, 0), LEFT, buff=0.12)
         self.play(Create(ax), FadeIn(xl), FadeIn(yl), FadeIn(zero), run_time=0.6)
+        banner = self.open_act("Expert corner: the size of h", hold=1.0)
         self.close_act(banner)
         fw = ax.plot_line_graph(ks, ly(FORWARD), line_color=DATA, add_vertex_dots=True,
                                 vertex_dot_radius=0.05, stroke_width=4)
@@ -543,15 +544,15 @@ class Scene01Derivative(MovingCameraScene):
         win.scale_to_fit_width(5.2)
         self.play(FadeIn(win), Indicate(w), run_time=1.0)
         self.wait(1.0)
-        self.play(FadeOut(win), FadeOut(w), run_time=0.3)
+        self.play(FadeOut(win), run_time=0.3)
         nar.say("Errors shrink to k = 8, then rounding wins: at k = 16 the slope is 0.")
         cx = [2.2, 3.7, 5.4]
-        etab = VGroup(*[MathTex(t, font_size=28, color=GREY_B).move_to([x, -0.2, 0]) for t, x in
+        etab = VGroup(*[MathTex(t, font_size=28, color=GREY_B).move_to([x, -0.9, 0]) for t, x in
                         zip([r"k", r"\text{forward}", r"\text{central}"], cx)])
         for i, k in enumerate([4, 8, 12, 16]):
             vals = [str(k), sci(FORWARD[k]) if FORWARD[k] else "14", sci(CENTRAL[k]) if CENTRAL[k] else "14"]
             for v, x, c in zip(vals, cx, [WHITE, DATA, FWD]):
-                etab.add(MathTex(v, font_size=26, color=c).move_to([x, -0.8 - 0.5 * i, 0]))
+                etab.add(MathTex(v, font_size=26, color=c).move_to([x, -1.3 - 0.4 * i, 0]))
         self.play(FadeIn(etab), run_time=0.6)
         self.wait(2.5)
         self.play(FadeOut(etab), run_time=0.3)
@@ -562,7 +563,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(xl), run_time=0.3)
         nar.say("At k = 16 the nudge vanishes: both slopes read exactly 0.")
         out = MathTex(rf"h=10^{{-16}}:\ \text{{slope}}={fmt(fd(f, 3.0, 1e-16))}", font_size=38,
-                      color=ORANGE).move_to([4.3, -1.4, 0])
+                      color=ORANGE).move_to([4.3, -1.5, 0])
         out.scale_to_fit_width(4.6)
         assert (f(3.0 + 1e-16) - f(3.0 - 1e-16)) / 2e-16 == 0.0
         self.play(FadeIn(out), run_time=0.6)
@@ -574,13 +575,13 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("In code, central costs one more call of f but is far more exact.")
         cp = code_panel("fwd = (f(x+h) - f(x)) / h\ncen = (f(x+h) - f(x-h)) / (2*h)", font_size=24)
         cp.scale_to_fit_width(5.0)
-        cp.move_to([4.1, -1.0, 0])
+        cp.move_to([4.1, -1.7, 0])
         hl = SurroundingRectangle(cp.code_lines[1], color=ACTIVE, buff=0.05)
         self.play(FadeIn(cp), run_time=0.6)
         self.play(Create(hl), run_time=0.8)
         self.wait(1.0)
         self.play(FadeOut(cp), FadeOut(hl), run_time=0.3)
         nar.say("So micrograd never nudges: each operation knows its exact slope.")
-        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=5.4).move_to([3.8, -1.0, 0])
+        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=5.4).move_to([3.8, -1.7, 0])
         self.play(FadeIn(c), run_time=0.5)
         self.wait(4.4)
