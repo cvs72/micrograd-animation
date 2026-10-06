@@ -264,7 +264,7 @@ class Scene01Derivative(MovingCameraScene):
         self.wait(1.0)
         self.play(ht.animate.set_value(0.5), run_time=1.0)
         nar.say("Zoom in: a line through two curve points is a secant.")
-        self.zoom_on(ax.c2p(3.25, F(3.0) + 5) + DOWN * 0.9, 0.3, 3.2)
+        self.zoom_on(ax.c2p(3.25, F(3.0) + 5) + DOWN * 0.9, 0.3, 2.2)
         self.define("Secant", "line through two points")
         self.play(FadeOut(ans), run_time=0.3)
 
@@ -286,20 +286,20 @@ class Scene01Derivative(MovingCameraScene):
                 d.scale_to_fit_width(5.6)
             d.move_to(MID)
         self.play(FadeIn(d1), run_time=0.6)
-        self.wait(1.5)
+        self.wait(1.0)
         self.play(TransformMatchingTex(d1, d2), run_time=1.2)
-        self.wait(2.0)
+        self.wait(1.2)
         self.play(TransformMatchingTex(d2, d3), run_time=1.2)
-        self.wait(2.0)
+        self.wait(1.2)
         self.play(TransformMatchingTex(d3, d4), run_time=1.2)
-        self.wait(1.5)
+        self.wait(1.0)
         self.wipe(d4)
         nar.say("Real numbers in the formula: nudge by h = 0.001 and divide by h.")
         f3h = F(3.0 + H)
         w = working_line(self, r"\frac{f(x+h)-f(x)}{h}",
                          rf"\frac{{f(3.001)-f(3)}}{{0.001}}=\frac{{{fmt(f3h)}-{fmt(F(3.0))}}}{{0.001}}",
                          rf"\frac{{{fmt(f3h)}-{fmt(F(3.0))}}}{{0.001}}={fmt(S3)}", pos=np.array([4.2, 0.0, 0]), width=4.8)
-        self.wait(2.5)
+        self.wait(6.1)
         self.wipe(w)
 
         # table, filled one row at a time
@@ -320,8 +320,8 @@ class Scene01Derivative(MovingCameraScene):
         q = self.ask(r"\text{slope at } x=-3:\ +\ \text{or}\ -\,?")
         nar.say("Sliding left, the readout passes white at the bottom, then turns orange.")
         ans = MathTex(rf"\text{{slope}}={fmt(SM3)}<0", font_size=36, color=ORANGE).move_to(QPOS)
-        self.play(FadeOut(q), xt.animate.set_value(-3.0), FadeOut(tangent), run_time=2.5)
-        self.play(FadeIn(ans), FadeIn(trs[2]), run_time=0.6)
+        self.play(FadeOut(q), xt.animate.set_value(-3.0), FadeOut(tangent), FadeIn(ans), FadeIn(trs[2]),
+                  run_time=2.5)
         self.wait(3.5)
         self.play(FadeOut(ans), run_time=0.3)
 
@@ -433,11 +433,11 @@ class Scene01Derivative(MovingCameraScene):
         mr = MathTex(rf"\frac{{|1|-|0|}}{{1}}={fmt(right_val)}", font_size=40, color=TEAL).move_to([3.8, 0.5, 0])
         self.play(FadeOut(q), FadeIn(ml), Indicate(sl, color=ORANGE), run_time=1.2)
         self.play(FadeIn(mr), Indicate(sr, color=TEAL), run_time=1.2)
-        self.wait(1.5)
+        self.wait(0.5)
         nar.say("Shrink h: the secants never agree, so no derivative exists at 0.")
-        self.play(ht2.animate.set_value(0.2), run_time=3.0)
+        self.play(ht2.animate.set_value(0.2), run_time=2.0)
         self.play(Indicate(ml), Indicate(mr), run_time=1.2)
-        self.wait(3.0)
+        self.wait(1.0)
         self.play(FadeOut(sl), FadeOut(sr), FadeOut(ml), FadeOut(mr), FadeOut(code), FadeOut(code.highlight),
                   run_time=0.6)
         self.remove(sl, sr)
@@ -462,7 +462,7 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("With h = 1 the slope reads 17, not 14: the step is too coarse.")
         w = working_line(self, r"\frac{f(3+h)-f(3)}{h}",
                          rf"\frac{{f(4)-f(3)}}{{1}}=\frac{{{fmt(F(4.0))}-{fmt(F(3.0))}}}{{1}}",
-                         rf"={fmt(fd(F, 3.0, 1.0))}\neq 14", pos=np.array([3.8, 0.9, 0]), width=5.6)
+                         rf"={fmt(fd(F, 3.0, 1.0))}\neq 14", pos=np.array([3.8, 0.9, 0]), width=5.6, hold=3.0)
         hs = [1.0, 0.1, 0.001]
         rows = [[(fmt(h), WHITE), (fmt(F(3.0 + h)), DATA), (fmt(fd(F, 3.0, h)), slope_color(1.0)),
                  (fmt(fd(F, 3.0, h) - 14.0), GRAD)] for h in hs]
@@ -471,7 +471,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(trs[0]), run_time=0.4)
         for r in trs[1:]:
             self.play(FadeIn(r), run_time=0.7)
-        self.wait(2.5)
+        self.wait(9.5)
         self.wipe(w, dot, sec, tri, lab, num, tangent, tbl, was)
         self.bkeep = VGroup(ax, labs, graph)
 
@@ -483,7 +483,7 @@ class Scene01Derivative(MovingCameraScene):
         outs = [FadeOut(m) for m in self.bkeep]
         if old_tag is not None:
             outs.append(FadeOut(old_tag))
-        self.play(*outs, run_time=0.7)
+        self.play(*outs, run_time=0.4)
         self.remove(*self.bkeep)
         banner = self.open_act("Expert corner: the size of h", hold=0)
         ks = list(range(1, 17))
@@ -498,8 +498,7 @@ class Scene01Derivative(MovingCameraScene):
         yl = MathTex(r"\log_{10}|\text{error}|", font_size=30).next_to(ax.y_axis, UP, buff=0.15)
         nar.say("We measure the error against the true slope 14, for h = 10^-k.")
         zero = MathTex("0", font_size=24, color=GREY_B).next_to(ax.c2p(0, 0), LEFT, buff=0.12)
-        self.play(Create(ax), FadeIn(xl), FadeIn(yl), FadeIn(zero), run_time=1.5)
-        self.wait(0.8)
+        self.play(Create(ax), FadeIn(xl), FadeIn(yl), FadeIn(zero), run_time=0.6)
         self.close_act(banner)
         fw = ax.plot_line_graph(ks, ly(FORWARD), line_color=DATA, add_vertex_dots=True,
                                 vertex_dot_radius=0.05, stroke_width=4)
@@ -514,8 +513,8 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("Predict: at h = 0.0001, which formula lands closer to 14?")
         q = self.ask(r"\text{Closer to 14 at } h=10^{-4}\,?", pos=np.array([3.8, 1.0, 0]), color=WHITE)
         nar.say("Blue forward step looks only right; teal central looks both sides.")
-        self.play(FadeOut(q), Create(fw), FadeIn(leg1), FadeIn(t1), FadeIn(sw1), run_time=2.5)
-        self.play(Create(ce), FadeIn(leg2), FadeIn(t2), FadeIn(sw2), run_time=2.5)
+        self.play(FadeOut(q), Create(fw), FadeIn(leg1), FadeIn(t1), FadeIn(sw1), run_time=0.4)
+        self.play(Create(ce), FadeIn(leg2), FadeIn(t2), FadeIn(sw2), run_time=0.4)
         nar.say("At k = 4 the forward error is about 3e-4, the central one about 4e-11.")
         mark = Line(ax.c2p(4, -14), ax.c2p(4, 2), color=ACTIVE, stroke_width=3)
         w = MathTex(rf"{sci(FORWARD[4])}\ \text{{vs}}\ {sci(CENTRAL[4])}", font_size=38, color=ACTIVE)
@@ -528,12 +527,12 @@ class Scene01Derivative(MovingCameraScene):
                       font_size=34, color=ACTIVE).move_to([3.8, -1.2, 0])
         win.scale_to_fit_width(5.2)
         self.play(FadeIn(win), Indicate(w), run_time=1.0)
-        self.wait(3.0)
+        self.wait(1.0)
         self.play(FadeOut(win), run_time=0.3)
 
         nar.say("Past k = 8 both climb: the computer rounds the tiny gaps away.")
         self.play(FadeOut(xl), run_time=0.3)
-        self.zoom_on(ax.c2p(10, -6) + DOWN * 1.0, 0.45, 3.5)
+        self.zoom_on(ax.c2p(10, -6) + DOWN * 1.0, 0.45, 2.0)
         self.play(FadeIn(xl), run_time=0.3)
         nar.say("At k = 16 the nudge vanishes: both slopes are exactly 0.")
         out = MathTex(rf"h=10^{{-16}}:\ \text{{slope}}={fmt(fd(f, 3.0, 1e-16))}", font_size=38,
@@ -544,7 +543,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(Indicate(fw["vertex_dots"][-1], scale_factor=2.5),
                   Indicate(ce["vertex_dots"][-1], scale_factor=2.5),
                   run_time=1.5)
-        self.wait(1.5)
+        self.wait(0.1)
         self.play(FadeOut(out), FadeOut(w), run_time=0.3)
         nar.say("In code, central costs one more call of f but is far more exact.")
         cp = code_panel("fwd = (f(x+h) - f(x)) / h\ncen = (f(x+h) - f(x-h)) / (2*h)", font_size=24)
@@ -553,9 +552,9 @@ class Scene01Derivative(MovingCameraScene):
         hl = SurroundingRectangle(cp.code_lines[1], color=ACTIVE, buff=0.05)
         self.play(FadeIn(cp), run_time=0.6)
         self.play(Create(hl), run_time=0.8)
-        self.wait(2.5)
+        self.wait(1.0)
         self.play(FadeOut(cp), FadeOut(hl), run_time=0.3)
         nar.say("So micrograd never nudges: each operation knows its exact slope.")
         c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=5.4).move_to([3.8, -1.0, 0])
         self.play(FadeIn(c), run_time=0.5)
-        self.wait(3.5)
+        self.wait(5.9)
