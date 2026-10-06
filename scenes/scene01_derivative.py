@@ -393,7 +393,18 @@ class Scene01Derivative(MovingCameraScene):
         xt, ht = ValueTracker(-2.0), ValueTracker(H)
         dot, sec, tri, slope = make_probe(ax2, G, xt, ht, (1.0, 0.8))
         lab, num = make_readout(slope, TOPR + LEFT * 0.9)
-        self.play(FadeIn(dot), FadeIn(sec), FadeIn(lab), FadeIn(num), run_time=0.3)
+        xlab = MathTex("x=", font_size=34, color=GREY_B)
+        xnum = DecimalNumber(0, num_decimal_places=1, font_size=34, color=WHITE)
+
+        def follow_x(m):
+            xnum.set_value(xt.get_value())
+            xlab.move_to(ax2.c2p(-2.5, 3.2))
+            xnum.next_to(xlab, RIGHT, buff=0.08)
+
+        xnum.add_updater(follow_x)
+        follow_x(xnum)
+        self.play(FadeIn(dot), FadeIn(sec), FadeIn(lab), FadeIn(num), FadeIn(xlab), FadeIn(xnum),
+                  run_time=0.3)
         self.wait(1.0)
         nar.say("Predict: where on this curve is the tangent perfectly flat?")
         q = self.ask(r"\text{Where is the slope } 0\,?", pos=np.array([3.8, 1.2, 0]), color=WHITE)
@@ -428,7 +439,8 @@ class Scene01Derivative(MovingCameraScene):
             self.play(FadeIn(r), run_time=0.6)
         self.wait(4.0)
         nar.say("Now the absolute value: a V with a sharp corner at x = 0.")
-        pre_b2 = [e1, e2, dot, sec, lab, num, tri, tbl, m1, m2, flat1, flat2]
+        xnum.clear_updaters()
+        pre_b2 = [xlab, xnum, e1, e2, dot, sec, lab, num, tri, tbl, m1, m2, flat1, flat2]
 
         # B2: abs(x) has a kink at 0
         ax3, labs3 = make_axes([-3, 3, 1], [0, 3, 1], 7.0, 3.7,"x", r"|x|")
@@ -481,7 +493,6 @@ class Scene01Derivative(MovingCameraScene):
         nod = MathTex(r"-1\neq +1:\ \text{no derivative at } 0", font_size=36, color=RED).move_to([3.8, 0.0, 0])
         self.play(FadeIn(nod), run_time=0.4)
         self.wait(3.5)
-        nar.say("Back to f. If h is far too big, the secant leaves the tangent.")
         pre_b3 = [sl, sr, lg, ml, mr, code, code.highlight, nod]
 
         # B3: h too big
@@ -494,6 +505,7 @@ class Scene01Derivative(MovingCameraScene):
         self.add(was)
         ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax4, labs4, graph4, morph=False,
                                         pre=pre_b3)
+        nar.say("Back to f. If h is far too big, the secant leaves the tangent.")
         xt3, ht3 = ValueTracker(3.0), ValueTracker(H)
         dot, sec, tri, slope = make_probe(ax4, F, xt3, ht3, (1.3, 16.0))
         tangent = Line(ax4.c2p(3 - 1.3, 20 - 14 * 1.3), ax4.c2p(3 + 1.3, 20 + 14 * 1.3), color=GREEN,
@@ -545,8 +557,8 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("Expert corner: how good is this nudge, and can we do better?")
         banner = self.open_act("Expert corner: the size of h", hold=1.0)
         self.close_act(banner)
-        leg1 = MathTex(r"\frac{f(x+h)-f(x)}{h}", font_size=34, color=DATA).move_to([3.9, 2.4, 0])
-        leg2 = MathTex(r"\frac{f(x+h)-f(x-h)}{2h}", font_size=34, color=FWD).move_to([3.9, 0.8, 0])
+        leg1 = MathTex(r"\frac{f(x+h)-f(x)}{h}", font_size=34, color=DATA).move_to([3.9, 2.8, 0])
+        leg2 = MathTex(r"\frac{f(x+h)-f(x-h)}{2h}", font_size=34, color=FWD).move_to([3.9, 1.7, 0])
         sw1 = Line(ORIGIN, RIGHT * 0.5, color=DATA, stroke_width=6).next_to(leg1, LEFT, buff=0.2)
         sw2 = Line(ORIGIN, RIGHT * 0.5, color=FWD, stroke_width=6).next_to(leg2, LEFT, buff=0.2)
         t1 = Text("forward", font_size=26, color=DATA).next_to(leg1, DOWN, buff=0.1)
@@ -564,30 +576,29 @@ class Scene01Derivative(MovingCameraScene):
         self.play(Create(ce), run_time=0.4)
         nar.say("At k = 4 the forward error is about 3e-4, the central one about 4e-11.")
         mark = DashedLine(ax.c2p(4, -14), ax.c2p(4, 2), color=ACTIVE, stroke_width=3, stroke_opacity=0.6)
-        w = MathTex(rf"h=10^{{-4}}:\ {sci(FORWARD[4])}\ \text{{vs}}\ {sci(CENTRAL[4])}", font_size=38, color=ACTIVE)
+        w = MathTex(rf"h=10^{{-4}}:\ {sci(FORWARD[4])}\ \text{{vs}}\ {sci(CENTRAL[4])}", font_size=38, color=WHITE)
         w.scale_to_fit_width(4.6)
-        w.move_to([4.5, -0.3, 0])
+        w.move_to([4.3, 0.6, 0])
         mk = MathTex(r"k=4", font_size=30, color=ACTIVE).next_to(ax.c2p(4, 2), RIGHT, buff=0.1)
         self.add(w, mk)
         self.play(Create(mark), run_time=1.0)
         win = MathTex(rf"\text{{Answer: central, }}\text{{about }}10^{{{round(float(np.log10(FORWARD[4] / CENTRAL[4])))}}}\times\ \text{{closer}}",
-                      font_size=34, color=ACTIVE).move_to([4.3, -0.75, 0])
+                      font_size=34, color=ACTIVE).move_to([4.3, 0.05, 0])
         win.scale_to_fit_width(4.3)
         self.play(FadeIn(win), Indicate(w), run_time=1.0)
         self.wait(1.0)
         nar.say("So micrograd never nudges: each operation knows its exact slope.")
-        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=4.6).move_to([4.2, -1.45, 0])
+        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=4.6).move_to([4.2, -0.6, 0])
         self.play(FadeOut(win), FadeIn(c), run_time=0.5)
         self.wait(2.0)
         nar.say("In code, central costs one more call of f but is far more exact.")
         cp = code_panel("fwd = (f(x+h) - f(x)) / h\ncen = (f(x+h) - f(x-h)) / (2*h)", font_size=24)
         cp.scale_to_fit_width(4.6)
-        cp.move_to([4.3, -1.7, 0])
+        cp.move_to([4.3, -1.8, 0])
         hl = SurroundingRectangle(cp.code_lines[1], color=ACTIVE, buff=0.05)
-        self.play(FadeOut(c), FadeIn(cp), run_time=0.6)
+        self.play(FadeIn(cp), run_time=0.6)
         self.play(Create(hl), run_time=0.8)
         self.wait(3.0)
-        self.play(FadeOut(cp), FadeOut(hl), run_time=0.3)
         nar.say("Errors shrink to k = 8, then rounding noise wins.")
         noise = MathTex(r"\text{rounding noise, } k>8", font_size=34, color=WHITE).move_to(ax.c2p(11.5, -10.5))
         self.play(FadeOut(xl), FadeIn(noise), run_time=0.3)
