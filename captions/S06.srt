@@ -35,82 +35,82 @@ Topological order: every node comes after all of its children.
 Walk down from o. A node turns yellow when we step into it.
 
 10
-00:00:56,200 --> 00:01:04,333
+00:00:56,200 --> 00:01:05,133
 It drops into the list only after all its children are in it.
 
 11
-00:01:04,933 --> 00:01:09,800
+00:01:05,733 --> 00:01:10,600
 Children first, output last. Now we flip the list around.
 
 12
-00:01:10,400 --> 00:01:31,067
+00:01:11,200 --> 00:01:31,867
 Backward now runs along the flipped list and fills every gradient.
 
 13
-00:01:31,667 --> 00:01:36,200
+00:01:32,467 --> 00:01:37,000
 Same answers as by hand: x1 gets minus 1.5 and w1 gets 1.0.
 
 14
-00:01:36,800 --> 00:01:41,333
+00:01:37,600 --> 00:01:42,133
 Wrong order: x1w1 runs before its parent has pushed a gradient to it.
 
 15
-00:01:41,933 --> 00:01:46,800
+00:01:42,733 --> 00:01:47,600
 It pushes a zero into x1 and w1. Their true values need the order.
 
 16
-00:01:47,400 --> 00:01:54,000
+00:01:48,200 --> 00:01:54,800
 Example B: a diamond, where one node feeds two different nodes.
 
 17
-00:01:54,600 --> 00:01:59,800
+00:01:55,400 --> 00:02:00,600
 Here b and c do not depend on each other, so either may come first.
 
 18
-00:02:00,400 --> 00:02:04,333
+00:02:01,200 --> 00:02:05,133
 Predict: will the other valid order change the gradient of a?
 
 19
-00:02:04,933 --> 00:02:18,800
+00:02:05,733 --> 00:02:19,600
 First order: the engine's own topological list, run from the end.
 
 20
-00:02:19,400 --> 00:02:30,600
+00:02:20,200 --> 00:02:31,400
 Second order: b and c swapped. Same gradient for a, nothing changes.
 
 21
-00:02:31,200 --> 00:02:44,600
+00:02:32,000 --> 00:02:45,400
 Invalid order: c runs before d, so c's gradient is still zero.
 
 22
-00:02:45,200 --> 00:02:49,400
+00:02:46,000 --> 00:02:50,200
 Expert corner: how much work is the sort, and can it fail?
 
 23
-00:02:50,000 --> 00:03:00,700
+00:02:50,800 --> 00:03:01,500
 The sort visits every node once, so the cost is nodes plus edges.
 
 24
-00:03:01,300 --> 00:03:08,900
+00:03:02,100 --> 00:03:09,700
 Twice the nodes, twice the work: a straight line on the plot.
 
 25
-00:03:09,500 --> 00:03:14,100
+00:03:10,300 --> 00:03:14,900
 Now one long chain: 2000 additions in a row, sorted with recursion.
 
 26
-00:03:14,700 --> 00:03:18,900
+00:03:15,500 --> 00:03:19,700
 Python stops us at depth 1000: a RecursionError, with 2000 to go.
 
 27
-00:03:19,500 --> 00:03:24,433
+00:03:20,300 --> 00:03:25,233
 The fix is a new function with its own stack, so no deep recursion.
 
 28
-00:03:25,033 --> 00:03:29,567
+00:03:25,833 --> 00:03:30,367
 It sorts all 4001 nodes, and backward then reaches x without any error.
 
 29
-00:03:30,167 --> 00:03:34,500
+00:03:30,967 --> 00:03:35,300
 Real frameworks avoid deep recursion for exactly this reason.
 
