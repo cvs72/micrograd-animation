@@ -583,11 +583,11 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("In code, central costs one more call of f but is far more exact.")
         cp = code_panel("fwd = (f(x+h) - f(x)) / h\ncen = (f(x+h) - f(x-h)) / (2*h)", font_size=24)
         cp.scale_to_fit_width(4.6)
-        cp.move_to([3.9, -2.4, 0])
+        cp.move_to([4.3, -1.7, 0])
         hl = SurroundingRectangle(cp.code_lines[1], color=ACTIVE, buff=0.05)
-        self.play(FadeIn(cp), run_time=0.6)
+        self.play(FadeOut(c), FadeIn(cp), run_time=0.6)
         self.play(Create(hl), run_time=0.8)
-        self.wait(0.8)
+        self.wait(3.0)
         self.play(FadeOut(cp), FadeOut(hl), run_time=0.3)
         nar.say("Errors shrink to k = 8, then rounding noise wins.")
         noise = MathTex(r"\text{rounding noise, } k>8", font_size=34, color=WHITE).move_to(ax.c2p(11.5, -10.5))
@@ -607,4 +607,4 @@ class Scene01Derivative(MovingCameraScene):
         self.play(Indicate(fw["vertex_dots"][-1], scale_factor=2.5),
                   Indicate(ce["vertex_dots"][-1], scale_factor=2.5),
                   run_time=1.5)
-        self.wait(3.8)
+        self.wait(1.6)

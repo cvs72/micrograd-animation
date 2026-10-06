@@ -139,6 +139,6 @@ In code, central costs one more call of f but is far more exact.
 Errors shrink to k = 8, then rounding noise wins.
 
 36
-00:04:00,800 --> 00:04:06,733
+00:04:00,800 --> 00:04:06,000
 At k = 16 both slopes read 0, so the error is the full 14.
 
