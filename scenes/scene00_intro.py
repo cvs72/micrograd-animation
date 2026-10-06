@@ -180,7 +180,8 @@ class Scene00Intro(MovingCameraScene):
         w = working_line(
             self, r"\frac{g(a+h)-g(a)}{h}",
             rf"\frac{{{fmt(G_NUDGED)}-{fmt(RG.data)}}}{{{NUDGE_H}}}",
-            rf"= {fmt(NUDGE_SLOPE)}", pos=pos, width=6.0, hold=1.0)
+            rf"\frac{{{fmt(G_NUDGED)}-{fmt(RG.data)}}}{{{NUDGE_H}}} = {fmt(NUDGE_SLOPE)}",
+            pos=pos, width=6.0, hold=1.0)
         self.zoom_on(nar, w, 0.6, 0.3)
         nar.say(f"A bigger h gives {fmt(NUDGE_SLOPE)}; as h shrinks it closes in on {fmt(RA.grad)}.")
         self.play(FadeOut(w), FadeOut(step), FadeOut(fwd), FadeOut(bwd_a), FadeOut(bwd_b))
