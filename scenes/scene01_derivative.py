@@ -125,9 +125,8 @@ def make_readout(slope_fn, pos, label=r"\text{slope}="):
     return lab, num
 
 
-def table_rows(rows, header):
+def table_rows(rows, header, xs=(-1.95, -0.65, 0.65, 2.0)):
     """Small table of MathTex cells; columns at fixed offsets so rows can be added one by one."""
-    xs = [-1.95, -0.65, 0.65, 2.0]
     head = VGroup(*[MathTex(h, font_size=30, color=GREY_B).move_to([x, 0, 0]) for h, x in zip(header, xs)])
     out = [head]
     for i, r in enumerate(rows):
@@ -312,7 +311,7 @@ class Scene01Derivative(MovingCameraScene):
                          rf"\frac{{f(3.001)-f(3)}}{{0.001}}=\frac{{{fmt(f3h)}-{fmt(F(3.0))}}}{{0.001}}",
                          rf"\frac{{{fmt(f3h)}-{fmt(F(3.0))}}}{{0.001}}={fmt(S3)}", pos=np.array([4.2, 0.0, 0]), width=4.8,
                          hold=3.0)
-        self.wait(2.5)
+        self.wait(1.5)
         self.wipe(w)
 
         # table, filled one row at a time
@@ -345,7 +344,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(trs[3]), run_time=0.8)
         fl = MathTex(r"f'(x)=6x-4=0\ \Rightarrow\ x=\tfrac{2}{3}", font_size=36, color=WHITE).move_to(QPOS)
         self.play(FadeIn(fl), run_time=0.5)
-        self.wait(4.5)
+        self.wait(3.0)
         self.wipe(table, fl)
         self.play(FadeOut(dot), FadeOut(sec), FadeOut(tri), FadeOut(lab), FadeOut(num), FadeOut(tangent),
                   FadeOut(hl), FadeOut(hn), run_time=0.5)
@@ -355,7 +354,8 @@ class Scene01Derivative(MovingCameraScene):
         hs_w = [1e-4, 1e-8, 1e-12, 1e-16]
         rows_w = [[(sci(h), WHITE), (fmt(fd(f, 3.0, h)), slope_color(1.0)), (fmt(fd(f, 3.0, h) - 14.0), GRAD)]
                   for h in hs_w]
-        trs_w, _ = table_rows(rows_w, [r"h", r"\text{slope}", r"\text{error}"])
+        trs_w, _ = table_rows(rows_w, [r"h", r"\text{slope}", r"\text{error}"],
+                              xs=(-1.9, 0.1, 1.6))
         tbl_w = VGroup(*trs_w).move_to([3.8, 1.7, 0])
         for r in trs_w:
             self.play(FadeIn(r), run_time=0.6)
@@ -393,7 +393,8 @@ class Scene01Derivative(MovingCameraScene):
         xt, ht = ValueTracker(-2.0), ValueTracker(H)
         dot, sec, tri, slope = make_probe(ax2, G, xt, ht, (1.0, 0.8))
         lab, num = make_readout(slope, TOPR + LEFT * 0.9)
-        self.play(FadeIn(dot), FadeIn(sec), FadeIn(lab), FadeIn(num), run_time=0.8)
+        self.play(FadeIn(dot), FadeIn(sec), FadeIn(lab), FadeIn(num), run_time=0.3)
+        self.wait(1.0)
         nar.say("Predict: where on this curve is the tangent perfectly flat?")
         q = self.ask(r"\text{Where is the slope } 0\,?", pos=np.array([3.8, 1.2, 0]), color=WHITE)
         self.play(FadeOut(q), xt.animate.set_value(-1.0), run_time=1.5)
@@ -425,7 +426,7 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("The table shows slope 0 only at x = -1 and 1; elsewhere it is 9 or -3.")
         for r in trs[1:]:
             self.play(FadeIn(r), run_time=0.6)
-        self.wait(3.5)
+        self.wait(5.5)
         nar.say("Now the absolute value: a V with a sharp corner at x = 0.")
         pre_b2 = [e1, e2, dot, sec, lab, num, tri, tbl, m1, m2, flat1, flat2, was]
 
