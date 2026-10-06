@@ -1,14 +1,10 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 04: caption ('Real numbers in the formula...') is faded to near-invisible, and no typeset formula with substituted numbers ((20.014-20)/0.001) is visible in any frame; derivation is missing.
-- Frame 05: table shows only the x=3 row while slider is at x=-3; the x=-3 row is missing. Table columns are small and low-contrast.
-- Frame 06: tangent at x=2/3 is nearly invisible against the x-axis; slope readout is white with no flat-tangent explanation. Warning caption is greyed and low contrast; no real visual of floating-point warning (h=1e-16 giving 0).
-- Frame 07: 'Example A: f'(3)=14.0030' text sits directly under the slope readout, crowding it; g(x) morph from f is not shown; flat points x=-1 and x=1 not marked; bottom has no caption (caption missing).
-- Frame 08: abs(x) shown but no left/right secants (-1 and +1) and no 'no derivative' conclusion; the Example A text is absent from the frame, so changed values are not shown beside the original ones.
-- Frame 09: title says 'Back to f' but the plot still shows |x|; the stale axes mismatch the caption. Floating 'Example A: f'(3)=14.0030' is the only other element.
-- Frame 10: h=1 case shows only a bare f curve with no secant, no tangent, no slope readout of 17.0000 and no original 14.0030 beside it. Caption claims something the frame doesn't show.
-- Frame 11: formula/results text '3.0e-4 vs 3.8e-11' is faded and unreadable; the forward/central curves are plotted from k=1 to 16, but the h=1e-16 exact-0 point and the 1e-8 rounding turning point are not annotated; the k=4 marker tick is overlapped by the axis.
-- Frame 12: no conclusion about micrograd shown on screen; Expert corner has only plot plus code panel, no concluding visual.
-- Required act banner 'Example A' appears in frames 2-6 but frame 1 banner differs in style from the others; 'Example B' and 'Expert corner' are OK. Overall fewer than two real visuals in Example B frames (frames 8-10 mostly a single bare plot) and no typeset predict-then-reveal reveal answer for the x=-3 slope sign.
-- Captions are missing in frames 02 (title only has caption fine) and 07; fewer than 10 of 12 captions are legible (frames 04 faded, 07 absent). Frames 1-12 listed only 12 of the expected frames, with no recap card.
-- descriptions/S01.md is specific, but it describes things the frames do not show (zoom into the triangle, table rows for x=-3 and 2/3, morph to g, abs secants -1/+1, h=1 secant, conclusion text), so it does not match the frames.
+- Frame 04: the substituted formula (f(3.001)-f(3))/0.001 = (20.014-20)/0.001 has leftover ghost text from the previous formula overlapping it (garbled digits behind 'f(3.001) − f(3)' and '0.001'). Overlapping text.
+- Frame 07 (Example B, g(x)): the line g'(-1)=3·(-1)^2-3=0 is dark green on black with poor contrast, hard to read at 480p. The slope readout shows -0.0030 while the caption says flat, which is slightly confusing.
+- Frame 08: the abs(x) kink shows no left and right secants (-1 and +1) and no slope readout. The description requires both secants animated, so the frame does not match.
+- Frame 11: the '3.0e-4 vs 3.8e-11' result line and the 'k = 4' label are almost invisible (dim, mid-fade) and overlap the plot area. The yellow marker line starts at the bottom axis and has no visible dot on the curve yet.
+- Frame 10: the table's last row (0.001 ...) sits right next to the axis label 'x' at the lower right of the axes. It is crowded and nearly touches.
+- Missing from frames: the floating-point warning (h=1e-16 giving 0) and the x=2/3 table row. The frames show x=2/3 only as a readout, with no table row. Nothing shows the h=1e-16 result of 0 in Act C.
+- Act A banner appears as a big title card only in frame 01. Later frames show a small 'Example A:' with a trailing colon and no title. This is weak but acceptable.
+- There is no on-screen 'Predict' reveal for the x=-3 sign; frame 05 shows the sign only after the fact. The description's predict-then-reveal for the sign is not visible.
 
