@@ -1,12 +1,12 @@
 ## Reviewer feedback for S00 (row un-ticked; fix and re-render)
-- The frames don't show the blind-knob beat. Frame 7 shows loss = 1.2513 with a bar and no question mark. Frame 8 shows the loss falling to 0.834 with no preceding bad turn. No frame has the loss getting worse next to a question mark, as the description requires.
-- No title card in the 12 frames, and no frame poses the closing question 'what is a derivative, really?'. A predict-then-reveal question does appear (g = ? in frame 2), but it has no pulsing question mark and no 3-second hold that I can see.
-- Frame 12 has no caption while the three-act preview is still on screen. Captions should be present everywhere except the title card and recap line.
-- Frames 6 to 8: the grey slider handles overlap the connection lines. Two handles cross each other between input 1 and hidden 3 (they look like an X), which reads as clutter. The handles are low-contrast grey, and some of the yellow dots sit on top of them.
-- Frames 6 to 8: the network is squeezed into the left half and the right half is empty, except for the loss readout and bar in frames 7 and 8. The bar has no numeric scale. The layout is unbalanced and the visual is small.
-- Frame 10: the roadmap highlights only chapter 9 (PyTorch) while the caption says 'Next, adding up gradients, more operations, and PyTorch'. The highlight doesn't match the caption, and the lighting-up of chapters one at a time isn't visible across the frames (frame 9 has none lit).
-- Frame 2: the arrow from the code panel to 'g = ?' is almost invisible (dark teal on black), so the arrow is poor contrast and effectively points at nothing.
-- Frame 3 and 4: the arrows are fine, but the check line 'a: -4 → -3.999, h = 0.001' is small and thin. Its blue text on black is low contrast at 480p.
-- The three-act preview (frames 11 and 12) has a small icon column on the left. The icons are only generic parabolas, and the act-B icon changes to a cubic without explanation. The previews don't show the banners in the real act-banner style (font 36, held for 2.5 s), so the three banner previews are weak.
-- The index.txt description field for S00 is empty, so I can't confirm a match against it. descriptions/S00.md was not checked.
+- The index description for S00 is empty, so I judged it against the S00 row in PLAN.md.
+- Missing beat: no frame shows the question 'in which direction should we turn each knob?'. The closing question 'what is a derivative, really?' is also missing from all 12 frames.
+- Frames 6-8: the blind-knob beat is not visible. Frame 7 shows loss 1.2513 and frame 8 shows 0.834, and the bar is lower in frame 8. No frame shows a knob turned blindly with the loss getting worse, and there is no question mark.
+- Frames 6-8: the slider handles on the network are thin, dim grey bars that are barely visible. In frame 7 the yellow dots and highlighted lines overlap the crossing lines at the top left and look cluttered. The network fills only the left half of the frame and the right half is mostly empty.
+- Frame 1 shows no title card with the chapter number and question. No recap line appears in any frame.
+- Frame 5: the caption does not say that the expression is meaningless and only a demo. It also does not say that micrograd works on single numbers (scalars) on purpose, while real libraries use tensors for speed.
+- Frame 2: the arrow towards 'g = ?' is almost invisible, so it points at nothing. The 'g = ?' label has no pulsing question or reveal timing that I can see.
+- Frame 8: 'loss = 0.834' uses a different number format from 'loss = 1.2513' in frame 7. The format is inconsistent with the 4-decimals rule.
+- Frames 11 and 12: the Example A/B/Expert corner previews are small icons. The banners are ~30pt text and are fine, but frame 12 has no caption while the preview is on screen, which breaks the rule that captions are always visible.
+- Frame 3: both orange gradient values are readable, but the 'g' label and the gradient labels are not matched to captions that explain the gradient for b. Only a's slope is explained.
 
