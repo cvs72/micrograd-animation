@@ -570,15 +570,6 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeOut(xl), FadeIn(noise), run_time=0.3)
         self.zoom_on(ax.c2p(10, -6) + DOWN * 1.0, 0.45, 2.0)
         self.play(FadeIn(xl), run_time=0.3)
-        nar.say("At k = 16 the nudge vanishes: both slopes read exactly 0.")
-        out = MathTex(rf"h=10^{{-16}}:\ \text{{slope}}={fmt(fd(f, 3.0, 1e-16))}", font_size=38,
-                      color=ORANGE).move_to([4.3, -1.05, 0])
-        out.scale_to_fit_width(4.6)
-        assert (f(3.0 + 1e-16) - f(3.0 - 1e-16)) / 2e-16 == 0.0
-        self.play(FadeIn(out), run_time=0.6)
-        self.play(Indicate(fw["vertex_dots"][-1], scale_factor=2.5),
-                  Indicate(ce["vertex_dots"][-1], scale_factor=2.5),
-                  run_time=1.5)
         nar.say("In code, central costs one more call of f but is far more exact.")
         cp = code_panel("fwd = (f(x+h) - f(x)) / h\ncen = (f(x+h) - f(x-h)) / (2*h)", font_size=24)
         cp.scale_to_fit_width(5.0)
@@ -588,7 +579,16 @@ class Scene01Derivative(MovingCameraScene):
         self.play(Create(hl), run_time=0.8)
         self.wait(0.8)
         self.play(FadeOut(cp), FadeOut(hl), run_time=0.3)
+        nar.say("At k = 16 the nudge vanishes: both slopes read exactly 0.")
+        out = MathTex(rf"h=10^{{-16}}:\ \text{{slope}}={fmt(fd(f, 3.0, 1e-16))}", font_size=38,
+                      color=ORANGE).move_to([4.3, -1.05, 0])
+        out.scale_to_fit_width(4.6)
+        assert (f(3.0 + 1e-16) - f(3.0 - 1e-16)) / 2e-16 == 0.0
+        self.play(FadeIn(out), run_time=0.6)
+        self.play(Indicate(fw["vertex_dots"][-1], scale_factor=2.5),
+                  Indicate(ce["vertex_dots"][-1], scale_factor=2.5),
+                  run_time=1.5)
         nar.say("So micrograd never nudges: each operation knows its exact slope.")
         c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=5.4).move_to([3.8, -2.0, 0])
         self.play(FadeIn(c), run_time=0.5)
-        self.wait(5.0)
+        self.wait(6.0)
