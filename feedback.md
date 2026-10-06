@@ -1,13 +1,11 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 5: overlapping text. A ghost line ('slo…') and the orange 'slope = −21.997 < 0 → …' line collide under the main readout, and the sign line is cut off at the right. It is unreadable.
-- Frame 12: the closing caption ('At k = 16 the nudge vanishes: both slopes read exactly 0.') is almost invisible, with dark grey on black. Its text also sits in the same band as the faded cross-fade. The h=1e-16 → 0 point is never legible.
-- Frame 8 (|x|): the scene should animate left and right secants giving −1 and +1. The frame shows only a tiny orange dot, a faint stray grey line near (1,1), and no secants or slope readout. The kink claim is not visualised.
-- Frame 8: the code panel's highlight box touches or crowds the panel's right edge. The panel is small and hard to read at 480p.
-- Frame 1: the right-hand dots fade to near-invisible, so the plot looks cut off. The banner is a full title box here but a plain 'Example A:' elsewhere.
-- Frame 9: slope = 14.0717 is shown with no h value and no visible secant. The text says 'secant leaves the tangent', but the frame shows the secant lying on the tangent. It does not match the caption.
-- Frame 6: the x=2/3 flat tangent has no formula or number table. The floating-point warning (h=1e-16 giving 0) is only a caption with no visual.
-- Predict-then-reveal: the x=−3 sign question is not visible in any frame. The Example A 'above or below 20' question (frame 2) has no visible reveal. Frame 7 asks where the slope is 0, but the answer (flat at x=±1) is not shown.
-- Frames 3 and 4: the rise-over-run triangle is tiny and unlabelled (no h or rise labels), so the h segment is hard to see. The derivation is only partly substituted: f(3.001) − f(3) appears, but no step-by-step MathTex build-up.
-- Frames 11 and 12: the forward and central curves use similar blue and teal. Frame 12's 'rounding noise, k > 8' text sits on the plot near the curve and the x-axis. The k=16 point where both return 0 cannot be seen on a log plot.
-- Act B morph from f to g is not visible, since only the end state is shown. Example B shows the original values only as small grey text ('Example A: f′(3)=14.0030'), which is too small and low contrast.
+- Frames 7 and 9 (Example B): the g(x) and |x| frames never show the flat tangents at x=-1 and x=1 with slope 0. They also show no -1/+1 secant readouts and no 'no derivative' statement for |x|. The predicted answer is never visibly revealed.
+- Frame 9: the white horizontal segment at y=1 runs through the y-axis tick label '1' on the |x| plot.
+- Frames 10-11: the h=1 case never shows the 17.0000 readout or a secant visibly missing the tangent. Frame 10 reads 14.5368, and in frame 11 the curve is bare and the caption is almost invisible (faded to near-black).
+- Frame 6: the flat-tangent frame at x=2/3 has no caption. It also has no table row for x=2/3, and the table from frame 5 is gone.
+- The floating-point warning (h=1e-16 gives a slope of 0) is not visible in any Act A frame. The rise-over-run zoom and the full step-by-step MathTex derivation are also not visible.
+- Frame 5: the table has only the rows x=3 and x=-3, and the live slope readout (-20.9009) sits right above the separate '-21.997 < 0' line, which is cluttered. The table columns are small at 480p.
+- Frame 12: '3.0 x 10^-4 vs 3.8 x 10^-11' sits almost touching the top-left corner of the 'No h at all' box, and the box crowds the 'h = 10^-16' line. The text at the bottom right is cramped.
+- Frames 1-2 and 6: the Act A banner differs between frames (a boxed title in frame 1, a bare 'Example A:' elsewhere). The bare banner reads as an unfinished label.
+- Descriptions/S01.md matches the planned content but not what the frames show (the zoom, table rows, h=1 reveal and the 1e-16 warning are not visible), so it does not match the frames.
 
