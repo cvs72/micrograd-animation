@@ -1,128 +1,136 @@
 1
-00:00:03,400 --> 00:00:08,600
+00:00:03,400 --> 00:00:08,467
 Example A: the lecture's own function, a parabola we can plot.
 
 2
-00:00:09,267 --> 00:00:14,133
+00:00:09,133 --> 00:00:14,000
 Forty x values from -5 up in steps of 0.25, each with its f(x).
 
 3
-00:00:14,800 --> 00:00:18,933
+00:00:14,667 --> 00:00:19,400
 Slope tells how steeply the curve climbs when we step right.
 
 4
-00:00:19,600 --> 00:00:28,333
+00:00:20,067 --> 00:00:28,800
 Pick x = 3. First, plain arithmetic: what is f(3)?
 
 5
-00:00:29,000 --> 00:00:34,200
+00:00:29,467 --> 00:00:34,667
 Predict: if x moves a bit right of 3, is f above or below 20?
 
 6
-00:00:34,867 --> 00:00:39,000
+00:00:35,333 --> 00:00:39,467
 Above: the curve climbs. White is the step h, orange the rise.
 
 7
-00:00:39,667 --> 00:00:49,200
+00:00:40,133 --> 00:00:50,267
 Zoom in: a line through two curve points is a secant.
 
 8
-00:00:49,867 --> 00:00:58,533
+00:00:50,933 --> 00:01:00,200
 Now shrink h. The secant turns into the tangent, which only touches.
 
 9
-00:00:59,200 --> 00:01:09,667
-Real numbers in the formula: nudge by h = 0.001 and divide by h.
+00:01:00,867 --> 00:01:12,733
+Slope is rise over run; the run from x to x+h is just h.
 
 10
-00:01:10,333 --> 00:01:14,533
-Predict: at x = -3, will the slope be positive or negative?
+00:01:13,400 --> 00:01:23,867
+Real numbers in the formula: nudge by h = 0.001 and divide by h.
 
 11
-00:01:15,200 --> 00:01:21,867
-Sliding left, the readout passes white at the bottom, then turns orange.
+00:01:24,533 --> 00:01:28,733
+Predict: at x = -3, will the slope be positive or negative?
 
 12
-00:01:22,533 --> 00:01:29,733
-Near x = 2/3 the tangent is flat: slope about 0, nudges do nothing.
+00:01:29,400 --> 00:01:36,067
+Sliding left, the readout passes white at the bottom, then turns orange.
 
 13
-00:01:30,400 --> 00:01:38,533
-Warning: too many zeros in h and floats run out of digits.
+00:01:36,733 --> 00:01:43,933
+Near x = 2/3 the tangent is flat: slope about 0, nudges do nothing.
 
 14
-00:01:39,200 --> 00:01:44,067
-So the derivative is the slope at one point: rise over run, h tiny.
+00:01:44,600 --> 00:01:52,733
+Warning: too many zeros in h and floats run out of digits.
 
 15
-00:01:44,733 --> 00:01:49,267
-Example B: what if we change the function? A cubic, then a kink.
+00:01:53,400 --> 00:01:58,267
+So the derivative is the slope at one point: rise over run, h tiny.
 
 16
-00:01:49,933 --> 00:01:54,800
-Same idea, new curve g of x: it has a hump and a valley.
+00:01:58,933 --> 00:02:03,467
+Example B: what if we change the function? A cubic, then a kink.
 
 17
-00:01:55,467 --> 00:01:59,000
-Predict: where on this curve is the tangent perfectly flat?
+00:02:04,133 --> 00:02:09,267
+Same idea, new curve g of x: it has a hump and a valley.
 
 18
-00:01:59,667 --> 00:02:09,333
-At x = -1 (top of the hump) and x = 1 (bottom of the valley).
+00:02:09,933 --> 00:02:13,467
+Predict: where on this curve is the tangent perfectly flat?
 
 19
-00:02:10,000 --> 00:02:14,867
-Now the absolute value: a V with a sharp corner at x = 0.
+00:02:14,133 --> 00:02:23,267
+At x = -1 (top of the hump) and x = 1 (bottom of the valley).
 
 20
-00:02:15,533 --> 00:02:19,733
-Predict: what single slope does the corner have at x = 0?
+00:02:23,933 --> 00:02:30,200
+The table shows slope 0 only at x = -1 and 1; elsewhere it is 9 or -3.
 
 21
-00:02:20,400 --> 00:02:24,933
-Two answers: from the left the secant gives -1, from the right +1.
+00:02:30,867 --> 00:02:35,733
+Now the absolute value: a V with a sharp corner at x = 0.
 
 22
-00:02:25,600 --> 00:02:31,867
-Shrink h: the secants never agree, so no derivative exists at 0.
+00:02:36,400 --> 00:02:40,600
+Predict: what single slope does the corner have at x = 0?
 
 23
-00:02:32,533 --> 00:02:39,867
-Back to f. If h is far too big, the secant leaves the tangent.
+00:02:41,267 --> 00:02:45,800
+Two answers: from the left the secant gives -1, from the right +1.
 
 24
-00:02:40,533 --> 00:02:49,667
-With h = 1 the slope reads 17, not 14: the step is too coarse.
+00:02:46,467 --> 00:02:52,733
+Shrink h: the secants never agree, so no derivative exists at 0.
 
 25
-00:02:50,333 --> 00:02:54,733
-Expert corner: how good is this nudge, and can we do better?
+00:02:53,400 --> 00:03:01,467
+Back to f. If h is far too big, the secant leaves the tangent.
 
 26
-00:02:55,400 --> 00:02:59,933
-We measure the error against the true slope 14, for h = 10^-k.
+00:03:02,133 --> 00:03:15,333
+With h = 1 the slope reads 17, not 14: the step is too coarse.
 
 27
-00:03:00,600 --> 00:03:04,400
-Predict: at h = 0.0001, which formula lands closer to 14?
+00:03:16,000 --> 00:03:20,267
+Expert corner: how good is this nudge, and can we do better?
 
 28
-00:03:05,067 --> 00:03:10,133
-Blue forward step looks only right; teal central looks both sides.
+00:03:20,933 --> 00:03:25,467
+We measure the error against the true slope 14, for h = 10^-k.
 
 29
-00:03:10,800 --> 00:03:16,000
-At k = 4 the forward error is about 3e-4, the central one about 4e-11.
+00:03:26,133 --> 00:03:29,933
+Predict: at h = 0.0001, which formula lands closer to 14?
 
 30
-00:03:16,667 --> 00:03:22,667
-Past k = 8 both climb: the computer rounds the tiny gaps away.
+00:03:30,600 --> 00:03:35,667
+Blue forward step looks only right; teal central looks both sides.
 
 31
-00:03:23,333 --> 00:03:27,533
-At k = 16 the nudge vanishes: both slopes are exactly 0.
+00:03:36,333 --> 00:03:41,533
+At k = 4 the forward error is about 3e-4, the central one about 4e-11.
 
 32
-00:03:28,200 --> 00:03:32,200
+00:03:42,200 --> 00:03:48,200
+Past k = 8 both climb: the computer rounds the tiny gaps away.
+
+33
+00:03:48,867 --> 00:03:53,067
+At k = 16 the nudge vanishes: both slopes are exactly 0.
+
+34
+00:03:53,733 --> 00:03:57,733
 So micrograd never nudges: each operation knows its exact slope.
 
