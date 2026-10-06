@@ -19,78 +19,78 @@ Backward asks: how fast does g change if we nudge a or b?
 Nudge a up a little and g grows about 138.8 times as fast.
 
 6
-00:00:27,867 --> 00:00:36,267
+00:00:27,867 --> 00:00:35,733
 Check it: nudge a by h = 0.001 and see how far g really moves.
 
 7
-00:00:36,933 --> 00:00:41,467
+00:00:36,400 --> 00:00:40,933
 A bigger h gives 139.0388; as h shrinks it closes in on 138.8338.
 
 8
-00:00:42,133 --> 00:00:46,133
+00:00:41,600 --> 00:00:45,600
 Backprop works on any expression. Neural nets are a calmer one.
 
 9
-00:00:46,800 --> 00:00:51,333
+00:00:46,267 --> 00:00:50,800
 micrograd uses single numbers on purpose; tensors only add speed.
 
 10
-00:00:52,000 --> 00:00:55,467
+00:00:51,467 --> 00:00:54,933
 This tiny network has sixteen knobs; real ones have millions.
 
 11
-00:00:56,133 --> 00:00:58,867
+00:00:55,600 --> 00:00:58,333
 In code, every knob is just a number.
 
 12
-00:00:59,533 --> 00:01:03,000
+00:00:59,000 --> 00:01:02,467
 The loss measures how wrong we are. Lower is better.
 
 13
-00:01:03,667 --> 00:01:08,467
+00:01:03,133 --> 00:01:07,133
 Turn one knob blindly and the mistake grows: wrong way!
 
 14
-00:01:09,133 --> 00:01:11,933
-Another knob, other direction: lucky, the loss falls.
+00:01:07,800 --> 00:01:11,267
+Another knob, other direction: lucky this time, the loss falls.
 
 15
-00:01:12,600 --> 00:01:16,400
-With thousands of knobs, guessing is hopeless. We need a direction.
+00:01:11,933 --> 00:01:16,467
+But luck will not scale to thousands of knobs. We need a direction.
 
 16
-00:01:18,067 --> 00:01:21,533
+00:01:18,133 --> 00:01:21,600
 Here is our plan: twelve short chapters, one idea each.
 
 17
-00:01:22,200 --> 00:01:25,000
+00:01:22,267 --> 00:01:25,067
 First slopes, several inputs, and the computation graph.
 
 18
-00:01:25,667 --> 00:01:28,800
+00:01:25,733 --> 00:01:28,867
 Then the backward pass, one neuron, and automating it.
 
 19
-00:01:29,467 --> 00:01:32,267
+00:01:29,533 --> 00:01:32,333
 Next, adding up gradients, more operations, and PyTorch.
 
 20
-00:01:32,933 --> 00:01:36,400
+00:01:33,000 --> 00:01:36,467
 Finally a whole network, training it, and a loss surface.
 
 21
-00:01:37,067 --> 00:01:41,267
+00:01:37,133 --> 00:01:41,333
 Every chapter has three acts, so you see each idea three times.
 
 22
-00:01:41,933 --> 00:01:46,133
+00:01:42,000 --> 00:01:46,200
 A uses the lecture's numbers; B changes them and watches what moves.
 
 23
-00:01:46,800 --> 00:01:50,600
+00:01:46,867 --> 00:01:50,667
 The expert corner adds what a specialist would warn you about.
 
 24
-00:01:51,267 --> 00:01:54,067
+00:01:51,333 --> 00:01:54,133
 Chapter 1 answers it, starting with simple slopes.
 
