@@ -1,0 +1,116 @@
+1
+00:00:03,667 --> 00:00:08,200
+Example A: our Value class meets plain Python numbers for the first time.
+
+2
+00:00:08,800 --> 00:00:14,400
+We write a + 1. A plain number sits next to our Value. Will it work?
+
+3
+00:00:15,000 --> 00:00:19,867
+No. The plain number 1 has no data attribute, so Python raises an error.
+
+4
+00:00:20,467 --> 00:00:25,333
+The fix: if other is not a Value, wrap it in one before adding.
+
+5
+00:00:25,933 --> 00:00:30,467
+Now the other order: 2 * a. Python asks the number 2 first.
+
+6
+00:00:31,067 --> 00:00:35,200
+The int can't handle our class, so Python tries the other side.
+
+7
+00:00:35,800 --> 00:00:44,133
+Next it calls a.__rmul__(2), which swaps the operands: a * 2.
+
+8
+00:00:44,733 --> 00:00:50,067
+Each new operation needs only a forward value and a local slope.
+
+9
+00:00:50,667 --> 00:01:01,733
+Division and subtraction need nothing new: they reuse power, plus and times.
+
+10
+00:01:02,333 --> 00:01:06,867
+Back to the neuron. Can tanh be rebuilt from exp, plus and times?
+
+11
+00:01:07,467 --> 00:01:17,600
+Yes: n times 2, then exp, then minus 1 and plus 1, then divide.
+
+12
+00:01:18,200 --> 00:01:26,867
+Six small nodes do the work of one. Watch the gradient flow back.
+
+13
+00:01:27,467 --> 00:01:35,467
+Same value 0.7071, same gradients: the size of an operation does not matter.
+
+14
+00:01:36,067 --> 00:01:44,267
+Example B: what if we build a sigmoid from the same pieces?
+
+15
+00:01:44,867 --> 00:01:49,400
+Sigmoid needs only exp, plus, times and power: 1 over 1 + e^-x.
+
+16
+00:01:50,000 --> 00:01:54,867
+Predict: how steep is the sigmoid at x = 1? Above 0.25, or below?
+
+17
+00:01:55,467 --> 00:02:00,067
+The same x flows through four small nodes and gives s = 0.7311.
+
+18
+00:02:00,667 --> 00:02:04,867
+Backward, each node multiplies in its own slope, as in chapter 4.
+
+19
+00:02:05,467 --> 00:02:15,067
+Out comes 0.1966, which is exactly s times one minus s: a neat shortcut.
+
+20
+00:02:15,667 --> 00:02:24,733
+Slide the dot: the tangent flattens far from zero, so gradients vanish.
+
+21
+00:02:25,333 --> 00:02:30,933
+Now compare it with tanh from chapter 5: same S shape, but from -1 to 1.
+
+22
+00:02:31,533 --> 00:02:42,667
+Squeeze sigmoid sideways by 2, double it, subtract 1: it is tanh.
+
+23
+00:02:43,267 --> 00:02:50,867
+Expert corner: what happens when the rebuilt tanh gets a huge input?
+
+24
+00:02:51,467 --> 00:02:55,267
+Predict: what does the six-node tanh return for x = 400?
+
+25
+00:02:55,867 --> 00:03:03,267
+The pieces need e^(2x), which grows too fast for a float to hold.
+
+26
+00:03:03,867 --> 00:03:11,267
+Past 2x = 709.78 exp raises OverflowError, so x = 400 crashes.
+
+27
+00:03:11,867 --> 00:03:20,067
+Fix: divide top and bottom by e^(2x), so only negative powers remain.
+
+28
+00:03:20,667 --> 00:03:25,867
+The tiny power rounds to 0, so the answer is exactly 1, like fused tanh.
+
+29
+00:03:26,467 --> 00:03:35,600
+So frameworks fuse operations: fewer nodes, less memory, safer maths.
+
