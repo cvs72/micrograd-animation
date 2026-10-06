@@ -1,12 +1,15 @@
 ## Reviewer feedback for S01 (row un-ticked; fix and re-render)
-- Frame 1: caption is almost invisible (dark grey on black, mid-fade); the axes are empty, so the frame shows no plot.
-- No 'Example A' or 'Example B' banner appears in any of the 12 frames. Only an 'Act C: expert corner' banner shows, in frame 10, and it does not use the required 'Expert corner' wording. The three-act check fails.
-- Frame 9: the 'Back to f' transition is garbled. The axis labels (f(x), 100, 80, 60, 40, 20 and the x ticks) are corrupted or half-faded, and the curve is stuck mid-morph between |x| and f with a kink at 0. It is unpublishable. Neither the h=1 secant, the 17.0000 slope nor the tangent is visible.
-- Frame 4: the fraction f(3.001)-f(3) / 0.001 = ... starts at x≈550, right where the plotted curve ends (x≈548). It crowds the curve end and the tangent segment, which is a near-overlap. The tangent also looks dim and dark green.
-- Frame 3: the secant triangle is tiny and cramped. The 'f(3+1)=37>20' label is shown, but the slope readout of 15.5000 matches neither h=1 (17) nor the later reveal. The rise-over-run labels (h, f(x+h)-f(x)) are missing.
-- Frame 8: it asks 'Slope at x=0?' but no secants are drawn, and no reveal (-1 on the left, +1 on the right, so no derivative) appears in any frame. Frame 7 asks 'Where is the slope 0?' but no frame reveals x=-1 and x=1. Predict-then-reveal is therefore not shown in Act B. Frame 7 also shows no f-to-g morph and no changed values next to the originals.
-- Missing content from the description: the floating-point warning, the h=1e-16 result of 0, the table row for x=2/3 (frame 6 shows only a slope readout and a 'Derivative' box, with no table), and the step-by-step slope derivation. Act B has no visible h=1 comparison. Act C does not show the numbers 3.0e-04 and 3.8e-11 or the 1e-16 result.
-- Frames 10-12 (Act C): frame 10 is a title card with a caption only. Frames 11 and 12 show the same plot. Frame 12's vertical yellow line at k=4 has no label and no error values, and it sits on the x-axis line. The y-axis labels are irregular (2, -2, -4 ... -14) and the x-axis crosses at -13.5, below the labelled -14 tick. The conclusion is only in the caption, not on screen as text. The frame 11 caption 'central (teal) also looks to the left' is vague.
-- Captions are generic ('Zoom in...', 'Pick x = 3'). The panel contents also do not match the description in several places. For example, there is no 40-point step plot, and frame 5 shows only two table rows.
-- The description file descriptions/S01.md is detailed but promises content the frames do not show: the kink secants, the h=1 slope of 17, the 1e-16 warning and the table row for 2/3. It therefore does not match the frames.
+- Frames 1-12 show no act banners for 'Example A' or 'Example B'; only the 'Expert corner' banner is visible (frame 10), so the three-act requirement is not met.
+- Frame 1: caption 'Forty x values...' is nearly invisible (faded in), and the plot is empty.
+- Frame 6: the 'Derivative' definition box is half faded and hard to read.
+- Frame 9: the |x| to f morph is caught mid-transition, so the axis labels are garbled and overlapping ('|x|', '3', '1 1'). The caption says 'Back to f' but the frame shows a half-morphed curve, not f, and no h=1 secant or slope 17.0 appears.
+- Frame 8: the |x| kink is shown without the left and right secants (-1 / +1). The description requires both to be animated.
+- Frame 7: g(x) is shown, but no flat-tangent reveal at x=±1 is visible. The question 'Where is the slope 0?' is never visibly answered in the frames.
+- Frame 11: the caption is fading and is barely readable, and the k=4 cursor line carries no readout of the forward (3.0e-4) or central (3.8e-11) errors.
+- Frame 11 and the plot: the y-axis is labelled as log10|error| but the ticks run oddly (2, -2, -4 ... with no 0), the plot is cramped, and the x-axis label sits far from the axis.
+- Act C is missing the floating-point warning (h=1e-16 gives exactly 0) and the on-screen conclusion that micrograd never uses a tiny h. Frame 10 is a near-empty title card with a banner and caption only.
+- Frame 4 is the only visible formula with real numbers substituted; the step-by-step derivation is thin. Frame 4 also shows the secant line in a dark green on black that is hard to see.
+- Example B shows no original values next to the changed ones. Captions are visible in about 11/12 frames, but several are generic ('Predict: ...').
+- Each act has fewer than two distinct visuals visible in the sampled frames; Act B shows only bare curves. The code panel and bar chart are absent.
+- The description file descriptions/S01.md is specific and matches the script, but it describes content that the frames do not show (e.g. the h=1 slope of 17, the secants for |x|, and the 1e-16 warning).
 
