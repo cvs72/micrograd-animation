@@ -321,8 +321,7 @@ class Scene01Derivative(MovingCameraScene):
         nar.say("Sliding left, the readout passes white at the bottom, then turns orange.")
         ans = MathTex(rf"\text{{slope}}={fmt(SM3)}<0", font_size=36, color=ORANGE).move_to(QPOS)
         self.play(FadeOut(q), xt.animate.set_value(-3.0), FadeOut(tangent), run_time=2.5)
-        self.play(FadeIn(ans), run_time=0.5)
-        self.play(FadeIn(trs[2]), run_time=0.8)
+        self.play(FadeIn(ans), FadeIn(trs[2]), run_time=0.6)
         self.wait(3.5)
         self.play(FadeOut(ans), run_time=0.3)
 
@@ -450,7 +449,7 @@ class Scene01Derivative(MovingCameraScene):
         graph4 = ax4.plot(F, x_range=[-5, 5], color=DATA, stroke_width=5)
         self.play(FadeIn(was), run_time=0.3)
         nar.say("Back to f. If h is far too big, the secant leaves the tangent.")
-        ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax4, labs4, graph4)
+        ax, labs, graph = self.retarget(VGroup(ax, labs, graph), ax4, labs4, graph4, morph=False)
         xt3, ht3 = ValueTracker(3.0), ValueTracker(H)
         dot, sec, tri, slope = make_probe(ax4, F, xt3, ht3, (1.3, 16.0))
         tangent = Line(ax4.c2p(3 - 1.3, 20 - 14 * 1.3), ax4.c2p(3 + 1.3, 20 + 14 * 1.3), color=GREEN,
