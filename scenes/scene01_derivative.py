@@ -326,7 +326,8 @@ class Scene01Derivative(MovingCameraScene):
         q = self.ask(r"\text{slope at } x=-3:\ +\ \text{or}\ -\,?")
         nar.say("Sliding left, the readout passes white at the bottom, then turns orange.")
         ans = MathTex(rf"\text{{slope}}={fmt(SM3)}<0", font_size=36, color=ORANGE).move_to(QPOS)
-        self.play(FadeOut(q), xt.animate.set_value(-3.0), FadeOut(tangent), FadeIn(ans), FadeIn(trs[2]),
+        self.play(FadeOut(q), run_time=0.4)
+        self.play(xt.animate.set_value(-3.0), FadeOut(tangent), FadeIn(ans), FadeIn(trs[2]),
                   run_time=2.5)
         self.wait(3.5)
         self.play(FadeOut(ans), run_time=0.3)
@@ -422,7 +423,6 @@ class Scene01Derivative(MovingCameraScene):
         code.scale_to_fit_width(5.6)
         code.move_to([3.8, -0.9, 0])
         code.highlight = SurroundingRectangle(code.code_lines[1], color=ACTIVE, buff=0.0, stroke_width=2)
-        self.play(FadeIn(code), FadeIn(code.highlight), run_time=0.6)
         ht2 = ValueTracker(1.0)
 
         def sec_left():
@@ -443,7 +443,7 @@ class Scene01Derivative(MovingCameraScene):
 
         sl, sr = always_redraw(sec_left), always_redraw(sec_right)
         lg = always_redraw(legs)
-        self.play(Create(sl), Create(sr), FadeIn(lg), run_time=1.0)
+        self.play(Create(sl), Create(sr), FadeIn(lg), FadeIn(code), FadeIn(code.highlight), run_time=1.0)
         nar.say("Predict: what single slope does the corner have at x = 0?")
         q = self.ask(r"\text{Slope at } x=0\,?")
         h0 = ht2.get_value()
@@ -554,14 +554,9 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(win), Indicate(w), run_time=1.0)
         self.wait(1.0)
         nar.say("So micrograd never nudges: each operation knows its exact slope.")
-        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=4.6).move_to([4.2, -1.45, 0])
+        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=4.6).move_to([4.2, -1.3, 0])
         self.play(FadeOut(win), FadeIn(c), run_time=0.5)
         self.wait(2.0)
-        nar.say("Errors shrink to k = 8, then rounding wins: at k = 16 the slope is 0.")
-        noise = MathTex(r"\text{rounding noise, } k>8", font_size=34, color=WHITE).move_to(ax.c2p(12.0, -11.5))
-        self.play(FadeOut(xl), FadeIn(noise), run_time=0.3)
-        self.zoom_on(ax.c2p(10, -6) + DOWN * 1.0, 0.45, 2.0)
-        self.play(FadeIn(xl), run_time=0.3)
         nar.say("In code, central costs one more call of f but is far more exact.")
         cp = code_panel("fwd = (f(x+h) - f(x)) / h\ncen = (f(x+h) - f(x-h)) / (2*h)", font_size=24)
         cp.scale_to_fit_width(4.6)
@@ -571,13 +566,18 @@ class Scene01Derivative(MovingCameraScene):
         self.play(Create(hl), run_time=0.8)
         self.wait(0.8)
         self.play(FadeOut(cp), FadeOut(hl), run_time=0.3)
+        nar.say("Errors shrink to k = 8, then rounding wins: at k = 16 the slope is 0.")
+        noise = MathTex(r"\text{rounding noise, } k>8", font_size=34, color=WHITE).move_to(ax.c2p(12.0, -11.5))
+        self.play(FadeOut(xl), FadeIn(noise), run_time=0.3)
+        self.zoom_on(ax.c2p(10, -6) + DOWN * 1.0, 0.45, 2.0)
+        self.play(FadeIn(xl), run_time=0.3)
         nar.say("At k = 16 the nudge vanishes: both slopes read exactly 0.")
         out = MathTex(rf"h=10^{{-16}}:\ \text{{slope}}={fmt(fd(f, 3.0, 1e-16))}", font_size=38,
-                      color=ORANGE).move_to([4.3, -2.4, 0])
+                      color=ORANGE).move_to([4.3, -2.3, 0])
         out.scale_to_fit_width(4.4)
         assert (f(3.0 + 1e-16) - f(3.0 - 1e-16)) / 2e-16 == 0.0
         self.play(FadeIn(out), run_time=0.6)
         self.play(Indicate(fw["vertex_dots"][-1], scale_factor=2.5),
                   Indicate(ce["vertex_dots"][-1], scale_factor=2.5),
                   run_time=1.5)
-        self.wait(3.0)
+        self.wait(4.5)

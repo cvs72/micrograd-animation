@@ -43,98 +43,98 @@ Real numbers in the formula: nudge by h = 0.001 and divide by h.
 Predict: at x = -3, will the slope be positive or negative?
 
 12
-00:01:33,067 --> 00:01:39,400
+00:01:33,067 --> 00:01:39,800
 Sliding left, the readout passes white at the bottom, then turns orange.
 
 13
-00:01:40,067 --> 00:01:47,267
+00:01:40,467 --> 00:01:47,667
 Near x = 2/3 the tangent is flat: slope about 0, nudges do nothing.
 
 14
-00:01:47,933 --> 00:01:56,067
+00:01:48,333 --> 00:01:56,467
 Warning: too many zeros in h and floats run out of digits.
 
 15
-00:01:56,733 --> 00:02:01,600
+00:01:57,133 --> 00:02:02,000
 So the derivative is the slope at one point: rise over run, h tiny.
 
 16
-00:02:02,267 --> 00:02:06,800
+00:02:02,667 --> 00:02:07,200
 Example B: what if we change the function? A cubic, then a kink.
 
 17
-00:02:07,467 --> 00:02:12,933
+00:02:07,867 --> 00:02:13,333
 Same idea, new curve g of x: it has a hump and a valley.
 
 18
-00:02:13,600 --> 00:02:18,667
+00:02:14,000 --> 00:02:19,067
 Predict: where on this curve is the tangent perfectly flat?
 
 19
-00:02:19,333 --> 00:02:26,200
+00:02:19,733 --> 00:02:26,600
 The slope reads about 0 at x = -1 (hump top) and x = 1 (valley).
 
 20
-00:02:26,867 --> 00:02:34,067
+00:02:27,267 --> 00:02:34,467
 The table shows slope 0 only at x = -1 and 1; elsewhere it is 9 or -3.
 
 21
-00:02:34,733 --> 00:02:39,600
+00:02:35,133 --> 00:02:40,000
 Now the absolute value: a V with a sharp corner at x = 0.
 
 22
-00:02:40,267 --> 00:02:44,467
+00:02:40,667 --> 00:02:44,867
 Predict: what single slope does the corner have at x = 0?
 
 23
-00:02:45,133 --> 00:02:49,667
+00:02:45,533 --> 00:02:50,067
 Two answers: from the left the secant gives -1, from the right +1.
 
 24
-00:02:50,333 --> 00:02:54,533
+00:02:50,733 --> 00:02:54,933
 Shrink h: the secants never agree, so no derivative exists at 0.
 
 25
-00:02:55,200 --> 00:03:02,667
+00:02:55,600 --> 00:03:03,067
 Back to f. If h is far too big, the secant leaves the tangent.
 
 26
-00:03:03,333 --> 00:03:21,067
+00:03:03,733 --> 00:03:21,467
 With h = 1 the slope reads 17, not 14: the step is too coarse.
 
 27
-00:03:21,733 --> 00:03:25,933
+00:03:22,133 --> 00:03:26,333
 Expert corner: how good is this nudge, and can we do better?
 
 28
-00:03:26,600 --> 00:03:31,133
+00:03:27,000 --> 00:03:31,533
 We measure the error against the true slope 14, for h = 10^-k.
 
 29
-00:03:31,800 --> 00:03:35,600
+00:03:32,200 --> 00:03:36,000
 Predict: at h = 0.0001, which formula lands closer to 14?
 
 30
-00:03:36,267 --> 00:03:40,067
+00:03:36,667 --> 00:03:40,467
 Blue forward step looks only right; teal central looks both sides.
 
 31
-00:03:40,733 --> 00:03:45,933
+00:03:41,133 --> 00:03:46,333
 At k = 4 the forward error is about 3e-4, the central one about 4e-11.
 
 32
-00:03:46,600 --> 00:03:50,067
+00:03:47,000 --> 00:03:50,467
 So micrograd never nudges: each operation knows its exact slope.
 
 33
-00:03:50,733 --> 00:03:56,667
-Errors shrink to k = 8, then rounding wins: at k = 16 the slope is 0.
-
-34
-00:03:57,333 --> 00:04:02,200
+00:03:51,133 --> 00:03:56,000
 In code, central costs one more call of f but is far more exact.
 
+34
+00:03:56,667 --> 00:04:02,600
+Errors shrink to k = 8, then rounding wins: at k = 16 the slope is 0.
+
 35
-00:04:02,867 --> 00:04:08,000
+00:04:03,267 --> 00:04:09,867
 At k = 16 the nudge vanishes: both slopes read exactly 0.
 
