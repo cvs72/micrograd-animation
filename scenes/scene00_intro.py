@@ -189,7 +189,7 @@ class Scene00Intro(MovingCameraScene):
                      color=GRAD, width=5.4).move_to([3.7, -1.55, 0])
         nar.say("Backprop works on any expression. Neural nets are a calmer one.")
         self.play(FadeIn(co))
-        self.wait(3.0)
+        self.wait(2.2)
         nar.say("micrograd uses single numbers on purpose; tensors only add speed.")
         self.play(FadeOut(co))
         self.play(FadeOut(Group(code, g_tex, ra, rb, fwd, bwd_a, bwd_b)))
