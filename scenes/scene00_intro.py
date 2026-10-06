@@ -148,7 +148,7 @@ class Scene00Intro(MovingCameraScene):
         g_tex = MathTex(rf"g = {fmt(RG.data)}", font_size=44, color=DATA).move_to(g_q)
         fwd = Arrow([code.get_right()[0] + 0.15, 2.7, 0], [g_tex.get_left()[0] - 0.15, 2.7, 0],
                     color=FWD, buff=0, stroke_width=5)
-        self.play(Create(fwd))
+        self.play(FadeIn(fwd), run_time=0.6)
         self.play(TransformMatchingTex(g_q, g_tex), Indicate(g_tex, color=FWD))
         self.wait(1)
         # predict then reveal the slope of a
@@ -169,7 +169,7 @@ class Scene00Intro(MovingCameraScene):
                       color=BWD, buff=0, stroke_width=5)
         nar.say(f"Nudge a up a little and g grows about {RA.grad:.1f} times as fast.")
         self.play(ReplacementTransform(qa, ra), ReplacementTransform(qb, rb))
-        self.play(Create(bwd_a), Create(bwd_b))
+        self.play(FadeIn(bwd_a), FadeIn(bwd_b), run_time=0.6)
         self.wait(1.0)
         # check the slope with a real nudge, zoomed in
         pos = np.array([3.9, -1.9, 0.0])
