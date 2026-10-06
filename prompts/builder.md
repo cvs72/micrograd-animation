@@ -33,3 +33,6 @@ Update progress.md with the Edit tool, not shell redirects (shell redirects are 
 4. Typeset every formula with MathTex, derive it step by step, and substitute the real numbers before every result.
 5. If you cannot finish a whole scene in one iteration: finish the acts in order (A, then B, then C), keep the scene file runnable after every save, write in progress.md which act you stopped at, and do NOT tick the row. The next iteration continues from there.
 6. When verify.sh or the reviewer sends feedback in feedback.md, fix exactly those points first.
+
+## Review feedback rules (these override anything above about fixing every reported item)
+feedback.md lists BLOCKING items (you must fix them) and, separately, optional polish (ignore it unless you have time left). Fix the blocking items only; do not rewrite a scene to chase minor points. The reviewer's frames can land inside a fade or an animation: if you cannot see a reported problem in your own render at that moment, note it in progress.md and move on. After a few rejections a scene is accepted with notes automatically, so do not over-polish. Duration limits in PLAN.md are tolerances: never cut content to fit them, adjust a few waits instead.

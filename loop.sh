@@ -77,6 +77,7 @@ while [ "$i" -lt "$MAX_ITER" ]; do
   commit_all "iteration $i: loop bookkeeping" || true
   if [ "$vrc" -eq 0 ] && all_done; then
     log "ALL SCENES DONE and verified. Spent about $spent USD."
+    grep -l "ACCEPTED WITH NOTES" reviews/notes/*.md 2>/dev/null | sed "s/^/scene accepted with notes (polish later): /" | tee -a logs/loop.log
     log "Review the videos yourself:"; ls media/videos/*/480p15/*.mp4 2>/dev/null | tee -a logs/loop.log
     exit 0
   fi

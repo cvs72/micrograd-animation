@@ -19,3 +19,5 @@ logs/
 .smoke/
 STOP
 PLAN.md.bak.*
+*.bak.*
+prompts/*.bak.*

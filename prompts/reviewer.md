@@ -25,3 +25,10 @@ For every scene named in ACT_SCENES in PLAN.md, FAIL it unless ALL of these are 
 - for S02 (Expert corner) and S12 (all acts) a real 3D view.
 Also read descriptions/<ID>.md and FAIL if it is generic or does not match what the frames show.
 For S13, also read publish/video_description.md and publish/chapters.txt and FAIL if either is missing, generic, or has timestamps that do not increase.
+
+## Severity rules (FINAL: these override any earlier wording about pass and fail)
+Return, for every scene, a list of issues. Each issue has a severity, "blocking" or "minor", and a text that names the frame number. The loop passes a scene when it has NO blocking issue.
+Blocking ONLY for: an act banner (Example A, Example B or Expert corner) that never appears in the frames of a scene that needs it; captions missing in most frames; frames made only of text with no diagram, plot, graph or surface; text a viewer could not read (tiny, very low contrast, clipped or overlapping) when it carries a key formula, number or caption; a number on screen that is clearly wrong or contradicts its own label; a required 3D view missing (S02 Expert corner, S12); a missing or generic descriptions/<ID>.md (and, for S13, publish files).
+Everything else is minor: legible but small text, empty space, sparse moments, cosmetic polish, wording, palette nitpicks, extra visuals beyond the two required, the comparison between examples being modest.
+Frames are sampled at the middle of caption cues, but a frame can still land inside a fade, a wipe or a Create animation. If the neighbouring frames show the element, do NOT report it.
+Report at most 5 blocking issues (the most important first) and at most 3 minor ones. Do not invent problems. A first version that teaches correctly and is readable is a pass; perfecting it is not your job.
