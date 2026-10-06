@@ -87,38 +87,38 @@ So the bug grows with the uses: a node used k times loses k - 1 shares.
 Expert corner: the chain rule adds one term for every path.
 
 23
-00:02:25,217 --> 00:02:30,417
+00:02:25,217 --> 00:02:30,467
 Take the notebook graph again. Every route from f down to a is one path.
 
 24
-00:02:31,017 --> 00:02:43,817
+00:02:31,067 --> 00:02:43,867
 Path one goes through d and carries e times b; path two goes through e.
 
 25
-00:02:44,417 --> 00:02:57,217
+00:02:44,467 --> 00:02:57,267
 Same for b: one route through d, one through e, one product each.
 
 26
-00:02:57,817 --> 00:03:02,317
+00:02:57,867 --> 00:03:02,417
 Each path adds its share: a node's gradient is the sum over paths.
 
 27
-00:03:02,917 --> 00:03:07,450
+00:03:03,017 --> 00:03:07,567
 Frameworks keep adding on purpose, so you must zero grads before each step.
 
 28
-00:03:08,050 --> 00:03:15,050
+00:03:08,167 --> 00:03:15,167
 Here y = x times x, x = 3: the true slope is 6 each step, not 12 or 18.
 
 29
-00:03:15,650 --> 00:03:20,517
+00:03:15,767 --> 00:03:20,667
 Used on purpose: add the gradients of four small batches into one big one.
 
 30
-00:03:21,117 --> 00:03:26,383
+00:03:21,267 --> 00:03:26,533
 Their sum is 10, the gradient of the whole batch, with less memory at once.
 
 31
-00:03:26,983 --> 00:03:31,517
+00:03:27,133 --> 00:03:31,667
 The rule: += inside the engine, zero the grads once per optimizer step.
 
