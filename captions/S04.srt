@@ -95,14 +95,14 @@ Backprop and finite differences agree to about ten decimals.
 This costs two forward passes per leaf, so it is only a test.
 
 25
-00:03:27,477 --> 00:03:31,277
+00:03:27,477 --> 00:03:31,327
 Reverse mode: one backward pass gives the slope for ALL inputs.
 
 26
-00:03:31,877 --> 00:03:40,343
+00:03:31,927 --> 00:03:40,393
 Forward mode needs one pass per input. Watch them race.
 
 27
-00:03:40,943 --> 00:03:45,777
+00:03:40,993 --> 00:03:45,827
 Millions of weights and one loss: that is why networks use reverse mode.
 

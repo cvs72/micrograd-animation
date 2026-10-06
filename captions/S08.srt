@@ -67,50 +67,50 @@ Predict: how steep is the sigmoid at x = 1? Above 0.25, or below?
 The same x flows through four small nodes and gives s = 0.7311.
 
 18
-00:02:00,667 --> 00:02:04,867
+00:02:00,667 --> 00:02:04,800
 Backward, each node multiplies in its own slope, as in chapter 4.
 
 19
-00:02:05,467 --> 00:02:15,067
+00:02:05,400 --> 00:02:15,000
 Out comes 0.1966, which is exactly s times one minus s: a neat shortcut.
 
 20
-00:02:15,667 --> 00:02:24,733
+00:02:15,600 --> 00:02:24,667
 Slide the dot: the tangent flattens far from zero, so gradients vanish.
 
 21
-00:02:25,333 --> 00:02:30,933
+00:02:25,267 --> 00:02:30,867
 Now compare it with tanh from chapter 5: same S shape, but from -1 to 1.
 
 22
-00:02:31,533 --> 00:02:42,667
+00:02:31,467 --> 00:02:42,567
 Squeeze sigmoid sideways by 2, double it, subtract 1: it is tanh.
 
 23
-00:02:43,267 --> 00:02:50,867
+00:02:43,167 --> 00:02:50,667
 Expert corner: what happens when the rebuilt tanh gets a huge input?
 
 24
-00:02:51,467 --> 00:02:55,267
+00:02:51,267 --> 00:02:55,067
 Predict: what does the six-node tanh return for x = 400?
 
 25
-00:02:55,867 --> 00:03:03,267
+00:02:55,667 --> 00:03:02,967
 The pieces need e^(2x), which grows too fast for a float to hold.
 
 26
-00:03:03,867 --> 00:03:11,267
+00:03:03,567 --> 00:03:10,967
 Past 2x = 709.78 exp raises OverflowError, so x = 400 crashes.
 
 27
-00:03:11,867 --> 00:03:20,067
+00:03:11,567 --> 00:03:19,767
 Fix: divide top and bottom by e^(2x), so only negative powers remain.
 
 28
-00:03:20,667 --> 00:03:25,867
+00:03:20,367 --> 00:03:25,600
 The tiny power rounds to 0, so the answer is exactly 1, like fused tanh.
 
 29
-00:03:26,467 --> 00:03:35,600
+00:03:26,200 --> 00:03:35,300
 So frameworks fuse operations: fewer nodes, less memory, safer maths.
 

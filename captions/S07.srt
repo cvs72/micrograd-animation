@@ -119,6 +119,6 @@ Used on purpose: add the gradients of four small batches into one big one.
 Their sum is 10, the gradient of the whole batch, with less memory at once.
 
 31
-00:03:27,133 --> 00:03:31,667
+00:03:27,133 --> 00:03:31,683
 The rule: += inside the engine, zero the grads once per optimizer step.
 

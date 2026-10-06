@@ -59,54 +59,54 @@ Example B: what if we build a different shape from the same pieces?
 Think first: with (a + b) times (c + f), how many plus nodes appear?
 
 16
-00:01:51,200 --> 00:01:55,733
+00:01:51,200 --> 00:01:55,700
 Same two operations, new shape: two plus nodes feed one times node.
 
 17
-00:01:56,333 --> 00:02:10,867
+00:01:56,300 --> 00:02:10,800
 Now the numbers: 3 minus 1 is 2, 2 plus 4 is 6, and 2 times 6 is 12.
 
 18
-00:02:11,467 --> 00:02:16,067
+00:02:11,400 --> 00:02:16,000
 Same pieces, different graph: the shape comes from the expression.
 
 19
-00:02:16,667 --> 00:02:21,333
+00:02:16,600 --> 00:02:21,200
 Expert corner: the graph is built while the code runs.
 
 20
-00:02:21,933 --> 00:02:30,333
+00:02:21,800 --> 00:02:30,100
 This loop adds one number per turn. Watch the graph grow with it.
 
 21
-00:02:30,933 --> 00:02:35,467
+00:02:30,700 --> 00:02:35,233
 With three turns we get seven Values: one start, three inputs, three sums.
 
 22
-00:02:36,067 --> 00:02:40,800
+00:02:35,833 --> 00:02:40,533
 Predict: change three to five. How many Values will the graph hold?
 
 23
-00:02:41,400 --> 00:02:46,867
+00:02:41,133 --> 00:02:46,633
 11 Values! Same code, a different graph: the data decides the shape.
 
 24
-00:02:47,467 --> 00:02:51,733
+00:02:47,233 --> 00:02:51,500
 Every node keeps its children in _prev, so backprop can walk back.
 
 25
-00:02:52,333 --> 00:02:56,800
+00:02:52,100 --> 00:02:56,567
 That is why training uses so much memory: nothing is freed early.
 
 26
-00:02:57,400 --> 00:03:02,600
+00:02:57,167 --> 00:03:02,367
 Rebinding: c = c plus 1 does not change the old c node at all.
 
 27
-00:03:03,200 --> 00:03:07,733
+00:03:02,967 --> 00:03:07,500
 It builds a brand new node and moves the name c onto it.
 
 28
-00:03:08,333 --> 00:03:12,933
+00:03:08,100 --> 00:03:12,700
 The old node stays in the graph, and d still points to it.
 

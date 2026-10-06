@@ -59,38 +59,38 @@ Another knob, other direction: lucky this time, the loss falls.
 But luck will not scale to thousands of knobs. We need a direction.
 
 16
-00:01:17,800 --> 00:01:21,267
+00:01:17,800 --> 00:01:21,300
 Here is our plan: twelve short chapters, one idea each.
 
 17
-00:01:21,867 --> 00:01:24,650
+00:01:21,900 --> 00:01:24,700
 First slopes, several inputs, and the computation graph.
 
 18
-00:01:25,250 --> 00:01:28,367
+00:01:25,300 --> 00:01:28,450
 Then the backward pass, one neuron, and automating it.
 
 19
-00:01:28,967 --> 00:01:31,750
+00:01:29,050 --> 00:01:31,850
 Next, adding up gradients, more operations, and PyTorch.
 
 20
-00:01:32,350 --> 00:01:35,800
+00:01:32,450 --> 00:01:35,950
 Finally a whole network, training it, and a loss surface.
 
 21
-00:01:36,400 --> 00:01:40,567
+00:01:36,550 --> 00:01:40,750
 Every chapter has three acts, so you see each idea three times.
 
 22
-00:01:41,167 --> 00:01:45,300
+00:01:41,350 --> 00:01:45,550
 A uses the lecture's numbers; B changes them and watches what moves.
 
 23
-00:01:45,900 --> 00:01:49,733
+00:01:46,150 --> 00:01:50,000
 The expert corner adds what a specialist would warn you about.
 
 24
-00:01:50,333 --> 00:01:53,133
+00:01:50,600 --> 00:01:53,400
 Chapter 1 answers it, starting with simple slopes.
 
