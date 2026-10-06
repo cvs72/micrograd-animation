@@ -304,14 +304,23 @@ class Scene11Training(MovingCameraScene):
         self.play(FadeOut(zero), run_time=0.3)
         k = ValueTracker(0)
         live_bars = always_redraw(lambda: make_bars(axes, interp(run["preds"], k.get_value())))
-        laxes, lx = line_axes(STEPS - 1, 7, 1, 5.6, 3.0)
-        laxes.move_to(RIGHT * 3.6 + UP * 0.5)
+        laxes, lx = line_axes(STEPS - 1, 7, 1, 5.4, 2.6)
+        laxes.move_to(RIGHT * 3.6 + UP * 0.9)
         lx.next_to(laxes, DOWN, buff=0.1).align_to(laxes, RIGHT)
-        ly = Text("loss", font_size=24, color=SECOND).next_to(laxes, UP, buff=0.1).align_to(laxes, LEFT)
+        ly = Text("loss", font_size=24, color=SECOND).move_to(laxes.c2p(24, 6.2))
         curve = always_redraw(lambda: make_curve(laxes, run["loss"], k.get_value(), BWD, 7))
-        ro = self.readout(k, run["loss"], UP * 3.0)
-        upd = MathTex(r"p\leftarrow p-0.05\cdot\frac{\partial L}{\partial p}", font_size=44, color=WHITE
-                      ).move_to(DOWN * 2.1 + RIGHT * 0.0).scale(0.85)
+        ro = self.readout(k, run["loss"], UP * 3.3)
+        upd_cache = {}
+
+        def make_upd():
+            i = min(int(round(k.get_value())), STEPS - 1)
+            if i not in upd_cache:
+                w0, g0 = run["w"][i][0], run["g0"][i]
+                upd_cache[i] = MathTex(
+                    rf"p\leftarrow p-\eta g={w0:.4f}-0.05\cdot({g0:.4f})={w0 - 0.05 * g0:.4f}",
+                    font_size=40, color=WHITE).scale_to_fit_width(10.5).move_to(DOWN * 2.0)
+            return upd_cache[i].copy()
+        upd = always_redraw(make_upd)
         self.play(Create(laxes), FadeIn(lx), FadeIn(ly), FadeIn(live_bars), FadeIn(ro), run_time=1.2)
         self.play(FadeIn(upd), run_time=0.6)
         self.add(curve)

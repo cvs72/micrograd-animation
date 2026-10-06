@@ -79,42 +79,42 @@ Now the same network trained with rate 1.0: every bar jumps to -1.
 Two answers are now wrong, and tanh is flat there, so the gradient dies.
 
 21
-00:02:45,867 --> 00:02:49,867
+00:02:45,867 --> 00:02:49,933
 Expert corner: what really goes wrong, and what real training adds.
 
 22
-00:02:50,467 --> 00:02:53,967
+00:02:50,533 --> 00:02:54,000
 The classic bug: forget to zero the gradients before backward().
 
 23
-00:02:54,567 --> 00:03:05,367
+00:02:54,600 --> 00:03:05,467
 Predict: if we never zero them, will the loss still go down?
 
 24
-00:03:05,967 --> 00:03:11,167
+00:03:06,067 --> 00:03:11,267
 Yes, it still falls here, which is why the bug is so easy to miss.
 
 25
-00:03:11,767 --> 00:03:21,567
+00:03:11,867 --> 00:03:21,667
 Kept gradients pile up, so every step is too big.
 
 26
-00:03:22,167 --> 00:03:26,333
+00:03:22,267 --> 00:03:26,467
 41 knobs but only 4 examples: the network can simply memorise them.
 
 27
-00:03:26,933 --> 00:03:35,333
+00:03:27,067 --> 00:03:35,467
 Low loss on these four says nothing about unseen examples.
 
 28
-00:03:35,933 --> 00:03:41,433
+00:03:36,067 --> 00:03:41,600
 The loss is a design choice: it decides what we aim for.
 
 29
-00:03:42,033 --> 00:03:51,433
+00:03:42,200 --> 00:03:51,600
 A mistake of 1.5 pulls with 3 under squared loss, 1 under absolute.
 
 30
-00:03:52,033 --> 00:04:07,833
+00:03:52,200 --> 00:04:08,133
 Real training adds four things to this loop.
 
