@@ -1,0 +1,108 @@
+1
+00:00:03,667 --> 00:00:09,800
+Example A: the lecture's graph, with every gradient still zero.
+
+2
+00:00:10,400 --> 00:00:19,600
+Base case: nudge L by h and L moves by h, so L.grad is 1.
+
+3
+00:00:20,200 --> 00:00:24,400
+A local derivative is how one node reacts to its own inputs.
+
+4
+00:00:25,000 --> 00:00:29,867
+Predict: if d grows by 1, L changes by f. What number is that?
+
+5
+00:00:30,467 --> 00:00:42,667
+The times node swaps in the other input: dL/dd is f, dL/df is d.
+
+6
+00:00:43,267 --> 00:00:52,067
+Chain rule: rates multiply along a path, like a car and a bicycle.
+
+7
+00:00:52,667 --> 00:00:57,533
+The car is 8 times the man: multiply the two rates along the way.
+
+8
+00:00:58,133 --> 00:01:15,600
+The plus node is a router: it hands the gradient to both inputs.
+
+9
+00:01:16,200 --> 00:01:20,733
+Predict: e.grad is minus 2 and b is minus 3. What is a.grad?
+
+10
+00:01:21,333 --> 00:01:42,600
+Multiply along the path: minus 2 times 1 times minus 3 is 6.
+
+11
+00:01:43,200 --> 00:01:52,000
+Check by nudging a a tiny bit: L should move about 6 times as far.
+
+12
+00:01:52,600 --> 00:01:56,400
+One step: push every leaf a little along its own gradient.
+
+13
+00:01:57,000 --> 00:02:03,600
+Run the forward pass again: L rises from minus 8 to minus 7.2865.
+
+14
+00:02:04,200 --> 00:02:10,200
+Example B: what if we change the four inputs? Watch the numbers morph.
+
+15
+00:02:10,800 --> 00:02:25,347
+Set a = -2, b = 5, c = -3, f = 0.5. Every number is recomputed.
+
+16
+00:02:25,947 --> 00:02:30,497
+L is now -6.5. Each gradient follows its own path of local derivatives.
+
+17
+00:02:31,097 --> 00:02:35,647
+a.grad is e.grad times b: 0.5 times 5 is 2.5, down from 6.
+
+18
+00:02:36,247 --> 00:02:40,747
+Now back to the notebook inputs, but with f = 0.
+
+19
+00:02:41,347 --> 00:02:59,227
+L is multiplied by zero, so nothing upstream can matter.
+
+20
+00:02:59,827 --> 00:03:03,827
+Only f.grad survives. This is why a dead branch stops learning.
+
+21
+00:03:04,427 --> 00:03:09,227
+Expert corner: how do we know backprop is right? Check it live.
+
+22
+00:03:09,827 --> 00:03:14,027
+For every leaf, nudge it both ways and measure how L reacts.
+
+23
+00:03:14,627 --> 00:03:21,727
+Backprop and finite differences agree to about ten decimals.
+
+24
+00:03:22,327 --> 00:03:26,877
+This costs two forward passes per leaf, so it is only a test.
+
+25
+00:03:27,477 --> 00:03:31,277
+Reverse mode: one backward pass gives the slope for ALL inputs.
+
+26
+00:03:31,877 --> 00:03:40,343
+Forward mode needs one pass per input. Watch them race.
+
+27
+00:03:40,943 --> 00:03:45,777
+Millions of weights and one loss: that is why networks use reverse mode.
+
