@@ -338,7 +338,8 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeOut(ans), run_time=0.3)
 
         nar.say("Sliding right, the slope shrinks toward 0 near the bottom.")
-        self.play(xt.animate.set_value(2 / 3), FadeIn(trs[3]), run_time=3.0)
+        self.play(xt.animate.set_value(2 / 3), run_time=3.0)
+        self.play(FadeIn(trs[3]), run_time=0.3)
         nar.say("Near x = 2/3 the tangent is flat: slope about 0, nudges do nothing.")
         self.play(Indicate(num, color=WHITE), run_time=1.2)
         fl = MathTex(r"f'(x)=6x-4=0\ \Rightarrow\ x=\tfrac{2}{3}", font_size=36, color=WHITE).move_to(QPOS)
@@ -455,7 +456,7 @@ class Scene01Derivative(MovingCameraScene):
         def legs():
             h = ht2.get_value()
             return VGroup(
-                Line(ax3.c2p(-h, h), ax3.c2p(0, h), color=WHITE, stroke_width=5),
+                Line(ax3.c2p(-h, 0), ax3.c2p(-h, h), color=ORANGE, stroke_width=5),
                 Line(ax3.c2p(h, 0), ax3.c2p(h, h), color=TEAL, stroke_width=5),
                 Dot(ax3.c2p(-h, h), radius=0.08, color=ORANGE), Dot(ax3.c2p(0, 0), radius=0.08, color=ACTIVE),
                 Dot(ax3.c2p(h, h), radius=0.08, color=TEAL))
@@ -576,7 +577,7 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(win), Indicate(w), run_time=1.0)
         self.wait(1.0)
         nar.say("So micrograd never nudges: each operation knows its exact slope.")
-        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=4.6).move_to([4.2, -1.2, 0])
+        c = callout("No h at all", "exact local derivatives", color=ACTIVE, width=4.6).move_to([4.2, -1.45, 0])
         self.play(FadeOut(win), FadeIn(c), run_time=0.5)
         self.wait(2.0)
         nar.say("In code, central costs one more call of f but is far more exact.")
@@ -595,12 +596,12 @@ class Scene01Derivative(MovingCameraScene):
         self.play(FadeIn(xl), run_time=0.3)
         nar.say("At k = 16 both slopes read 0, so the error is the full 14.")
         out = MathTex(rf"h=10^{{-16}}:\ \text{{slope}}={fmt(fd(f, 3.0, 1e-16))}", font_size=38,
-                      color=ORANGE).move_to([4.3, -2.2, 0])
+                      color=WHITE).move_to([4.3, -2.45, 0])
         out.scale_to_fit_width(4.4)
         assert (f(3.0 + 1e-16) - f(3.0 - 1e-16)) / 2e-16 == 0.0
         err16 = abs(fd(f, 3.0, 1e-16) - 14.0)
         assert err16 == 14.0
-        e16 = MathTex(rf"k=16:\ \text{{error}}={fmt(err16)}", font_size=30, color=ACTIVE)
+        e16 = MathTex(rf"k=16:\ \text{{error}}={fmt(err16)}", font_size=30, color=WHITE)
         e16.next_to(ax.c2p(16, 2), UP, buff=0.12).shift(LEFT * 1.0)
         self.play(FadeIn(out), FadeIn(e16), run_time=0.6)
         self.play(Indicate(fw["vertex_dots"][-1], scale_factor=2.5),
