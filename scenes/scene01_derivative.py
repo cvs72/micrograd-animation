@@ -282,7 +282,7 @@ class Scene01Derivative(MovingCameraScene):
         f3h = F(3.0 + H)
         w = working_line(self, r"\frac{f(x+h)-f(x)}{h}",
                          rf"\frac{{f(3.001)-f(3)}}{{0.001}}=\frac{{{fmt(f3h)}-{fmt(F(3.0))}}}{{0.001}}",
-                         rf"={fmt(S3)}", pos=MID, width=5.6)
+                         rf"={fmt(S3)}", pos=np.array([4.2, 0.0, 0]), width=4.8)
         self.wipe(w)
 
         # table, filled one row at a time
@@ -320,7 +320,7 @@ class Scene01Derivative(MovingCameraScene):
         tiny = 1e-16
         w = working_line(self, r"\frac{f(3+h)-f(3)}{h}",
                          rf"\frac{{f(3+10^{{-16}})-f(3)}}{{10^{{-16}}}}=\frac{{{fmt(f(3.0 + tiny))}-{fmt(F(3.0))}}}{{10^{{-16}}}}",
-                         rf"={fmt(fd(f, 3.0, tiny))}\neq {fmt(exact(f, 3.0))}", pos=MID, width=5.8)
+                         rf"={fmt(fd(f, 3.0, tiny))}\neq {fmt(exact(f, 3.0))}", pos=np.array([4.2, 0.0, 0]), width=4.8)
         self.wipe(w)
         nar.say("So the derivative is the slope at one point: rise over run, h tiny.")
         self.define("Derivative", "slope at one point")
@@ -484,7 +484,7 @@ class Scene01Derivative(MovingCameraScene):
         t1 = Text("forward", font_size=26, color=DATA).next_to(leg1, DOWN, buff=0.1)
         t2 = Text("central", font_size=26, color=FWD).next_to(leg2, DOWN, buff=0.1)
         nar.say("Predict: at h = 0.0001, which formula lands closer to 14?")
-        q = self.ask(r"\text{Closer to 14 at } h=10^{-4}\,?", pos=np.array([3.8, -1.0, 0]))
+        q = self.ask(r"\text{Closer to 14 at } h=10^{-4}\,?", pos=np.array([3.8, 1.0, 0]), color=WHITE)
         nar.say("Blue forward step looks only right; teal central looks both sides.")
         self.play(FadeOut(q), Create(fw), FadeIn(leg1), FadeIn(t1), run_time=2.5)
         self.play(Create(ce), FadeIn(leg2), FadeIn(t2), run_time=2.5)
