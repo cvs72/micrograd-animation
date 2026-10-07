@@ -1,60 +1,60 @@
 1
-00:00:04,200 --> 00:00:07,667
+00:00:04,100 --> 00:00:07,567
 The whole journey: twelve chapters, each in one tiny picture.
 
 2
-00:00:08,267 --> 00:00:12,467
+00:00:08,167 --> 00:00:12,367
 Slopes first: how fast does the output move if an input moves?
 
 3
-00:00:13,067 --> 00:00:16,867
+00:00:12,967 --> 00:00:16,767
 Several inputs: each one gets its own slope, its own sensitivity.
 
 4
-00:00:17,467 --> 00:00:21,667
+00:00:17,367 --> 00:00:21,567
 Then graphs: each number remembers its inputs, so we can walk back.
 
 5
-00:00:22,267 --> 00:00:26,467
+00:00:22,167 --> 00:00:26,367
 Order matters: a node goes backward only after all nodes after it.
 
 6
-00:00:27,067 --> 00:00:31,267
+00:00:26,967 --> 00:00:31,167
 Gradients add up, and any operation works if its slope is right.
 
 7
-00:00:31,867 --> 00:00:34,600
+00:00:31,767 --> 00:00:34,500
 Tensors pack many scalars together, purely for speed.
 
 8
-00:00:35,200 --> 00:00:38,800
+00:00:35,100 --> 00:00:38,700
 Then networks: layers of neurons, trained by gradient descent.
 
 9
-00:00:39,400 --> 00:00:43,267
+00:00:39,300 --> 00:00:43,167
 The loss surface is an analogy: real networks cannot be pictured.
 
 10
-00:00:43,867 --> 00:00:52,867
+00:00:43,767 --> 00:00:52,767
 Every chapter had three acts. Keep that pattern for your own study.
 
 11
-00:00:53,467 --> 00:01:01,267
+00:00:53,367 --> 00:01:01,167
 Our network had 41 parameters; real language models have billions.
 
 12
-00:01:01,867 --> 00:01:06,000
+00:01:01,767 --> 00:01:05,900
 They learn to guess the next word, with the very same arithmetic.
 
 13
-00:01:06,600 --> 00:01:10,200
+00:01:06,500 --> 00:01:10,100
 Remember: the gradient tells every knob which way to turn.
 
 14
-00:01:10,800 --> 00:01:19,800
+00:01:10,700 --> 00:01:19,700
 Here it is on one real knob: its gradient decides the step.
 
 15
-00:01:20,400 --> 00:01:27,800
+00:01:20,300 --> 00:01:27,700
 Next in Karpathy's series: makemore, a small language model.
 
