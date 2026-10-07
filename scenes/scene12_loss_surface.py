@@ -194,7 +194,7 @@ class Scene12LossSurface(ThreeDScene):
         self.axes = axes
         self.P = axes.c2p
         labels = [MathTex("w_1", color=WHITE, font_size=44).move_to(self.P(3.9, 0, 0)),
-                  MathTex("w_2", color=WHITE, font_size=44).move_to(self.P(0, 3.9, 0)),
+                  MathTex("w_2", color=WHITE, font_size=44).move_to(self.P(0, 3.4, 0)),
                   MathTex("L", color=YELLOW, font_size=44).move_to(self.P(0, 0, self.zmax_ax + 1.6))]
         self.axis_labels = labels
         return axes, labels
@@ -246,7 +246,7 @@ class Scene12LossSurface(ThreeDScene):
         nar.say("Every pair (w1, w2) gives one loss: the height above that spot.")
         formula = MathTex(r"L(w_1,w_2)=\sum_{i=1}^{4}\left(\tanh(w_1x_{1i}+w_2x_{2i}+b)-y_i\right)^2",
                           font_size=40, color=WHITE)
-        formula.scale_to_fit_width(9.0).move_to([0, 3.3, 0])
+        formula.scale_to_fit_width(7.6).move_to([0, 3.45, 0])
         self.fix(formula)
         self.play(FadeIn(formula))
         self.wait(2.0)
@@ -257,7 +257,7 @@ class Scene12LossSurface(ThreeDScene):
         assert abs(L0 - sum((o - y) ** 2 for o, y in zip(outs, YS))) < 1e-9
         terms = "+".join(rf"({fmt(o)}-({fmt(y)}))^2" for o, y in zip(outs, YS))
         nar.say("At the start (-2.5, 2) the engine adds four squared errors.")
-        self.play(formula.animate.move_to([0, 3.3, 0]).scale(0.75))
+        self.play(formula.animate.move_to([0, 3.45, 0]).scale(0.75))
         res = self.working([
             (r"L=\sum_i(o_i-y_i)^2", WHITE),
             (rf"L={terms}", DATA),
@@ -298,10 +298,11 @@ class Scene12LossSurface(ThreeDScene):
         self.play(Create(up), run_time=1.5)
         self.wait(1.0)
         self.play(Create(down), run_time=1.5)
-        gl = MathTex(rf"\nabla L=({fmt(g1)},\ {fmt(g2)})", font_size=44, color=GRAD).move_to([0, 3.3, 0])
+        gl = MathTex(rf"\nabla L=({fmt(g1)},\ {fmt(g2)})", font_size=48, color=ORANGE).move_to([0, 3.6, 0])
+        gl.add_background_rectangle(color=BLACK, opacity=0.8, buff=0.12)
         self.fix(gl)
         self.play(FadeIn(gl))
-        self.wait(2.5)
+        self.wait(3.0)
         self.play(FadeOut(gl))
 
         nar.say("One update: w1 minus learning rate times its slope.")
