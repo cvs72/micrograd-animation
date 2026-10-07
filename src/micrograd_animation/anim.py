@@ -252,3 +252,112 @@ class CrossfadeNarrator(Narrator):
         self.start = self._now()
         self.min_hold = max(2.5, 0.35 * len(text.split()))
         self.cues.append([self.start, None, text])
+
+
+# ---- mini drawings for the recap (S13)
+
+def _dots(n, w, color=WHITE, r=0.07):
+    return VGroup(*[Dot(radius=r, color=color) for _ in range(n)]).arrange(RIGHT, buff=w)
+
+
+def chapter_icon(k, size=1.4):
+    """Small drawing for chapter k (1..12) in a rounded box, plus a function that returns
+    its 2 second mini animation (call it after the icon is on screen)."""
+    box = RoundedRectangle(corner_radius=0.12, width=size, height=size, stroke_color=GREY_B,
+                           stroke_width=2)
+    s = size * 0.36
+    if k in (1, 5, 11):  # curve with a sliding dot
+        xs = np.linspace(-1, 1, 30)
+        if k == 1:
+            f = lambda x: x * x
+        elif k == 5:
+            f = lambda x: np.tanh(2.5 * x) * 0.9
+        else:
+            f = lambda x: 0.9 * np.exp(-1.6 * (x + 1))
+        pts = [np.array([x * s, (f(x) - 0.35) * s, 0]) for x in xs]
+        curve = VMobject(color=DATA, stroke_width=3).set_points_smoothly(pts)
+        dot = Dot(pts[0], radius=0.07, color=ACTIVE)
+        art = VGroup(curve, dot)
+        anim = lambda: [MoveAlongPath(dot, curve, run_time=1.8)]
+    elif k == 2:  # three slopes as bars
+        hs = [-0.9, 0.6, 0.3]
+        bars = VGroup(*[Rectangle(width=0.2, height=0.02, fill_color=c, fill_opacity=1, stroke_width=0)
+                        for c in (ORANGE, TEAL, TEAL)]).arrange(RIGHT, buff=0.2)
+        for b, h in zip(bars, hs):
+            b.target_h = abs(h) * size * 0.45
+        line = Line(LEFT * s, RIGHT * s, color=GREY_B, stroke_width=2)
+        art = VGroup(line, bars)
+        bars.move_to(line.get_center())
+        for b, h in zip(bars, hs):
+            b.move_to(line.get_center() + np.array([b.get_x() - line.get_center()[0], 0, 0]))
+        def anim():
+            outs = []
+            for b, h in zip(bars, hs):
+                new = Rectangle(width=0.2, height=b.target_h, fill_color=b.get_fill_color(),
+                                fill_opacity=1, stroke_width=0)
+                new.move_to([b.get_x(), line.get_y() + (1 if h > 0 else -1) * b.target_h / 2, 0])
+                outs.append(Transform(b, new, run_time=1.6))
+            return outs
+    elif k in (3, 4):  # tiny graph with a pulse
+        a, b, e = (Dot(p * s, radius=0.09, color=WHITE) for p in
+                   (np.array([-1, 0.6, 0]), np.array([-1, -0.6, 0]), np.array([0, 0, 0])))
+        d = Dot(np.array([1, 0, 0]) * s, radius=0.09, color=WHITE)
+        ar = VGroup(Line(a.get_center(), e.get_center()), Line(b.get_center(), e.get_center()),
+                    Line(e.get_center(), d.get_center())).set_color(GREY_B).set_stroke(width=2)
+        path = Line(a.get_center(), e.get_center()).append_points(
+            Line(e.get_center(), d.get_center()).points)
+        path.set_opacity(0)
+        if k == 3:
+            pulse = Dot(a.get_center(), radius=0.08, color=FWD)
+            anim = lambda: [MoveAlongPath(pulse, path, run_time=1.8)]
+        else:
+            pulse = Dot(d.get_center(), radius=0.08, color=BWD)
+            anim = lambda: [MoveAlongPath(pulse, path.copy().reverse_points(), run_time=1.8)]
+        art = VGroup(ar, a, b, e, d, path, pulse)
+    elif k == 6:  # topological order, nodes light up
+        sq = VGroup(*[Square(0.2, stroke_color=WHITE, stroke_width=2) for _ in range(5)]
+                    ).arrange(RIGHT, buff=0.08)
+        art = sq
+        anim = lambda: [LaggedStart(*[sq[i].animate.set_fill(YELLOW, 1) for i in range(5)],
+                                    lag_ratio=0.5, run_time=1.8)]
+    elif k == 7:  # gradients add up
+        parts = VGroup(*[Rectangle(width=0.35, height=0.35, fill_color=c, fill_opacity=0.9,
+                                   stroke_width=0) for c in (ORANGE, ORANGE)]).arrange(RIGHT, buff=0.1)
+        plus = MathTex("+", font_size=36, color=WHITE)
+        art = VGroup(parts[0], plus, parts[1]).arrange(RIGHT, buff=0.1)
+        anim = lambda: [Indicate(parts[0], color=YELLOW), Indicate(parts[1], color=YELLOW)]
+    elif k == 8:  # more operations
+        t1 = MathTex(r"e^x", font_size=34, color=TEAL)
+        t2 = MathTex(r"x^k", font_size=34, color=DATA)
+        art = VGroup(t1, t2).arrange(RIGHT, buff=0.25)
+        anim = lambda: [Indicate(t1, color=YELLOW, run_time=0.9), Indicate(t2, color=YELLOW, run_time=0.9)]
+    elif k == 9:  # tensor grid
+        grid = VGroup(*[Square(0.22, stroke_color=WHITE, stroke_width=1.5) for _ in range(9)]
+                      ).arrange_in_grid(3, 3, buff=0.04)
+        art = grid
+        anim = lambda: [LaggedStart(*[sq.animate.set_fill(TEAL, 0.9) for sq in grid],
+                                    lag_ratio=0.1, run_time=1.8)]
+    elif k == 10:  # tiny network with a pulse
+        cols = []
+        for x, n in zip((-1, 0, 1), (3, 4, 1)):
+            cols.append([np.array([x * s, (n - 1) / 2 * 0.28 * size / 1.4 - i * 0.28 * size / 1.4, 0])
+                         for i in range(n)])
+        edges = VGroup(*[Line(p, q, stroke_width=1, color=GREY_B)
+                         for c0, c1 in zip(cols[:-1], cols[1:]) for p in c0 for q in c1])
+        nodes = VGroup(*[Dot(p, radius=0.06, color=WHITE) for c in cols for p in c])
+        art = VGroup(edges, nodes)
+        anim = lambda: [LaggedStart(*[Indicate(nodes[i], color=ACTIVE, scale_factor=1.8)
+                                      for i in range(len(nodes))], lag_ratio=0.2, run_time=1.8)]
+    else:  # k == 12, a bowl with a ball spiralling in
+        rings = VGroup(*[Ellipse(width=r * s * 2, height=r * s * 1.2, stroke_color=BLUE,
+                                 stroke_width=2) for r in (1.0, 0.65, 0.3)])
+        pts = [np.array([np.cos(t) * r * s, np.sin(t) * r * s * 0.6, 0])
+               for t, r in zip(np.linspace(0, 5, 30), np.linspace(1.0, 0.05, 30))]
+        path = VMobject().set_points_smoothly(pts).set_opacity(0)
+        dot = Dot(pts[0], radius=0.07, color=ACTIVE)
+        art = VGroup(rings, path, dot)
+        anim = lambda: [MoveAlongPath(dot, path, run_time=1.8)]
+    art.move_to(box)
+    icon = VGroup(box, art)
+    icon.box, icon.art = box, art
+    return icon, anim

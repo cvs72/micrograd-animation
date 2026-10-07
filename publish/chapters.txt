@@ -1,0 +1,14 @@
+0:00 Intro: which way should we turn each knob?
+2:00 What is a derivative?
+6:15 Several inputs and partial derivatives
+10:05 Value nodes and the computation graph
+13:22 The backward pass by hand
+17:13 One neuron with tanh
+23:27 Automating backprop: topological order
+27:07 Why gradients are added up
+30:43 More operations and the level of abstraction
+34:24 The same thing in PyTorch
+37:15 Building a neural network from Values
+40:26 Loss and gradient descent
+44:40 The loss surface as a landscape
+47:52 Recap, what to learn next and credits
