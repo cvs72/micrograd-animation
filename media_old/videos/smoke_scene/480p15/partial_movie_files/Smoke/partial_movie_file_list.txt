@@ -1,3 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/bruno/MIACS/micrograd-animation/media/videos/smoke_scene/480p15/partial_movie_files/Smoke/2118183852_494477454_223132457.mp4'
-file 'file:/Users/bruno/MIACS/micrograd-animation/media/videos/smoke_scene/480p15/partial_movie_files/Smoke/366519484_2443583593_1283693028.mp4'
