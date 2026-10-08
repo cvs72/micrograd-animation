@@ -3,10 +3,11 @@
 
 > Unofficial, non-commercial fan project based on Andrej Karpathy's micrograd lecture and notebooks. All credit for the ideas and code belongs to him. See [Disclaimer](#disclaimer).
 
-This is just a project to create animations of Andrej Karpaty's lecture nn-zero-to-hero, and more speciphically on the firt lecture on 'micrograd' and the video 'The spelled-out intro to neural networks and backpropagation: building micrograd
-'.
+I love [3Blue1Brown](https://www.3blue1brown.com/)'s videos. They helped me enormously to understand maths, machine learning and more. This project is my humble attempt to make animations in that spirit for myself, based on the first lecture of Andrej Karpathy's [nn-zero-to-hero](https://github.com/karpathy/nn-zero-to-hero) series, *[The spelled-out intro to neural networks and backpropagation: building micrograd](https://www.youtube.com/watch?v=VMj-3S1tku0)*. I hope others find it useful too.
 
-### TL;DR
+The animations are built with [Manim Community Edition](https://www.manim.community/), the community-maintained fork of the animation engine created by Grant Sanderson (3Blue1Brown). This project is not affiliated with 3Blue1Brown, Manim, or Andrej Karpathy.
+
+### -> TL;DR
 Builder agent writes scenes, objective checks gate them, an independent read-only reviewer agent
 looks at rendered frames, and a bash loop you own decides when it is finished. Nothing the agents
 can edit decides when the loop stops.
