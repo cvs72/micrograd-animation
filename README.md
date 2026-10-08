@@ -1,9 +1,10 @@
-# Animation loop kit 
+# Micrograd Animation - loop kit 
 ## (Claude Code + Manim, unattended, confined to one folder)
 
 This is just a project to create animations of Andrej Karpaty's lecture nn-zero-to-hero, and more speciphically on the firt lecture on 'micrograd' and the video 'The spelled-out intro to neural networks and backpropagation: building micrograd
 '.
 
+### TL;DR
 Builder agent writes scenes, objective checks gate them, an independent read-only reviewer agent
 looks at rendered frames, and a bash loop you own decides when it is finished. Nothing the agents
 can edit decides when the loop stops.
@@ -33,8 +34,11 @@ can edit decides when the loop stops.
 
 If smoke.sh reports `Operation not permitted`, watch what was blocked:
     log stream --predicate 'process == "sandbox-exec"' --style syslog
+
 and add ONLY the needed read path to `allowRead` in srt-settings.json (agents cannot edit that file).
+
 Also confirm the vision check printed the text from the test frame, and that the final PERMISSION CHECK PASSED.
+
 Why flags and not settings: in headless `claude -p`, allow rules in a project's .claude/settings.json are ignored
 unless the folder was trusted interactively, so the rules live in agent.sh as CLI flags (agents cannot edit it).
 
@@ -46,6 +50,7 @@ unless the folder was trusted interactively, so the rules live in agent.sh as CL
 ## Run
     MAX_ITER=4 TOTAL_BUDGET=8 ./loop.sh        # pilot: should finish scene 1 and stop at the cap
     MAX_ITER=30 TOTAL_BUDGET=55 ./loop.sh      # real run, after you have seen the pilot cost and quality
+
 Keep the Mac awake and plugged in: `caffeinate -i ./loop.sh`.
 After the pilot, measure real cost per iteration: `jq -s 'map(.total_cost_usd) | add/length' logs/iter-*.json`
 Stop at any time: `touch STOP` (checked before every iteration). Everything is committed per
