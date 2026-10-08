@@ -69,7 +69,8 @@ as soon as that succeeds. A limit wait does not use up an iteration, budget or f
 It gives up after 7 hours (exit 8), which is what a weekly limit looks like; re-run `./loop.sh` later and it resumes.
 
 Detection does not depend on the message text (its format in headless mode is not documented): any failed builder run
-is followed by a probe, and a failing probe means "limited". 
+is followed by a probe, and a failing probe means "limited".
+##
     Knobs: WAIT_POLL (600 s), 
            WAIT_MAX_SECS (25200),
            MAX_LIMIT_WAITS (8).
