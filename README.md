@@ -70,10 +70,10 @@ It gives up after 7 hours (exit 8), which is what a weekly limit looks like; re-
 
 Detection does not depend on the message text (its format in headless mode is not documented): any failed builder run
 is followed by a probe, and a failing probe means "limited".
-##
-    Knobs: WAIT_POLL (600 s), 
-           WAIT_MAX_SECS (25200),
-           MAX_LIMIT_WAITS (8).
+## Knobs: 
+        WAIT_POLL (600 s), 
+        WAIT_MAX_SECS (25200),
+        MAX_LIMIT_WAITS (8).
 
 If you enabled extra usage / usage credits on your plan, past-the-limit work is billed at API rates; turn that off or
 cap it if you want a hard stop.
