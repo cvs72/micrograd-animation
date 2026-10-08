@@ -1,6 +1,8 @@
 # Micrograd Animation - loop kit 
 ## (Claude Code + Manim, unattended, confined to one folder)
 
+> Unofficial, non-commercial fan project based on Andrej Karpathy's micrograd lecture and notebooks. All credit for the ideas and code belongs to him. See [Disclaimer](#disclaimer).
+
 This is just a project to create animations of Andrej Karpaty's lecture nn-zero-to-hero, and more speciphically on the firt lecture on 'micrograd' and the video 'The spelled-out intro to neural networks and backpropagation: building micrograd
 '.
 
@@ -70,10 +72,7 @@ It gives up after 7 hours (exit 8), which is what a weekly limit looks like; re-
 
 Detection does not depend on the message text (its format in headless mode is not documented): any failed builder run
 is followed by a probe, and a failing probe means "limited".
-#### Knobs: 
-        WAIT_POLL (600 s), 
-        WAIT_MAX_SECS (25200),
-        MAX_LIMIT_WAITS (8).
+> Knobs: WAIT_POLL (600 s), WAIT_MAX_SECS (25200), MAX_LIMIT_WAITS (8).
 
 If you enabled extra usage / usage credits on your plan, past-the-limit work is billed at API rates; turn that off or
 cap it if you want a hard stop.
@@ -109,3 +108,28 @@ cap it if you want a hard stop.
     reviews/ 
     feedback.md
     PLAN.md may only be changed by ticking boxes: any other edit stops the loop (exit 7).
+
+## Disclaimer
+
+This is an unofficial, non-commercial, educational fan project. It is not affiliated with, endorsed by, or sponsored by Andrej Karpathy.
+
+All the knowledge and concepts in these animations are based solely on Andrej Karpathy's lecture "The spelled-out intro to neural networks and backpropagation: building micrograd" and the accompanying notebooks, which he has made publicly available to everyone.
+
+I claim no copyright or other rights over his lectures, videos, notebooks, code, or ideas. They remain the property of their author and are credited to him throughout. Where his code is reproduced or adapted, it remains under its original licence, and the licence file is kept in `reference/`.
+
+Only the animation code and visual presentation in this repository are my own work, and they are provided as is, without warranty.
+
+Original sources:
+- Video: https://www.youtube.com/watch?v=VMj-3S1tku0
+- micrograd: https://github.com/karpathy/micrograd
+- nn-zero-to-hero: https://github.com/karpathy/nn-zero-to-hero
+
+## License
+
+The animation code and original content in this repository are released under the [MIT License](LICENSE): free to use, copy and modify.
+
+This does not apply to anything under `reference/`, which contains Andrej Karpathy's materials and remains under their original licence and copyright (see the Disclaimer above).
+
+## How this was made
+
+This project was planned and generated with AI assistance: the planning in claude.ai, and the code and animations by Claude Code (Anthropic), running in an automated build-and-review loop. I directed the project and reviewed the results, but the code and scenes were largely AI-generated. They may contain errors, so verify anything you rely on against Karpathy's original lecture and notebooks.
