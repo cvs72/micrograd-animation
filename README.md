@@ -1,4 +1,8 @@
-# Animation loop kit (Claude Code + Manim, unattended, confined to one folder)
+# Animation loop kit 
+## (Claude Code + Manim, unattended, confined to one folder)
+
+This is just a project to create animations of Andrej Karpaty's lecture nn-zero-to-hero, and more speciphically on the firt lecture on 'micrograd' and the video 'The spelled-out intro to neural networks and backpropagation: building micrograd
+'.
 
 Builder agent writes scenes, objective checks gate them, an independent read-only reviewer agent
 looks at rendered frames, and a bash loop you own decides when it is finished. Nothing the agents
