@@ -47,7 +47,7 @@ unless the folder was trusted interactively, so the rules live in agent.sh as CL
 2. Put reference material (e.g. Karpathy's notebooks) in reference/ yourself. The loop has no network.
 3. Commit everything: `git add -A && git commit -m "kit"`.
 
-## Run
+#### Run
     MAX_ITER=4 TOTAL_BUDGET=8 ./loop.sh        # pilot: should finish scene 1 and stop at the cap
     MAX_ITER=30 TOTAL_BUDGET=55 ./loop.sh      # real run, after you have seen the pilot cost and quality
 
@@ -70,7 +70,7 @@ It gives up after 7 hours (exit 8), which is what a weekly limit looks like; re-
 
 Detection does not depend on the message text (its format in headless mode is not documented): any failed builder run
 is followed by a probe, and a failing probe means "limited".
-## Knobs: 
+#### Knobs: 
         WAIT_POLL (600 s), 
         WAIT_MAX_SECS (25200),
         MAX_LIMIT_WAITS (8).
