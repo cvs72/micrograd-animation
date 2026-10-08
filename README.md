@@ -58,20 +58,48 @@ Exit codes: 0 done and verified, 1 iteration cap, 3 STOP file, 4 budget, 5 build
 `claude -p` currently draws from your subscription limits (Anthropic paused the planned separate credit; check the
 help center before a long run). The loop shares one pool with your chat and interactive Claude Code, so run it
 overnight and expect to be locked out of Claude while it works.
+
 When the limit is hit the loop does NOT quit: it probes every 10 minutes with a one-turn "ping" session and resumes
 as soon as that succeeds. A limit wait does not use up an iteration, budget or failure count; state lives in files and git.
 It gives up after 7 hours (exit 8), which is what a weekly limit looks like; re-run `./loop.sh` later and it resumes.
+
 Detection does not depend on the message text (its format in headless mode is not documented): any failed builder run
-is followed by a probe, and a failing probe means "limited". Knobs: WAIT_POLL (600 s), WAIT_MAX_SECS (25200),
-MAX_LIMIT_WAITS (8).
+is followed by a probe, and a failing probe means "limited". 
+    Knobs: WAIT_POLL (600 s), 
+           WAIT_MAX_SECS (25200),
+           MAX_LIMIT_WAITS (8).
+
 If you enabled extra usage / usage credits on your plan, past-the-limit work is billed at API rates; turn that off or
 cap it if you want a hard stop.
 
 ## Knobs (environment variables)
-MAX_ITER, TOTAL_BUDGET (USD, client-side estimate), STALL_LIMIT, FAIL_LIMIT, CLAUDE_MODEL (default sonnet),
-FAIL_SLEEP (seconds to wait after a failed run, default 300), BUILDER_TURNS/BUILDER_BUDGET, REVIEWER_TURNS/REVIEWER_BUDGET. SANDBOX_OFF=1 disables srt (testing only).
+    MAX_ITER, 
+    TOTAL_BUDGET (USD, client-side estimate), 
+    STALL_LIMIT, 
+    FAIL_LIMIT, 
+    CLAUDE_MODEL (default sonnet),
+    FAIL_SLEEP (seconds to wait after a failed run, default 300), 
+    BUILDER_TURNS/BUILDER_BUDGET, 
+    REVIEWER_TURNS/REVIEWER_BUDGET. 
+    SANDBOX_OFF=1 disables srt (testing only).
 
 ## Files agents cannot change (enforced by srt denyWrite AND permission deny rules)
-loop.sh verify.sh review.sh agent.sh sandboxed.sh hash.sh setup.sh smoke.sh prompts/ srt-settings.json .claude/
-CLAUDE.md tests/ pyproject.toml uv.lock conftest.py reviews/ feedback.md
-PLAN.md may only be changed by ticking boxes: any other edit stops the loop (exit 7).
+    loop.sh 
+    verify.sh 
+    review.sh 
+    agent.sh 
+    sandboxed.sh 
+    hash.sh 
+    setup.sh 
+    smoke.sh 
+    prompts/ 
+    srt-settings.json 
+    .claude/
+    CLAUDE.md 
+    tests/ 
+    pyproject.toml 
+    uv.lock 
+    conftest.py 
+    reviews/ 
+    feedback.md
+    PLAN.md may only be changed by ticking boxes: any other edit stops the loop (exit 7).
