@@ -1,0 +1,28 @@
+Example A: the lecture's own graph, built from four plain numbers.
+A scalar is one single number, like 2.0 or minus 3.0.
+A Value wraps a scalar and remembers where it came from.
+data holds the number. grad will hold its slope, starting at zero.
+_prev lists the children, and _op names the operation that made it.
+Four leaf Values: a, b, c and f. Nothing has been computed yet.
+Before we compute: will L end up positive or negative?
+First, e = a times b. The numbers flow forward along the arrows.
+Then d = e plus c. Each new node is born from its children.
+Finally L = d times f, which gives minus 8. The forward pass is done.
+The round circles are only drawing helpers. Only rectangles are Values.
+Zoom on d: its children are just the inputs it was computed from.
+That is a computation graph: Values joined by operations.
+Example B: what if we build a different shape from the same pieces?
+Think first: with (a + b) times (c + f), how many plus nodes appear?
+Same two operations, new shape: two plus nodes feed one times node.
+Now the numbers: 3 minus 1 is 2, 2 plus 4 is 6, and 2 times 6 is 12.
+Same pieces, different graph: the shape comes from the expression.
+Expert corner: the graph is built while the code runs.
+This loop adds one number per turn. Watch the graph grow with it.
+With three turns we get seven Values: one start, three inputs, three sums.
+Predict: change three to five. How many Values will the graph hold?
+11 Values! Same code, a different graph: the data decides the shape.
+Every node keeps its children in _prev, so backprop can walk back.
+That is why training uses so much memory: nothing is freed early.
+Rebinding: c = c plus 1 does not change the old c node at all.
+It builds a brand new node and moves the name c onto it.
+The old node stays in the graph, and d still points to it.

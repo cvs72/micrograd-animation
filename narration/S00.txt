@@ -1,0 +1,24 @@
+This is the demo from the micrograd README: a and b go in.
+The expression is meaningless. It only shows what the engine can do.
+Run it forward and out comes one number, g.
+Backward asks: how fast does g change if we nudge a or b?
+Nudge a up a little and g grows about 138.8 times as fast.
+Check it: nudge a by h = 0.001 and see how far g really moves.
+A bigger h gives 139.0388; as h shrinks it closes in on 138.8338.
+Backprop works on any expression. Neural nets are a calmer one.
+micrograd uses single numbers on purpose; tensors only add speed.
+This tiny network has sixteen knobs; real ones have millions.
+In code, every knob is just a number.
+The loss measures how wrong we are. Lower is better.
+Turn one knob blindly and the mistake grows: wrong way!
+Another knob, other direction: lucky this time, the loss falls.
+But luck will not scale to thousands of knobs. We need a direction.
+Here is our plan: twelve short chapters, one idea each.
+First slopes, several inputs, and the computation graph.
+Then the backward pass, one neuron, and automating it.
+Next, adding up gradients, more operations, and PyTorch.
+Finally a whole network, training it, and a loss surface.
+Every chapter has three acts, so you see each idea three times.
+A uses the lecture's numbers; B changes them and watches what moves.
+The expert corner adds what a specialist would warn you about.
+Chapter 1 answers it, starting with simple slopes.

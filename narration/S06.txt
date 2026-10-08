@@ -1,0 +1,29 @@
+Example A: the neuron from chapter 5, with its gradients still empty.
+Which node's backward must run first? Think about who needs whose gradient.
+The output o goes first: its own gradient is 1, and it feeds the rest.
+By hand, each step hands a gradient to children, so the order matters.
+That works, but we want the computer to find a safe order itself.
+Each operation stores a closure: its own little backward rule.
+Plus passes it on, times swaps the inputs, tanh uses one minus o squared.
+Topological order: every node comes after all of its children.
+Walk down from o. A node turns yellow when we step into it.
+It drops into the list only after all its children are in it.
+Children first, output last. Now we flip the list around.
+Backward now runs along the flipped list and fills every gradient.
+Same answers as by hand: x1 gets minus 1.5 and w1 gets 1.0.
+Wrong order: x1w1 runs before its parent has pushed a gradient to it.
+It pushes a zero into x1 and w1. Their true values need the order.
+Example B: a diamond, where one node feeds two different nodes.
+Here b and c do not depend on each other, so either may come first.
+Predict: will the other valid order change the gradient of a?
+First order: the engine's own topological list, run from the end.
+Second order: b and c swapped. Same gradient for a, nothing changes.
+Invalid order: c runs before d, so c's gradient is still zero.
+Expert corner: how much work is the sort, and can it fail?
+The sort visits every node once, so the cost is nodes plus edges.
+Twice the nodes, twice the work: a straight line on the plot.
+Now one long chain: 2000 additions in a row, sorted with recursion.
+Python stops us at depth 1000: a RecursionError, with 2000 to go.
+The fix is a new function with its own stack, so no deep recursion.
+It sorts all 4001 nodes, and backward then reaches x without any error.
+Real frameworks avoid deep recursion for exactly this reason.

@@ -1,0 +1,44 @@
+Example A: the lecture's neuron, first as a cartoon of a brain cell.
+Example A: a neuron takes numbers in and gives one number out.
+Each weight scales its input: a big weight makes that input matter more.
+The bias shifts the sum up or down, whatever the inputs say.
+The squashing function tanh maps any number into the range minus 1 to 1.
+Big inputs flatten toward 1 and big negative inputs toward minus 1.
+Predict: with bias 8 the sum is n = 2. Is tanh(2) near 2 or near 1?
+It is 0.9640: already in the flat tail, so the output barely moves.
+Now the same neuron as Value nodes: inputs, weights and a bias of 8.
+The forward pass fills in each number, column by column, left to right.
+With bias 8 the sum is 2 and tanh gives 0.9640, as in the plot.
+Predict: lower the bias to 6.8814. Does o go up or down from 0.9640?
+The sum drops to 0.8814 and tanh leaves the flat tail: o is 0.7071.
+tanh is a single node here: it cannot be built from plus and times.
+Backward pass: start at the output, where o.grad is 1.
+Predict: o is 0.7071. What is one minus o squared?
+The local derivative of tanh is 1 minus o squared.
+A plus node is a router: it hands the same gradient to both inputs.
+Predict: x2 is 0 and the product gets 0.5. What is w2.grad?
+A times node swaps in the other input: w2.grad is x2 times 0.5.
+w2.grad is 0 because x2 is 0: wiggling w2 changes nothing.
+Same swap for x1: w1.grad is x1 times 0.5, and x1.grad is w1 times 0.5.
+w1.grad is 1.0: to raise this neuron's output, push w1 up.
+Example B: what if the bias is 0, or x2 is 1? Watch the gradients.
+Same neuron, but now the tanh curve and the four gradients live together.
+Predict: set the bias to 0. Will the gradients grow or shrink?
+The sum slides left to n = -6, deep in the flat tail of tanh.
+The local derivative is almost 0, so every gradient is almost 0.
+Now restore the bias and give x2 the value 1 instead of 0.
+Predict: x2 goes from 0 to 1. What happens to w2.grad?
+The sum rises to 1.8814 and the dot slides right along the curve.
+w2.grad wakes up: x2 times the local derivative, 1 times 0.0887.
+x2 now sits closer to the tail, so every gradient is smaller than before.
+Expert corner: tanh gradients vanish in the tails, and ReLU can die.
+Expert corner: tanh and its slope, 1 minus tanh squared, drawn together.
+In the red bands the slope is under 0.1: the gradient vanishes.
+Predict: far out on the tail, is the slope big or tiny?
+At n = 4 the slope is 0.0013: weights feeding this neuron barely learn.
+So the scale of weights and inputs matters: huge sums land in the tails.
+ReLU keeps positive numbers and zeroes the negatives. Meet two ReLU neurons.
+The healthy one passes x times w = 2 straight through.
+Predict: now w = -1 and x = 2. Does any gradient get through?
+The sum is -2, so relu outputs 0 and blocks the backward flow.
+Both gradients are exactly 0.0: this neuron can never recover on its own.

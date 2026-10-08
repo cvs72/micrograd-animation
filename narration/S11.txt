@@ -1,0 +1,30 @@
+Example A: the lecture's four examples and our 41-knob network.
+Four examples, three inputs each, and the answer wanted for each.
+The network starts with random weights, so it just guesses.
+Its four guesses (blue) beside the four right answers (grey).
+Predict: must each blue bar move up or down to reach its target?
+2 must go up and 2 must go down: arrows point to the targets.
+One number for the total mistake: square each error, then add.
+backward() gives each knob a gradient: its effect on the loss.
+Predict: this gradient is negative. Knob up or down?
+Negative gradient: raising the knob lowers the loss, so go up.
+30 steps at 0.05. The lecture: 0.1, 20 steps, loss 0.0103.
+Loss fell from 6.2443 to 0.0346: blue bars meet grey.
+Same run in the network: line thickness shows weight size.
+Example B: what if the learning rate changes? Five runs, same start.
+Predict: all five start at the same loss. Which rate ends lowest?
+Each line is one run of 30 steps. We race them live.
+Fastest here is 0.3, not the biggest rate: 1.0 jumps and gets stuck.
+Why is 1.0 stuck? Compare its predictions with those of 0.3.
+Now the same network trained with rate 1.0: every bar jumps to -1.
+Two answers are now wrong, and tanh is flat there, so the gradient dies.
+Expert corner: what really goes wrong, and what real training adds.
+The classic bug: forget to zero the gradients before backward().
+Predict: if we never zero them, will the loss still go down?
+Yes, it still falls here, which is why the bug is so easy to miss.
+Kept gradients pile up, so every step is too big.
+41 knobs but only 4 examples: the network can simply memorise them.
+Low loss on these four says nothing about unseen examples.
+The loss is a design choice: it decides what we aim for.
+A mistake of 1.5 pulls with 3 under squared loss, 1 under absolute.
+Real training adds four things to this loop.

@@ -1,0 +1,15 @@
+The whole journey: twelve chapters, each in one tiny picture.
+Slopes first: how fast does the output move if an input moves?
+Several inputs: each one gets its own slope, its own sensitivity.
+Then graphs: each number remembers its inputs, so we can walk back.
+Order matters: a node goes backward only after all nodes after it.
+Gradients add up, and any operation works if its slope is right.
+Tensors pack many scalars together, purely for speed.
+Then networks: layers of neurons, trained by gradient descent.
+The loss surface is an analogy: real networks cannot be pictured.
+Every chapter had three acts. Keep that pattern for your own study.
+Our network had 41 parameters; real language models have billions.
+They learn to guess the next word, with the very same arithmetic.
+Remember: the gradient tells every knob which way to turn.
+Here it is on one real knob: its gradient decides the step.
+Next in Karpathy's series: makemore, a small language model.

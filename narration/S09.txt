@@ -1,0 +1,28 @@
+Example A: the same neuron from chapter 5, now written twice.
+On the left our Value version, on the right the same thing in PyTorch.
+PyTorch uses 32-bit floats; .double() matches Python's 64-bit.
+Leaf tensors skip gradients unless asked: requires_grad = True.
+o.backward() is the same call as ours. It fills in every .grad.
+A tensor is a box of numbers, so .item() pulls out one plain number.
+Before comparing: what should x1.grad be? Think 1 - o squared.
+Times w1 = -3, the local slope 0.5 gives -1.5: a downhill nudge.
+The lecture's PyTorch run prints these same numbers (not run here).
+Same maths, same gradients. PyTorch is micrograd plus speed.
+Example B: what if the numbers are not single scalars?
+A tensor is a grid of numbers. This one has 2 rows and 3 columns.
+4 examples, 3 inputs, 4 neurons: how many multiplications?
+Examples times weights gives a 4 by 4 grid of sums.
+micrograd builds each cell by hand: 3 products, then adds.
+16 cells, 3 products each: exactly 48 multiplications.
+A tensor library does the whole grid in one parallel call.
+What if the layer had 8 neurons? Watch the scalar count double.
+8 neurons: 4 * 3 * 8 = 96 products. Tensors: one call.
+Expert corner: where does PyTorch hide tanh's backward pass?
+The lecture hunted for tanh's backward in PyTorch for about 15 minutes.
+The CPU and CUDA kernels hold one line: grad times (1 - o squared).
+That is our tanh _backward: same formula, more hardware.
+To add your own operation, write forward and backward by hand.
+Backward is the derivative you derive by hand: 1.5 (5x^2 - 1).
+Your operation becomes a lego block: forward plus backward.
+PyTorch stores one derivative per operation, like our closures.
+Micrograd is the whole idea. The rest of PyTorch is efficiency.

@@ -1,0 +1,22 @@
+Example A: the lecture's own network, 3 inputs, 4, 4, then 1 output.
+A neuron is Value arithmetic: weights times inputs, plus a bias, then tanh.
+A layer is just a list of neurons that all read the same inputs.
+An MLP chains layers: one layer's outputs feed the next layer.
+MLP(3, [4, 4, 1]) run on x = [2, 3, -1]: the signal moves layer by layer.
+Zoom in: a hidden neuron owns 3 weights and 1 bias to learn.
+Predict: how many numbers does this network hold that we may turn?
+Count them layer by layer: 16, then 20, then 5. Each is a knob.
+Example B: what if we change the shape of the network?
+Predict: make both hidden layers 8 wide. Do the knobs double?
+More than double: 113 parameters, because the layers feed each other.
+Shrink it to MLP(2, [4, 1]): the diagram redraws, only 17 knobs remain.
+Predict: same network, same input, three random seeds. Same output?
+No: each seed sets different knobs, so the output differs.
+Expert corner: why must the weights start random, not all equal?
+Start every weight at 0.5 and every bias at 0, and look at the gradients.
+Predict: will the four neurons of a layer get different gradients?
+No: identical. Each neuron sees the same inputs and acts the same.
+So they stay twins forever: extra neurons would add nothing new.
+Random weights break the tie: each neuron gets its own gradient.
+Counting knobs in general: each layer has (inputs + 1) times neurons.
+Bigger layers cost more: parameters grow with width times width.

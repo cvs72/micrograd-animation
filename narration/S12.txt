@@ -1,0 +1,24 @@
+Example A: one tanh neuron with two weights, w1 and w2, and bias 0.5.
+Every pair (w1, w2) gives one loss: the height above that spot.
+At the start (-2.5, 2) the engine adds four squared errors.
+Doing that for every grid point builds a landscape: low is good.
+Contour lines on the floor join points with equal loss, like a map.
+Our ball starts at (-2.5, 2). Which way should it roll?
+The gradient (orange) points uphill; we step the opposite way (teal).
+One update: w1 minus learning rate times its slope.
+Now 25 steps: each one re-asks the engine for the slope, then moves.
+Seen from above, the path crosses contours toward the lower rings.
+Example B: what if we start elsewhere, or take much bigger steps?
+Three starting points, each tried with a small and a huge step.
+Small steps: the ball slides down and settles in the valley.
+Predict: will a step twenty times bigger get there sooner?
+No: it overshoots the valley and lands higher, worse than before.
+Huge steps fly off the map; the small ones always finish lower.
+Expert corner: the gradient is perpendicular to the contour lines.
+Gradient arrows on the map cross every ring at right angles.
+Check one ring: slope and contour meet at about 90 degrees.
+But in a saturated corner the surface is flat: slope almost zero.
+Twenty-five steps and the ball has hardly moved: the plateau traps it.
+Real networks have millions of weights: no surface to draw.
+Same idea: one slope per weight, at every single point.
+The bowl is an analogy; the downhill rule is the real thing.

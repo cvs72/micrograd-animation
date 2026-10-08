@@ -1,0 +1,29 @@
+Example A: our Value class meets plain Python numbers for the first time.
+We write a + 1. A plain number sits next to our Value. Will it work?
+No. The plain number 1 has no data attribute, so Python raises an error.
+The fix: if other is not a Value, wrap it in one before adding.
+Now the other order: 2 * a. Python asks the number 2 first.
+The int can't handle our class, so Python tries the other side.
+Next it calls a.__rmul__(2), which swaps the operands: a * 2.
+Each new operation needs only a forward value and a local slope.
+Division and subtraction need nothing new: they reuse power, plus and times.
+Back to the neuron. Can tanh be rebuilt from exp, plus and times?
+Yes: n times 2, then exp, then minus 1 and plus 1, then divide.
+Six small nodes do the work of one. Watch the gradient flow back.
+Same value 0.7071, same gradients: the size of an operation does not matter.
+Example B: what if we build a sigmoid from the same pieces?
+Sigmoid needs only exp, plus, times and power: 1 over 1 + e^-x.
+Predict: how steep is the sigmoid at x = 1? Above 0.25, or below?
+The same x flows through four small nodes and gives s = 0.7311.
+Backward, each node multiplies in its own slope, as in chapter 4.
+Out comes 0.1966, which is exactly s times one minus s: a neat shortcut.
+Slide the dot: the tangent flattens far from zero, so gradients vanish.
+Now compare it with tanh from chapter 5: same S shape, but from -1 to 1.
+Squeeze sigmoid sideways by 2, double it, subtract 1: it is tanh.
+Expert corner: what happens when the rebuilt tanh gets a huge input?
+Predict: what does the six-node tanh return for x = 400?
+The pieces need e^(2x), which grows too fast for a float to hold.
+Past 2x = 709.78 exp raises OverflowError, so x = 400 crashes.
+Fix: divide top and bottom by e^(2x), so only negative powers remain.
+The tiny power rounds to 0, so the answer is exactly 1, like fused tanh.
+So frameworks fuse operations: fewer nodes, less memory, safer maths.
